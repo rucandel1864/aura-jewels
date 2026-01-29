@@ -154,13 +154,13 @@ export function ProductShowcase() {
                 Lumière Collection
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl mb-2">{product.node.title}</h2>
-              <div className="flex items-baseline gap-3">
-                <span className="text-2xl font-medium">
-                  ${displayPrice}
-                </span>
-                <span className="text-sm text-muted-foreground line-through">${displayPrice * 3}</span>
-                <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">Save 67%</span>
-              </div>
+            <div className="flex items-baseline gap-3">
+              <span className="text-2xl font-medium">
+                ${displayPrice}
+              </span>
+              <span className="text-sm text-muted-foreground line-through">${Math.round(displayPrice * 1.4)}</span>
+              <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">Save 30%</span>
+            </div>
             </div>
 
             {/* Features */}
