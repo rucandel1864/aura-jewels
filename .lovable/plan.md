@@ -1,110 +1,113 @@
 
 
-# ✨ LUMIÈRE FINE JEWELRY — Brand & Store Plan
+# Product Switch: Promise Eternity Band
 
-## Brand Concept
+## Overview
 
-**Brand Name: Lumière** (French for "light") — A sophisticated, minimalist jewelry brand specializing in fine bridal and everyday luxury pieces. The name evokes brilliance, elegance, and timeless beauty without sounding like a typical dropshipping store.
+Switching from the solitaire-style "Eternal Radiance Ring" to the **Huitan Bling Bling Promise Ring** - a delicate half-eternity band featuring a row of round brilliant cubic zirconia stones in silver color. This creates a more refined, stackable aesthetic that appeals to modern brides and everyday luxury customers.
 
-**Positioning:** Affordable luxury ($59-79) with a direct-to-consumer story focused on craftsmanship and ethical sourcing.
+## Product Analysis
 
-**Tagline:** "Brilliance, redefined."
+**From AliExpress Screenshot:**
+- Half-eternity band style with round CZ stones across the top
+- Slim, delicate profile - "low-key" elegant design
+- Silver color variant selected
+- Available in multiple sizes (typical range: 5-10)
+- 4.8 star rating with 1,000+ sold - proven bestseller
 
----
+## Changes Required
 
-## Product Strategy
+### 1. Shopify Product Update
 
-### Hero Product: The "Eternal Radiance" Ring
-- **Price Point:** $67 (psychological pricing)
-- **Materials Messaging:** "Sterling Silver with AAA Cubic Zirconia" — position as an ethical, conflict-free alternative to mined diamonds
-- **Variants:** Multiple sizes (5-10)
-- **Story:** Handcrafted for the modern bride who values elegance without compromise
+**Delete existing product (ID: 14963418956146) and create new:**
 
-### AI-Generated Imagery
-I'll create custom product images using AI image generation to:
-- Show the ring on elegant hands with soft lighting
-- Create lifestyle shots (bridal, romantic, everyday wear)
-- Design hero banners and social-proof visuals
-- Avoid any reverse image search matches
+| Field | Value |
+|-------|-------|
+| **Name** | Celestial Promise Band |
+| **Price** | $67.00 |
+| **Vendor** | Lumiere |
+| **Type** | Ring |
+| **Variants** | Sizes 5, 6, 7, 8, 9, 10 |
+| **SKUs** | LUM-CPB-05 through LUM-CPB-10 |
 
----
+**Updated Description:**
+A delicate row of brilliant round-cut stones set in sterling silver, the Celestial Promise Band embodies modern elegance. Slim enough to stack, stunning enough to stand alone.
 
-## Website Structure
+### 2. AI-Generated Product Images (5 new images)
 
-### 1. **Hero Section**
-- Full-screen lifestyle image with the ring
-- Bold headline: "The ring she'll never take off"
-- Subheadline emphasizing brilliance and affordability
-- Single CTA: "Shop the Eternal Radiance"
+Generate unique images matching the half-eternity band style:
 
-### 2. **Trust Bar**
-- Free shipping icon
-- 60-day returns
-- Secure checkout
-- "Conflict-free certified"
+1. **Hero image** - Elegant hand shot showcasing the delicate band
+2. **Product shot 1** - Clean studio shot, 45-degree angle showing stone arrangement
+3. **Product shot 2** - Close-up macro of round CZ stones catching light
+4. **Lifestyle shot 1** - Romantic/bridal context, soft lighting
+5. **Lifestyle shot 2** - Stacking multiple bands or everyday wear
 
-### 3. **Product Showcase**
-- Large, clean product gallery
-- Zoom on hover
-- Size guide integration
-- Variant selector (ring size)
-- "Add to Cart" with quantity selector
+**Key visual characteristics to capture:**
+- Slim, delicate band profile
+- Row of uniform round brilliant-cut stones
+- Silver/white gold color appearance
+- Soft, diffused lighting
+- Neutral backgrounds
 
-### 4. **Social Proof Section**
-- Empty review structure (ready for real reviews)
-- "As featured in" placeholder
-- Instagram-style gallery layout
+### 3. Website Component Updates
 
-### 5. **Brand Story Section**
-- "Our Promise" — Why we're different
-- Focus on craftsmanship, ethical sourcing, direct-to-consumer value
-- Founder story teaser (optional)
+**HeroSection.tsx:**
+- Update headline to emphasize "promise" and "everyday elegance"
+- Adjust subheadline copy for the delicate band style
 
-### 6. **Urgency & Scarcity Elements**
-- "Limited stock" indicator
-- Free shipping threshold countdown
-- "X people viewing this right now" (subtle)
+**ProductShowcase.tsx:**
+- Update description text from solitaire to half-eternity band
+- Update feature bullets to emphasize stackability and delicate design
+- Size chart remains the same (5-10)
 
-### 7. **FAQ Section**
-- Shipping times
-- Return policy
-- Ring sizing help
-- Material care
+**BrandStory.tsx:**
+- Update alt text references to new product style
 
-### 8. **Footer**
-- Minimal, elegant
-- Contact email
-- Social links
-- Policy pages
+### 4. Updated Brand Messaging
 
----
+**New Product Positioning:**
+- "Celestial Promise Band" - evokes stars, light, commitment
+- Emphasizes stackability and versatility
+- Perfect for: wedding bands, promise rings, anniversary gifts, everyday luxury
+- Maintains ethical sourcing and quality messaging
 
-## Conversion Features
+**Key Selling Points:**
+- Delicate, low-profile design for everyday wear
+- Stackable with other bands or engagement rings
+- Same 925 Sterling Silver and AAA Cubic Zirconia quality
+- "A circle of stars for a lifetime of promises"
 
-1. **Sticky "Add to Cart" bar** on mobile scroll
-2. **Exit-intent popup** with 10% off first order
-3. **Cart drawer** instead of redirect (reduce friction)
-4. **Checkout with Shopify** — seamless, trusted
-5. **Email capture** with discount incentive
-6. **Size guide popup** to reduce returns
+## Execution Order
 
----
+1. Generate 5 new AI images for the half-eternity band style
+2. Save images to `src/assets/` (replacing existing ring images)
+3. Delete the existing "Eternal Radiance Ring" from Shopify (ID: 14963418956146)
+4. Create new "Celestial Promise Band" product with all variants and upload images
+5. Update HeroSection.tsx with new copy
+6. Update ProductShowcase.tsx with new description and features
+7. Update BrandStory.tsx alt text
 
-## Design System
+## Technical Details
 
-- **Colors:** Off-white background (#FEFEFE), charcoal text (#1A1A1A), gold accents (#C9A77D)
-- **Typography:** Elegant serif headlines (Playfair Display or similar), clean sans-serif body (Inter)
-- **Photography Style:** Soft, diffused lighting, neutral backgrounds, elegant hand models
-- **Spacing:** Generous whitespace, luxury feel
+### Image Assets to Replace
 
----
+| File | New Content |
+|------|-------------|
+| ring-hero.jpg | Hand shot with delicate half-eternity band |
+| ring-product-1.jpg | Studio product shot - angled view |
+| ring-product-2.jpg | Close-up macro of round CZ stones |
+| ring-lifestyle-1.jpg | Romantic/bridal lifestyle shot |
+| ring-bridal.jpg | Stacking or everyday context |
 
-## Deliverables
+### Size Chart (Unchanged)
 
-1. Complete branded storefront with all sections above
-2. AI-generated product images (3-5 unique shots)
-3. Shopify product with proper variants and pricing
-4. Cart and checkout integration
-5. Mobile-optimized responsive design
-6. All trust and conversion elements
+| Size | Inside Diameter |
+|------|-----------------|
+| 5 | 15.7mm |
+| 6 | 16.5mm |
+| 7 | 17.3mm (Most Popular) |
+| 8 | 18.1mm |
+| 9 | 18.9mm |
+| 10 | 19.8mm |
 
