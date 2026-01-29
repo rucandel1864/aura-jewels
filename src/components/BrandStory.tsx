@@ -22,11 +22,11 @@ export function BrandStory() {
               <p>
                 At Lumière, we believe that brilliance shouldn't come at a cost — to your wallet 
                 or to the world. That's why every piece in our collection is crafted with ethically 
-                sourced materials and conflict-free stones.
+                sourced materials and genuine moissanite stones.
               </p>
               <p>
-                Our AAA cubic zirconia offers the same fire, clarity, and brilliance as mined diamonds, 
-                at a fraction of the price. Combined with 925 sterling silver, each ring is designed 
+                Our moissanite offers superior fire and brilliance compared to mined diamonds — 
+                and it passes diamond tester. Combined with 925 sterling silver, each ring is designed 
                 to last a lifetime.
               </p>
               <p>

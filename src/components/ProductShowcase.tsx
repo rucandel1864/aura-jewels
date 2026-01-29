@@ -132,11 +132,15 @@ export function ProductShowcase() {
             <div className="flex flex-wrap gap-4 py-4 border-y">
               <div className="flex items-center gap-2 text-sm">
                 <Sparkles className="h-4 w-4 text-primary" />
-                <span>AAA Cubic Zirconia</span>
+                <span>3mm Moissanite</span>
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <span className="text-primary">925</span>
                 <span>Sterling Silver</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-primary">✓</span>
+                <span>Passes Diamond Tester</span>
               </div>
             </div>
 
@@ -253,9 +257,9 @@ export function ProductShowcase() {
             {/* Description */}
             <div className="prose prose-sm max-w-none text-muted-foreground pt-4">
               <p>
-                A delicate row of brilliant round-cut stones set in sterling silver, the Celestial Promise Band 
-                embodies modern elegance. Slim enough to stack, stunning enough to stand alone — perfect for 
-                promises, weddings, or everyday luxury.
+                A stunning row of brilliant 3mm moissanite stones set in sterling silver, the Celestial Promise Band 
+                embodies modern elegance. Passes diamond tester with exceptional fire and brilliance — perfect for 
+                weddings, promises, or everyday luxury.
               </p>
               <ul className="space-y-2 mt-4 list-none pl-0">
                 <li className="flex items-start gap-2">
@@ -264,7 +268,7 @@ export function ProductShowcase() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-medium">—</span>
-                  AAA Cubic Zirconia with brilliant round-cut stones
+                  3mm Moissanite stones with brilliant round-cut
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-medium">—</span>
@@ -272,7 +276,7 @@ export function ProductShowcase() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-medium">—</span>
-                  Ethically sourced, conflict-free materials
+                  100% passes diamond tester
                 </li>
               </ul>
             </div>
