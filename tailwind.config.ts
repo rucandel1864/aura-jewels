@@ -17,6 +17,13 @@ export default {
         serif: ["'Playfair Display'", "serif"],
         sans: ["'Inter'", "sans-serif"],
       },
+      fontSize: {
+        // Editorial typography scale
+        'hero': ['4.5rem', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+        'hero-mobile': ['2.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'display': ['3rem', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
+        'display-mobile': ['2rem', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -94,9 +101,25 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        "float-slow": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
         fadeIn: {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        fadeInUp: {
+          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        scaleIn: {
+          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        glow: {
+          "0%, 100%": { boxShadow: "0 0 20px hsla(43, 53%, 59%, 0.2)" },
+          "50%": { boxShadow: "0 0 40px hsla(43, 53%, 59%, 0.4)" },
         },
       },
       animation: {
@@ -104,7 +127,11 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         shimmer: "shimmer 2s infinite linear",
         float: "float 3s ease-in-out infinite",
+        "float-slow": "float-slow 6s ease-in-out infinite",
         "fade-in": "fadeIn 0.6s ease-out forwards",
+        "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+        "scale-in": "scaleIn 0.4s ease-out forwards",
+        glow: "glow 2s ease-in-out infinite",
       },
     },
   },
