@@ -259,13 +259,13 @@ export function ProductShowcase() {
             {/* Description */}
             <div className="prose prose-sm max-w-none text-muted-foreground pt-4">
               <p>
-                A timeless symbol of love, handcrafted in sterling silver with a brilliant AAA cubic zirconia 
-                center stone. The Eternal Radiance Ring captures light from every angle, offering the same fire 
-                and brilliance as a mined diamond — without compromise.
+                A delicate row of brilliant round-cut stones set in sterling silver, the Celestial Promise Band 
+                embodies modern elegance. Slim enough to stack, stunning enough to stand alone — perfect for 
+                promises, weddings, or everyday luxury.
               </p>
               <ul className="space-y-2 mt-4">
-                <li>✨ Conflict-free certified — Ethically sourced materials</li>
-                <li>💎 AAA Cubic Zirconia — Maximum brilliance and clarity</li>
+                <li>✨ Stackable design — Layer with other bands or wear solo</li>
+                <li>💎 AAA Cubic Zirconia — Brilliant round-cut stones</li>
                 <li>🪙 925 Sterling Silver — Hypoallergenic and tarnish-resistant</li>
                 <li>📦 Luxury packaging — Gift-ready presentation</li>
               </ul>
