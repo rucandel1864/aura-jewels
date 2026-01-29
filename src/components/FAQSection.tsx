@@ -15,8 +15,12 @@ const faqs = [
     answer: "We recommend using our size guide above the size selector. The most common method is to measure the inside diameter of a ring that fits well. Size 7 is our most popular size. When in doubt, we recommend sizing up for a comfortable fit."
   },
   {
-    question: "What is AAA Cubic Zirconia?",
-    answer: "AAA-grade cubic zirconia is the highest quality synthetic gemstone, offering exceptional brilliance and clarity. It's virtually indistinguishable from natural diamonds to the naked eye but is ethically produced and more affordable."
+    question: "What is moissanite?",
+    answer: "Moissanite is a lab-created gemstone with exceptional brilliance and fire — often surpassing that of mined diamonds. It's virtually indistinguishable to the naked eye and passes diamond tester. Ethically produced and more affordable than mined stones."
+  },
+  {
+    question: "What's the difference between carat sizes?",
+    answer: "Carat refers to the size of the center stone. Our 1CT is a delicate, everyday option. 2CT is our most popular, offering a perfect balance of presence and elegance. 5CT and 8CT are statement pieces for those who love maximum brilliance."
   },
   {
     question: "Is sterling silver hypoallergenic?",
@@ -24,7 +28,7 @@ const faqs = [
   },
   {
     question: "How do I care for my ring?",
-    answer: "To maintain its brilliance, clean your ring with a soft cloth and mild soap. Avoid exposure to harsh chemicals, perfumes, and chlorine. Store in the included jewelry box when not wearing. Remove before swimming or showering."
+    answer: "To maintain its brilliance, clean your ring with a soft cloth and mild soap. Avoid exposure to harsh chemicals, perfumes, and chlorine. Store in the included jewelry pouch when not wearing. Remove before swimming or showering."
   }
 ];
 
