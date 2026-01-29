@@ -10,7 +10,7 @@ export function HeroSection() {
       <div className="absolute inset-0">
         <img 
           src={heroImage} 
-          alt="Eternal Radiance Ring" 
+          alt="Eternal Brilliance Solitaire Ring" 
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
@@ -35,8 +35,8 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-6"
           >
-            A circle of stars
-            <span className="block italic">for a lifetime of promises</span>
+            A brilliance that
+            <span className="block italic">takes your breath away</span>
           </motion.h1>
 
           <motion.p
@@ -45,8 +45,8 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg sm:text-xl text-muted-foreground font-light mb-8 max-w-lg"
           >
-            Stackable, stunning, and passes diamond tester. The Celestial Promise Band 
-            in sterling silver with brilliant 3mm moissanite stones.
+            The Eternal Brilliance Solitaire in 925 sterling silver with a stunning 
+            oval-cut moissanite. Available from 1CT to 8CT in silver or gold.
           </motion.p>
 
           <motion.div
@@ -60,7 +60,7 @@ export function HeroSection() {
               className="h-14 px-8 bg-foreground text-background hover:bg-foreground/90 text-base"
               onClick={() => document.getElementById('product')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Shop the Celestial Promise Band — $67
+              Shop the Eternal Brilliance — From $49
             </Button>
           </motion.div>
 
@@ -70,7 +70,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-xs text-muted-foreground mt-6"
           >
-            ✨ Free shipping · 60-day returns · Conflict-free certified
+            ✨ Free shipping · 60-day returns · Passes diamond tester
           </motion.p>
         </div>
       </div>
