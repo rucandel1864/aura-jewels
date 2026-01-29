@@ -207,20 +207,24 @@ export function ProductShowcase() {
               <div className="space-y-3">
                 <label className="text-sm font-medium">Carat Size</label>
                 <div className="grid grid-cols-4 gap-2">
-                  {caratOption.values.map((carat) => (
-                    <button
-                      key={carat}
-                      onClick={() => setSelectedCarat(carat)}
-                      className={`px-4 py-3 rounded-md border-2 transition-all text-center ${
-                        selectedCarat === carat 
-                          ? 'border-primary bg-primary/5' 
-                          : 'border-muted hover:border-muted-foreground/50'
-                      }`}
-                    >
-                      <span className="font-medium block">{carat}</span>
-                      <span className="text-xs text-muted-foreground">${CARAT_PRICES[carat] || 49}</span>
-                    </button>
-                  ))}
+                  {caratOption.values.map((carat) => {
+                    const baseCaratPrice = CARAT_PRICES[carat] || 49;
+                    const displayCaratPrice = selectedMetal === "Gold" ? baseCaratPrice + GOLD_PREMIUM : baseCaratPrice;
+                    return (
+                      <button
+                        key={carat}
+                        onClick={() => setSelectedCarat(carat)}
+                        className={`px-4 py-3 rounded-md border-2 transition-all text-center ${
+                          selectedCarat === carat 
+                            ? 'border-primary bg-primary/5' 
+                            : 'border-muted hover:border-muted-foreground/50'
+                        }`}
+                      >
+                        <span className="font-medium block">{carat}</span>
+                        <span className="text-xs text-muted-foreground">${displayCaratPrice}</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}
