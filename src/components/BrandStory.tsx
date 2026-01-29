@@ -1,77 +1,124 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import ringBridal from "@/assets/ring-bridal.jpg";
+import ringProduct2 from "@/assets/ring-product-2.jpg";
 
 export function BrandStory() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [30, -30]);
+
   return (
-    <section id="story" className="py-20 sm:py-32 bg-muted/30">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <p className="text-sm tracking-[0.15em] uppercase text-primary mb-4">
-              Our Promise
-            </p>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl mb-6 leading-tight">
-              Brilliance without compromise
-            </h2>
-            <div className="space-y-4 text-muted-foreground">
-              <p>
-                At Lumière, we believe that brilliance shouldn't come at a cost — to your wallet 
-                or to the world. That's why every piece in our collection is crafted with ethically 
-                sourced materials and genuine moissanite stones.
+    <section id="story" ref={sectionRef} className="overflow-hidden">
+      {/* Block 1 - Cream background */}
+      <div className="py-24 sm:py-32 bg-cream text-charcoal">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <p className="text-sm tracking-eyebrow uppercase text-gold-dark mb-6">
+                Our Promise
               </p>
-              <p>
-                Our moissanite offers superior fire and brilliance compared to mined diamonds — 
-                and it passes diamond tester. Combined with 925 sterling silver, each ring is designed 
-                to last a lifetime.
+              <h2 className="font-serif text-display-mobile md:text-display mb-8 text-charcoal">
+                "We believe brilliance shouldn't cost the earth — or your savings."
+              </h2>
+              <p className="text-charcoal-light leading-relaxed">
+                At Lumière, we've reimagined what luxury means. By partnering directly with 
+                skilled artisans and eliminating traditional retail markup, we deliver 
+                exceptional pieces at accessible prices. Our moissanite stones offer 
+                superior fire and brilliance compared to mined diamonds — and every piece 
+                passes diamond tester.
               </p>
-              <p>
-                By working directly with skilled artisans and cutting out the traditional retail 
-                markup, we deliver luxury pieces at accessible prices. No compromises.
-              </p>
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-3 gap-6 mt-8 pt-8 border-t">
-              <div className="text-center">
-                <p className="font-serif text-3xl text-primary">100%</p>
-                <p className="text-xs text-muted-foreground mt-1">Conflict-Free</p>
-              </div>
-              <div className="text-center">
-                <p className="font-serif text-3xl text-primary">925</p>
-                <p className="text-xs text-muted-foreground mt-1">Sterling Silver</p>
-              </div>
-              <div className="text-center">
-                <p className="font-serif text-3xl text-primary">60</p>
-                <p className="text-xs text-muted-foreground mt-1">Day Returns</p>
-              </div>
-            </div>
-          </motion.div>
+            <motion.div 
+              style={{ y: y1 }}
+              className="relative"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="aspect-[4/5] rounded-lg overflow-hidden"
+              >
+                <img
+                  src={ringBridal}
+                  alt="Ring on hand in intimate setting"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative"
-          >
-            <div className="aspect-[4/5] rounded-lg overflow-hidden">
-              <img
-                src={ringBridal}
-                alt="Eternal Brilliance Solitaire Ring on hand"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-6 -left-6 bg-background p-6 rounded-lg shadow-xl max-w-xs hidden sm:block">
-              <p className="font-serif text-lg italic">
-                "The perfect symbol of forever"
+      {/* Block 2 - Charcoal background */}
+      <div className="py-24 sm:py-32 bg-card">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <motion.div 
+              style={{ y: y2 }}
+              className="relative order-2 lg:order-1"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="aspect-[4/5] rounded-lg overflow-hidden"
+              >
+                <img
+                  src={ringProduct2}
+                  alt="Lumière ring packaging"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="order-1 lg:order-2"
+            >
+              <p className="text-sm tracking-eyebrow uppercase text-primary mb-6">
+                Direct to You
               </p>
-              <p className="text-xs text-muted-foreground mt-2">— Lumière Collection</p>
-            </div>
-          </motion.div>
+              <h2 className="font-serif text-display-mobile md:text-display mb-8 text-foreground">
+                Brilliance without the markup
+              </h2>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                Traditional jewelry retail adds 3-4x markup for storefronts, sales staff, 
+                and middlemen. We've cut all of that. By selling directly to you, we deliver 
+                the same quality you'd find at luxury retailers — at a fraction of the price.
+              </p>
+              <div className="grid grid-cols-3 gap-6 pt-6 border-t border-border">
+                <div className="text-center">
+                  <p className="font-serif text-3xl text-primary">100%</p>
+                  <p className="text-xs text-muted-foreground mt-1">Conflict-Free</p>
+                </div>
+                <div className="text-center">
+                  <p className="font-serif text-3xl text-primary">925</p>
+                  <p className="text-xs text-muted-foreground mt-1">Sterling Silver</p>
+                </div>
+                <div className="text-center">
+                  <p className="font-serif text-3xl text-primary">60</p>
+                  <p className="text-xs text-muted-foreground mt-1">Day Returns</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

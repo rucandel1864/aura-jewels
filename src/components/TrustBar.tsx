@@ -1,32 +1,29 @@
 import { motion } from "framer-motion";
-import { Truck, RefreshCw, Shield, Heart } from "lucide-react";
+import { Truck, RefreshCw, Shield, Gem } from "lucide-react";
 
 const trustItems = [
-  { icon: Truck, label: "Free Shipping", sublabel: "On all orders" },
-  { icon: RefreshCw, label: "60-Day Returns", sublabel: "No questions asked" },
-  { icon: Shield, label: "Secure Checkout", sublabel: "SSL encrypted" },
-  { icon: Heart, label: "Conflict-Free", sublabel: "Ethically sourced" },
+  { icon: Truck, label: "Free Express Shipping" },
+  { icon: RefreshCw, label: "60-Day Returns" },
+  { icon: Shield, label: "SSL Secure Checkout" },
+  { icon: Gem, label: "Ethically Sourced" },
 ];
 
 export function TrustBar() {
   return (
-    <section className="py-8 border-y bg-muted/30">
+    <section className="py-6 border-y border-border/50 bg-card/50">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4">
+        <div className="flex flex-wrap justify-center gap-x-12 gap-y-4">
           {trustItems.map((item, index) => (
             <motion.div
               key={item.label}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex items-center gap-3 justify-center md:justify-start"
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="flex items-center gap-3"
             >
-              <item.icon className="h-5 w-5 text-primary flex-shrink-0" />
-              <div className="text-center md:text-left">
-                <p className="text-sm font-medium">{item.label}</p>
-                <p className="text-xs text-muted-foreground">{item.sublabel}</p>
-              </div>
+              <item.icon className="h-4 w-4 text-primary" />
+              <span className="text-sm text-muted-foreground">{item.label}</span>
             </motion.div>
           ))}
         </div>

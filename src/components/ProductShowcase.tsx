@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Loader2, Check, Sparkles, Ruler, Info } from "lucide-react";
+import { Loader2, Check, Ruler, Info } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import lifestyleImage from "@/assets/ring-lifestyle-1.jpg";
 
 const CARAT_PRICES: Record<string, number> = {
   "1CT": 49,
@@ -41,7 +42,6 @@ export function ProductShowcase() {
   const images = product?.node.images.edges || [];
   const variants = product?.node.variants.edges || [];
   
-  // Find variant matching all three options
   const selectedVariant = variants.find(v => {
     const opts = v.node.selectedOptions;
     return opts.some(o => o.name === "Metal" && o.value === selectedMetal) &&
@@ -49,7 +49,6 @@ export function ProductShowcase() {
            opts.some(o => o.name === "Size" && o.value === selectedSize);
   });
 
-  // Calculate price based on selections
   const basePrice = CARAT_PRICES[selectedCarat] || 49;
   const displayPrice = selectedMetal === "Gold" ? basePrice + GOLD_PREMIUM : basePrice;
 
@@ -78,7 +77,7 @@ export function ProductShowcase() {
 
   if (loading) {
     return (
-      <section id="product" className="py-20 sm:py-32">
+      <section id="product" className="py-24 sm:py-32 bg-card">
         <div className="container mx-auto px-4 sm:px-6 flex justify-center">
           <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
         </div>
@@ -88,7 +87,7 @@ export function ProductShowcase() {
 
   if (!product) {
     return (
-      <section id="product" className="py-20 sm:py-32">
+      <section id="product" className="py-24 sm:py-32 bg-card">
         <div className="container mx-auto px-4 sm:px-6 text-center">
           <p className="text-muted-foreground">No products found</p>
         </div>
@@ -96,14 +95,23 @@ export function ProductShowcase() {
     );
   }
 
-  // Extract options from product
   const metalOption = product.node.options.find(o => o.name === "Metal");
   const caratOption = product.node.options.find(o => o.name === "Carat");
   const sizeOption = product.node.options.find(o => o.name === "Size");
 
   return (
-    <section id="product" className="py-20 sm:py-32">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section id="product" className="py-24 sm:py-32 bg-card relative overflow-hidden">
+      {/* Background lifestyle image with overlay */}
+      <div className="absolute inset-0 opacity-20">
+        <img 
+          src={lifestyleImage} 
+          alt="" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-card via-card/95 to-card/80" />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Image Gallery */}
           <div className="space-y-4">
@@ -111,13 +119,13 @@ export function ProductShowcase() {
               key={selectedImageIndex}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="aspect-square bg-muted rounded-lg overflow-hidden"
+              className="aspect-square bg-background rounded-lg overflow-hidden border border-border/50"
             >
               {images[selectedImageIndex] ? (
                 <img
                   src={images[selectedImageIndex].node.url}
                   alt={images[selectedImageIndex].node.altText || product.node.title}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-muted-foreground">
@@ -133,7 +141,9 @@ export function ProductShowcase() {
                     key={index}
                     onClick={() => setSelectedImageIndex(index)}
                     className={`aspect-square rounded-md overflow-hidden border-2 transition-all ${
-                      selectedImageIndex === index ? 'border-primary' : 'border-transparent hover:border-muted-foreground/30'
+                      selectedImageIndex === index 
+                        ? 'border-primary' 
+                        : 'border-border/50 hover:border-primary/50'
                     }`}
                   >
                     <img
@@ -147,55 +157,47 @@ export function ProductShowcase() {
             )}
           </div>
 
-          {/* Product Info */}
-          <div className="lg:sticky lg:top-28 space-y-6">
+          {/* Product Configuration Panel */}
+          <div className="glass-card rounded-lg p-8 lg:p-10 space-y-8">
             <div>
-              <p className="text-sm tracking-[0.15em] uppercase text-primary mb-2">
+              <p className="text-sm tracking-eyebrow uppercase text-primary mb-3">
                 Lumière Collection
               </p>
-              <h2 className="font-serif text-3xl sm:text-4xl mb-2">{product.node.title}</h2>
-            <div className="flex items-baseline gap-3">
-              <span className="text-2xl font-medium">
-                ${displayPrice}
-              </span>
-              <span className="text-sm text-muted-foreground line-through">${Math.round(displayPrice * 1.4)}</span>
-              <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">Save 30%</span>
-            </div>
+              <h2 className="font-serif text-3xl sm:text-4xl mb-4 text-foreground">
+                {product.node.title}
+              </h2>
+              <div className="flex items-baseline gap-4">
+                <span className="text-3xl font-serif text-primary">
+                  ${displayPrice}
+                </span>
+                <span className="text-base text-muted-foreground line-through">
+                  ${Math.round(displayPrice * 1.4)}
+                </span>
+              </div>
             </div>
 
-            {/* Features */}
-            <div className="flex flex-wrap gap-4 py-4 border-y">
-              <div className="flex items-center gap-2 text-sm">
-                <Sparkles className="h-4 w-4 text-primary" />
-                <span>Oval Moissanite</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm">
-                <span className="text-primary">925</span>
-                <span>Sterling Silver</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm">
-                <span className="text-primary">✓</span>
-                <span>Passes Diamond Tester</span>
-              </div>
-            </div>
+            {/* Divider */}
+            <div className="section-divider" />
 
             {/* Metal Selection */}
             {metalOption && (
               <div className="space-y-3">
-                <label className="text-sm font-medium">Metal</label>
+                <label className="text-sm font-medium text-foreground">Metal</label>
                 <div className="flex gap-3">
                   {metalOption.values.map((metal) => (
                     <button
                       key={metal}
                       onClick={() => setSelectedMetal(metal)}
-                      className={`px-6 py-3 rounded-md border-2 transition-all ${
+                      className={`flex-1 px-6 py-4 rounded-none border transition-all ${
                         selectedMetal === metal 
-                          ? 'border-primary bg-primary/5' 
-                          : 'border-muted hover:border-muted-foreground/50'
+                          ? 'border-primary bg-primary/10 text-foreground' 
+                          : 'border-border bg-transparent text-muted-foreground hover:border-primary/50'
                       }`}
                     >
                       <span className="font-medium">{metal}</span>
-                      {metal === "Gold" && <span className="text-xs text-muted-foreground ml-1">+$10</span>}
+                      {metal === "Gold" && (
+                        <span className="block text-xs text-muted-foreground mt-1">+$10</span>
+                      )}
                     </button>
                   ))}
                 </div>
@@ -205,7 +207,7 @@ export function ProductShowcase() {
             {/* Carat Selection */}
             {caratOption && (
               <div className="space-y-3">
-                <label className="text-sm font-medium">Carat Size</label>
+                <label className="text-sm font-medium text-foreground">Carat Size</label>
                 <div className="grid grid-cols-4 gap-2">
                   {caratOption.values.map((carat) => {
                     const baseCaratPrice = CARAT_PRICES[carat] || 49;
@@ -214,10 +216,10 @@ export function ProductShowcase() {
                       <button
                         key={carat}
                         onClick={() => setSelectedCarat(carat)}
-                        className={`px-4 py-3 rounded-md border-2 transition-all text-center ${
+                        className={`py-4 rounded-none border transition-all text-center ${
                           selectedCarat === carat 
-                            ? 'border-primary bg-primary/5' 
-                            : 'border-muted hover:border-muted-foreground/50'
+                            ? 'border-primary bg-primary/10 text-foreground' 
+                            : 'border-border bg-transparent text-muted-foreground hover:border-primary/50'
                         }`}
                       >
                         <span className="font-medium block">{carat}</span>
@@ -232,7 +234,7 @@ export function ProductShowcase() {
             {/* Size Selection */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <label className="text-sm font-medium">Ring Size</label>
+                <label className="text-sm font-medium text-foreground">Ring Size</label>
                 <Dialog>
                   <DialogTrigger asChild>
                     <button className="text-xs text-primary hover:underline flex items-center gap-1">
@@ -240,9 +242,9 @@ export function ProductShowcase() {
                       Size Guide
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-md">
+                  <DialogContent className="max-w-md bg-card border-border">
                     <DialogHeader>
-                      <DialogTitle className="font-serif text-xl">Ring Size Guide</DialogTitle>
+                      <DialogTitle className="font-serif text-xl text-foreground">Ring Size Guide</DialogTitle>
                     </DialogHeader>
                     <div className="space-y-4 pt-4">
                       <p className="text-sm text-muted-foreground">
@@ -250,23 +252,23 @@ export function ProductShowcase() {
                       </p>
                       <div className="space-y-3">
                         <div className="flex gap-3">
-                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-medium">1</div>
+                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-medium text-foreground">1</div>
                           <div>
-                            <p className="font-medium text-sm">Use an existing ring</p>
+                            <p className="font-medium text-sm text-foreground">Use an existing ring</p>
                             <p className="text-xs text-muted-foreground">Measure the inside diameter in mm</p>
                           </div>
                         </div>
                         <div className="flex gap-3">
-                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-medium">2</div>
+                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-medium text-foreground">2</div>
                           <div>
-                            <p className="font-medium text-sm">Wrap string around finger</p>
+                            <p className="font-medium text-sm text-foreground">Wrap string around finger</p>
                             <p className="text-xs text-muted-foreground">Measure the length in mm, then divide by 3.14</p>
                           </div>
                         </div>
                       </div>
                       <div className="bg-muted rounded-lg p-4 mt-4">
-                        <p className="text-xs font-medium mb-2">Size Chart (US)</p>
-                        <div className="grid grid-cols-3 gap-2 text-xs">
+                        <p className="text-xs font-medium mb-2 text-foreground">Size Chart (US)</p>
+                        <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
                           <div>Size 5 = 15.7mm</div>
                           <div>Size 6 = 16.5mm</div>
                           <div>Size 7 = 17.3mm</div>
@@ -286,12 +288,12 @@ export function ProductShowcase() {
               
               {sizeOption && (
                 <Select value={selectedSize} onValueChange={setSelectedSize}>
-                  <SelectTrigger className="w-full h-12">
+                  <SelectTrigger className="w-full h-14 rounded-none border-border bg-transparent text-foreground">
                     <SelectValue placeholder="Select size" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-card border-border">
                     {sizeOption.values.map((size) => (
-                      <SelectItem key={size} value={size}>
+                      <SelectItem key={size} value={size} className="text-foreground">
                         Size {size} {size === "7" && "(Most Popular)"}
                       </SelectItem>
                     ))}
@@ -303,7 +305,7 @@ export function ProductShowcase() {
             {/* Add to Cart */}
             <Button
               size="lg"
-              className="w-full h-14 text-base bg-foreground text-background hover:bg-foreground/90"
+              className="w-full h-14 text-base btn-gold rounded-none"
               onClick={handleAddToCart}
               disabled={cartLoading || !selectedVariant}
             >
@@ -341,34 +343,47 @@ export function ProductShowcase() {
               </AnimatePresence>
             </Button>
 
-            {/* Description */}
-            <div className="prose prose-sm max-w-none text-muted-foreground pt-4">
-              <p>
-                A stunning oval-cut moissanite center stone in a classic 4-prong setting, the Eternal Brilliance 
-                Solitaire embodies timeless elegance. Passes diamond tester with exceptional fire and brilliance — 
-                perfect for engagements, promises, or everyday luxury.
-              </p>
-              <ul className="space-y-2 mt-4 list-none pl-0">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary font-medium">—</span>
-                  Available in 1CT, 2CT, 5CT, and 8CT sizes
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary font-medium">—</span>
-                  925 Sterling Silver with optional gold plating
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary font-medium">—</span>
-                  Classic 4-prong setting for maximum brilliance
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary font-medium">—</span>
-                  100% passes diamond tester
-                </li>
-              </ul>
+            {/* Payment icons */}
+            <div className="flex justify-center gap-3 opacity-50">
+              <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/visa.Q3c3f1hqE-HN.svg" alt="Visa" className="h-6" />
+              <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/mastercard.1c4_lyMT83Xb.svg" alt="Mastercard" className="h-6" />
+              <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/amex.Csr7hRoy5Kpn.svg" alt="Amex" className="h-6" />
+              <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/apple-pay.QWxEQ40_dFhY.svg" alt="Apple Pay" className="h-6" />
             </div>
           </div>
         </div>
+
+        {/* Product Description */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 max-w-2xl"
+        >
+          <p className="text-muted-foreground leading-relaxed">
+            A stunning oval-cut moissanite center stone in a classic 4-prong setting, the Eternal Brilliance 
+            Solitaire embodies timeless elegance. Passes diamond tester with exceptional fire and brilliance — 
+            perfect for engagements, promises, or everyday luxury.
+          </p>
+          <ul className="space-y-3 mt-6">
+            <li className="flex items-start gap-3 text-muted-foreground">
+              <span className="text-primary">—</span>
+              Available in 1CT, 2CT, 5CT, and 8CT sizes
+            </li>
+            <li className="flex items-start gap-3 text-muted-foreground">
+              <span className="text-primary">—</span>
+              925 Sterling Silver with optional gold plating
+            </li>
+            <li className="flex items-start gap-3 text-muted-foreground">
+              <span className="text-primary">—</span>
+              Classic 4-prong cathedral setting for maximum brilliance
+            </li>
+            <li className="flex items-start gap-3 text-muted-foreground">
+              <span className="text-primary">—</span>
+              100% passes diamond tester
+            </li>
+          </ul>
+        </motion.div>
       </div>
     </section>
   );

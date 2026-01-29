@@ -3,38 +3,38 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 const faqs = [
   {
-    question: "How long does shipping take?",
-    answer: "Orders are processed within 1-2 business days. Standard shipping takes 7-14 business days. Express shipping (3-5 days) is available at checkout for an additional fee. All orders include tracking."
-  },
-  {
-    question: "What is your return policy?",
-    answer: "We offer a 60-day hassle-free return policy. If you're not completely satisfied with your purchase, simply contact us for a prepaid return label. Full refunds are processed within 5-7 business days of receiving your return."
-  },
-  {
-    question: "How do I find my ring size?",
-    answer: "We recommend using our size guide above the size selector. The most common method is to measure the inside diameter of a ring that fits well. Size 7 is our most popular size. When in doubt, we recommend sizing up for a comfortable fit."
-  },
-  {
-    question: "What is moissanite?",
-    answer: "Moissanite is a lab-created gemstone with exceptional brilliance and fire — often surpassing that of mined diamonds. It's virtually indistinguishable to the naked eye and passes diamond tester. Ethically produced and more affordable than mined stones."
+    question: "Will it pass a diamond tester?",
+    answer: "Yes! Moissanite passes thermal diamond testers because it has similar thermal conductivity to diamonds. Only a specialized moissanite tester can distinguish between them — and those aren't commonly available."
   },
   {
     question: "What's the difference between carat sizes?",
     answer: "Carat refers to the size of the center stone. Our 1CT is a delicate, everyday option. 2CT is our most popular, offering a perfect balance of presence and elegance. 5CT and 8CT are statement pieces for those who love maximum brilliance."
   },
   {
-    question: "Is sterling silver hypoallergenic?",
-    answer: "Yes! Our 925 sterling silver is hypoallergenic and safe for sensitive skin. It contains 92.5% pure silver and is nickel-free. With proper care, your ring will maintain its beautiful luster for years."
+    question: "How do I find my ring size?",
+    answer: "We recommend measuring the inside diameter of a ring that fits well, or wrapping string around your finger and measuring the length. Size 7 is our most popular. When in doubt, we recommend sizing up for a comfortable fit."
+  },
+  {
+    question: "What is your return policy?",
+    answer: "We offer a 60-day hassle-free return policy. If you're not completely satisfied with your purchase, contact us for a prepaid return label. Full refunds are processed within 5-7 business days of receiving your return."
+  },
+  {
+    question: "How long does shipping take?",
+    answer: "Orders are processed within 1-2 business days. Standard shipping takes 7-14 business days. Express shipping (3-5 days) is available at checkout. All orders include tracking."
+  },
+  {
+    question: "Is moissanite durable for everyday wear?",
+    answer: "Absolutely. Moissanite ranks 9.25 on the Mohs hardness scale (diamonds are 10), making it one of the hardest gemstones on earth. It's highly resistant to scratching, chipping, and breaking — perfect for daily wear."
   },
   {
     question: "How do I care for my ring?",
-    answer: "To maintain its brilliance, clean your ring with a soft cloth and mild soap. Avoid exposure to harsh chemicals, perfumes, and chlorine. Store in the included jewelry pouch when not wearing. Remove before swimming or showering."
+    answer: "Clean your ring with a soft cloth and mild soap. Avoid harsh chemicals, perfumes, and chlorine. Store in the included velvet pouch when not wearing. Remove before swimming or showering for best results."
   }
 ];
 
 export function FAQSection() {
   return (
-    <section id="faq" className="py-20 sm:py-32">
+    <section id="faq" className="py-24 sm:py-32 bg-background">
       <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -42,10 +42,10 @@ export function FAQSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <p className="text-sm tracking-[0.15em] uppercase text-primary mb-4">
+          <p className="text-sm tracking-eyebrow uppercase text-primary mb-4">
             Questions
           </p>
-          <h2 className="font-serif text-3xl sm:text-4xl">
+          <h2 className="font-serif text-display-mobile md:text-display">
             Frequently Asked
           </h2>
         </motion.div>
@@ -61,17 +61,32 @@ export function FAQSection() {
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`} 
-                className="bg-muted/30 rounded-lg px-6 border-none"
+                className="glass-card rounded-lg px-6 border-none data-[state=open]:bg-card/50"
               >
-                <AccordionTrigger className="text-left hover:no-underline py-5 text-base">
+                <AccordionTrigger className="text-left hover:no-underline py-5 text-base font-medium text-foreground [&[data-state=open]>svg]:text-primary">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-5">
+                <AccordionContent className="text-muted-foreground pb-5 leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-center mt-12"
+        >
+          <p className="text-muted-foreground text-sm">
+            Still have questions?{" "}
+            <a href="mailto:hello@lumiere.com" className="text-primary hover:underline">
+              Get in touch
+            </a>
+          </p>
         </motion.div>
       </div>
     </section>
