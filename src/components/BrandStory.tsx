@@ -61,7 +61,7 @@ export function BrandStory() {
             <div className="aspect-[4/5] rounded-lg overflow-hidden">
               <img
                 src={ringBridal}
-                alt="Celestial Promise Band - Stacked rings styling"
+                alt="Eternal Brilliance Solitaire Ring on hand"
                 className="w-full h-full object-cover"
               />
             </div>

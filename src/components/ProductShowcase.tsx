@@ -8,10 +8,21 @@ import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
+const CARAT_PRICES: Record<string, number> = {
+  "1CT": 49,
+  "2CT": 69,
+  "5CT": 99,
+  "8CT": 129,
+};
+
+const GOLD_PREMIUM = 10;
+
 export function ProductShowcase() {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedSize, setSelectedSize] = useState<string>("");
+  const [selectedMetal, setSelectedMetal] = useState<string>("Gold");
+  const [selectedCarat, setSelectedCarat] = useState<string>("2CT");
+  const [selectedSize, setSelectedSize] = useState<string>("7");
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [justAdded, setJustAdded] = useState(false);
   const { addItem, isLoading: cartLoading } = useCartStore();
@@ -19,9 +30,6 @@ export function ProductShowcase() {
   useEffect(() => {
     fetchProducts(1).then(data => {
       setProducts(data);
-      if (data[0]?.node.options[0]?.values[0]) {
-        setSelectedSize(data[0].node.options[0].values[2] || data[0].node.options[0].values[0]); // Default to size 7
-      }
       setLoading(false);
     }).catch(err => {
       console.error(err);
@@ -32,10 +40,24 @@ export function ProductShowcase() {
   const product = products[0];
   const images = product?.node.images.edges || [];
   const variants = product?.node.variants.edges || [];
-  const selectedVariant = variants.find(v => v.node.selectedOptions.some(o => o.value === selectedSize));
+  
+  // Find variant matching all three options
+  const selectedVariant = variants.find(v => {
+    const opts = v.node.selectedOptions;
+    return opts.some(o => o.name === "Metal" && o.value === selectedMetal) &&
+           opts.some(o => o.name === "Carat" && o.value === selectedCarat) &&
+           opts.some(o => o.name === "Size" && o.value === selectedSize);
+  });
+
+  // Calculate price based on selections
+  const basePrice = CARAT_PRICES[selectedCarat] || 49;
+  const displayPrice = selectedMetal === "Gold" ? basePrice + GOLD_PREMIUM : basePrice;
 
   const handleAddToCart = async () => {
-    if (!product || !selectedVariant) return;
+    if (!product || !selectedVariant) {
+      toast.error("Please select all options");
+      return;
+    }
     
     await addItem({
       product,
@@ -48,7 +70,7 @@ export function ProductShowcase() {
     
     setJustAdded(true);
     toast.success("Added to bag", {
-      description: `${product.node.title} — Size ${selectedSize}`,
+      description: `${product.node.title} — ${selectedMetal} ${selectedCarat} Size ${selectedSize}`,
       position: "top-center",
     });
     setTimeout(() => setJustAdded(false), 2000);
@@ -74,6 +96,11 @@ export function ProductShowcase() {
     );
   }
 
+  // Extract options from product
+  const metalOption = product.node.options.find(o => o.name === "Metal");
+  const caratOption = product.node.options.find(o => o.name === "Carat");
+  const sizeOption = product.node.options.find(o => o.name === "Size");
+
   return (
     <section id="product" className="py-20 sm:py-32">
       <div className="container mx-auto px-4 sm:px-6">
@@ -86,30 +113,38 @@ export function ProductShowcase() {
               animate={{ opacity: 1 }}
               className="aspect-square bg-muted rounded-lg overflow-hidden"
             >
-              <img
-                src={images[selectedImageIndex]?.node.url}
-                alt={images[selectedImageIndex]?.node.altText || product.node.title}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              />
+              {images[selectedImageIndex] ? (
+                <img
+                  src={images[selectedImageIndex].node.url}
+                  alt={images[selectedImageIndex].node.altText || product.node.title}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                  No image available
+                </div>
+              )}
             </motion.div>
             
-            <div className="grid grid-cols-4 gap-3">
-              {images.map((img, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedImageIndex(index)}
-                  className={`aspect-square rounded-md overflow-hidden border-2 transition-all ${
-                    selectedImageIndex === index ? 'border-primary' : 'border-transparent hover:border-muted-foreground/30'
-                  }`}
-                >
-                  <img
-                    src={img.node.url}
-                    alt={img.node.altText || `View ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
-            </div>
+            {images.length > 1 && (
+              <div className="grid grid-cols-4 gap-3">
+                {images.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImageIndex(index)}
+                    className={`aspect-square rounded-md overflow-hidden border-2 transition-all ${
+                      selectedImageIndex === index ? 'border-primary' : 'border-transparent hover:border-muted-foreground/30'
+                    }`}
+                  >
+                    <img
+                      src={img.node.url}
+                      alt={img.node.altText || `View ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Product Info */}
@@ -121,10 +156,10 @@ export function ProductShowcase() {
               <h2 className="font-serif text-3xl sm:text-4xl mb-2">{product.node.title}</h2>
               <div className="flex items-baseline gap-3">
                 <span className="text-2xl font-medium">
-                  ${parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(0)}
+                  ${displayPrice}
                 </span>
-                <span className="text-sm text-muted-foreground line-through">$149</span>
-                <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">Save 55%</span>
+                <span className="text-sm text-muted-foreground line-through">${displayPrice * 3}</span>
+                <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">Save 67%</span>
               </div>
             </div>
 
@@ -132,7 +167,7 @@ export function ProductShowcase() {
             <div className="flex flex-wrap gap-4 py-4 border-y">
               <div className="flex items-center gap-2 text-sm">
                 <Sparkles className="h-4 w-4 text-primary" />
-                <span>3mm Moissanite</span>
+                <span>Oval Moissanite</span>
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <span className="text-primary">925</span>
@@ -143,6 +178,52 @@ export function ProductShowcase() {
                 <span>Passes Diamond Tester</span>
               </div>
             </div>
+
+            {/* Metal Selection */}
+            {metalOption && (
+              <div className="space-y-3">
+                <label className="text-sm font-medium">Metal</label>
+                <div className="flex gap-3">
+                  {metalOption.values.map((metal) => (
+                    <button
+                      key={metal}
+                      onClick={() => setSelectedMetal(metal)}
+                      className={`px-6 py-3 rounded-md border-2 transition-all ${
+                        selectedMetal === metal 
+                          ? 'border-primary bg-primary/5' 
+                          : 'border-muted hover:border-muted-foreground/50'
+                      }`}
+                    >
+                      <span className="font-medium">{metal}</span>
+                      {metal === "Gold" && <span className="text-xs text-muted-foreground ml-1">+$10</span>}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Carat Selection */}
+            {caratOption && (
+              <div className="space-y-3">
+                <label className="text-sm font-medium">Carat Size</label>
+                <div className="grid grid-cols-4 gap-2">
+                  {caratOption.values.map((carat) => (
+                    <button
+                      key={carat}
+                      onClick={() => setSelectedCarat(carat)}
+                      className={`px-4 py-3 rounded-md border-2 transition-all text-center ${
+                        selectedCarat === carat 
+                          ? 'border-primary bg-primary/5' 
+                          : 'border-muted hover:border-muted-foreground/50'
+                      }`}
+                    >
+                      <span className="font-medium block">{carat}</span>
+                      <span className="text-xs text-muted-foreground">${CARAT_PRICES[carat] || 49}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Size Selection */}
             <div className="space-y-3">
@@ -199,18 +280,20 @@ export function ProductShowcase() {
                 </Dialog>
               </div>
               
-              <Select value={selectedSize} onValueChange={setSelectedSize}>
-                <SelectTrigger className="w-full h-12">
-                  <SelectValue placeholder="Select size" />
-                </SelectTrigger>
-                <SelectContent>
-                  {product.node.options[0]?.values.map((size) => (
-                    <SelectItem key={size} value={size}>
-                      Size {size} {size === "7" && "(Most Popular)"}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              {sizeOption && (
+                <Select value={selectedSize} onValueChange={setSelectedSize}>
+                  <SelectTrigger className="w-full h-12">
+                    <SelectValue placeholder="Select size" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {sizeOption.values.map((size) => (
+                      <SelectItem key={size} value={size}>
+                        Size {size} {size === "7" && "(Most Popular)"}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
             </div>
 
             {/* Add to Cart */}
@@ -218,7 +301,7 @@ export function ProductShowcase() {
               size="lg"
               className="w-full h-14 text-base bg-foreground text-background hover:bg-foreground/90"
               onClick={handleAddToCart}
-              disabled={cartLoading || !selectedSize}
+              disabled={cartLoading || !selectedVariant}
             >
               <AnimatePresence mode="wait">
                 {cartLoading ? (
@@ -248,7 +331,7 @@ export function ProductShowcase() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    Add to Bag — ${parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(0)}
+                    {selectedVariant ? `Add to Bag — $${displayPrice}` : "Select options"}
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -257,22 +340,22 @@ export function ProductShowcase() {
             {/* Description */}
             <div className="prose prose-sm max-w-none text-muted-foreground pt-4">
               <p>
-                A stunning row of brilliant 3mm moissanite stones set in sterling silver, the Celestial Promise Band 
-                embodies modern elegance. Passes diamond tester with exceptional fire and brilliance — perfect for 
-                weddings, promises, or everyday luxury.
+                A stunning oval-cut moissanite center stone in a classic 4-prong setting, the Eternal Brilliance 
+                Solitaire embodies timeless elegance. Passes diamond tester with exceptional fire and brilliance — 
+                perfect for engagements, promises, or everyday luxury.
               </p>
               <ul className="space-y-2 mt-4 list-none pl-0">
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-medium">—</span>
-                  Stackable design for layering with other bands
+                  Available in 1CT, 2CT, 5CT, and 8CT sizes
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-medium">—</span>
-                  3mm Moissanite stones with brilliant round-cut
+                  925 Sterling Silver with optional gold plating
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-medium">—</span>
-                  925 Sterling Silver, hypoallergenic finish
+                  Classic 4-prong setting for maximum brilliance
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-medium">—</span>

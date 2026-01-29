@@ -30,7 +30,14 @@ export function StickyAddToCart() {
 
   const handleAddToCart = async () => {
     if (!product) return;
-    const variant = product.node.variants.edges[2]; // Size 7 default
+    // Default to Gold 2CT Size 7
+    const variant = product.node.variants.edges.find(v => {
+      const opts = v.node.selectedOptions;
+      return opts.some(o => o.name === "Metal" && o.value === "Gold") &&
+             opts.some(o => o.name === "Carat" && o.value === "2CT") &&
+             opts.some(o => o.name === "Size" && o.value === "7");
+    }) || product.node.variants.edges[0];
+    
     if (!variant) return;
 
     await addItem({
@@ -58,16 +65,18 @@ export function StickyAddToCart() {
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 min-w-0">
               <div className="w-12 h-12 rounded-md overflow-hidden flex-shrink-0">
-                <img
-                  src={product.node.images.edges[0]?.node.url}
-                  alt={product.node.title}
-                  className="w-full h-full object-cover"
-                />
+                {product.node.images.edges[0] && (
+                  <img
+                    src={product.node.images.edges[0].node.url}
+                    alt={product.node.title}
+                    className="w-full h-full object-cover"
+                  />
+                )}
               </div>
               <div className="min-w-0">
                 <p className="font-medium text-sm truncate">{product.node.title}</p>
                 <p className="text-sm text-primary font-medium">
-                  ${parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(0)}
+                  From ${parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(0)}
                 </p>
               </div>
             </div>
