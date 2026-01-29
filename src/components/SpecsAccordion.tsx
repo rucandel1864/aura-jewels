@@ -21,15 +21,6 @@ const specs = [
       { label: "Band Width", value: "2mm" },
     ]
   },
-  {
-    title: "What's Included",
-    content: [
-      { label: "Ring", value: "Eternal Brilliance Solitaire" },
-      { label: "Presentation", value: "Velvet Ring Box" },
-      { label: "Documentation", value: "Certificate of Authenticity" },
-      { label: "Care", value: "Microfiber Polishing Cloth" },
-    ]
-  }
 ];
 
 export function SpecsAccordion() {

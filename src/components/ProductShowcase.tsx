@@ -343,13 +343,6 @@ export function ProductShowcase() {
               </AnimatePresence>
             </Button>
 
-            {/* Payment icons */}
-            <div className="flex justify-center gap-3 opacity-50">
-              <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/visa.Q3c3f1hqE-HN.svg" alt="Visa" className="h-6" />
-              <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/mastercard.1c4_lyMT83Xb.svg" alt="Mastercard" className="h-6" />
-              <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/amex.Csr7hRoy5Kpn.svg" alt="Amex" className="h-6" />
-              <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/apple-pay.QWxEQ40_dFhY.svg" alt="Apple Pay" className="h-6" />
-            </div>
           </div>
         </div>
 
