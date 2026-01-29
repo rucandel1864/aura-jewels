@@ -35,8 +35,8 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-6"
           >
-            The ring she'll
-            <span className="block italic">never take off</span>
+            A circle of stars
+            <span className="block italic">for a lifetime of promises</span>
           </motion.h1>
 
           <motion.p
@@ -45,8 +45,8 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg sm:text-xl text-muted-foreground font-light mb-8 max-w-lg"
           >
-            Handcrafted in sterling silver with AAA cubic zirconia. 
-            Ethical luxury that captures light — and hearts.
+            Delicate, stackable, and stunning. The Celestial Promise Band 
+            in sterling silver with brilliant round-cut cubic zirconia.
           </motion.p>
 
           <motion.div
@@ -60,7 +60,7 @@ export function HeroSection() {
               className="h-14 px-8 bg-foreground text-background hover:bg-foreground/90 text-base"
               onClick={() => document.getElementById('product')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Shop the Eternal Radiance — $67
+              Shop the Celestial Promise Band — $67
             </Button>
           </motion.div>
 
