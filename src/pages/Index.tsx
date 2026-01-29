@@ -1,12 +1,28 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Header } from "@/components/Header";
+import { HeroSection } from "@/components/HeroSection";
+import { TrustBar } from "@/components/TrustBar";
+import { ProductShowcase } from "@/components/ProductShowcase";
+import { BrandStory } from "@/components/BrandStory";
+import { FAQSection } from "@/components/FAQSection";
+import { Footer } from "@/components/Footer";
+import { StickyAddToCart } from "@/components/StickyAddToCart";
+import { useCartSync } from "@/hooks/useCartSync";
 
 const Index = () => {
+  useCartSync();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Header />
+      <main>
+        <HeroSection />
+        <TrustBar />
+        <ProductShowcase />
+        <BrandStory />
+        <FAQSection />
+      </main>
+      <Footer />
+      <StickyAddToCart />
     </div>
   );
 };
