@@ -1,113 +1,214 @@
 
-
-# Product Switch: Promise Eternity Band
+# Lumière Premium Redesign — Bold Dark-Mode Editorial Luxury
 
 ## Overview
+Transform the current light, minimal design into a bold, dark-mode editorial experience inspired by high-end jewelry brands. The redesign focuses on dramatic visual contrast, refined typography, and an immersive product-first experience — without artificial urgency tactics or "AI slop."
 
-Switching from the solitaire-style "Eternal Radiance Ring" to the **Huitan Bling Bling Promise Ring** - a delicate half-eternity band featuring a row of round brilliant cubic zirconia stones in silver color. This creates a more refined, stackable aesthetic that appeals to modern brides and everyday luxury customers.
+---
 
-## Product Analysis
+## Design Philosophy
 
-**From AliExpress Screenshot:**
-- Half-eternity band style with round CZ stones across the top
-- Slim, delicate profile - "low-key" elegant design
-- Silver color variant selected
-- Available in multiple sizes (typical range: 5-10)
-- 4.8 star rating with 1,000+ sold - proven bestseller
+**What we're keeping:**
+- Existing Shopify integration and cart functionality
+- Core component structure (Header, Hero, Product, Story, FAQ, Footer)
+- Framer Motion animations
+- Product selection logic (Metal, Carat, Size)
 
-## Changes Required
+**What's changing:**
+- Color scheme: Light backgrounds → Deep charcoal/black with cream text
+- Typography: Larger, more dramatic serif headlines (up to 72px)
+- Layout: More asymmetric, editorial compositions
+- Contrast: Jewelry on dark backgrounds for visual "pop"
+- Text visibility: Higher contrast ratios throughout
 
-### 1. Shopify Product Update
+---
 
-**Delete existing product (ID: 14963418956146) and create new:**
+## Color Palette Update
 
-| Field | Value |
-|-------|-------|
-| **Name** | Celestial Promise Band |
-| **Price** | $67.00 |
-| **Vendor** | Lumiere |
-| **Type** | Ring |
-| **Variants** | Sizes 5, 6, 7, 8, 9, 10 |
-| **SKUs** | LUM-CPB-05 through LUM-CPB-10 |
+| Element | Current | New |
+|---------|---------|-----|
+| Background | Off-white #FEFEFE | Deep black #0D0D0D |
+| Foreground | Charcoal #1A1A1A | Cream #F5F0E8 |
+| Muted text | Gray 40% | Warm gray #9A9A9A |
+| Primary accent | Gold #C9A77D | Refined gold #C9A962 |
+| Cards | Light gray | Glass-morphism on dark |
 
-**Updated Description:**
-A delicate row of brilliant round-cut stones set in sterling silver, the Celestial Promise Band embodies modern elegance. Slim enough to stack, stunning enough to stand alone.
+---
 
-### 2. AI-Generated Product Images (5 new images)
+## Section-by-Section Changes
 
-Generate unique images matching the half-eternity band style:
+### 1. Header — Transparent to Solid Transition
+- Transparent on page load, transitions to solid black on scroll
+- Logo in refined serif with increased letter-spacing
+- Navigation links: "The Ring" | "Our Story" | "FAQ"
+- Subtle 1px gold bottom border that fades in on scroll
+- Cart icon with gold dot indicator (replacing current badge)
 
-1. **Hero image** - Elegant hand shot showcasing the delicate band
-2. **Product shot 1** - Clean studio shot, 45-degree angle showing stone arrangement
-3. **Product shot 2** - Close-up macro of round CZ stones catching light
-4. **Lifestyle shot 1** - Romantic/bridal context, soft lighting
-5. **Lifestyle shot 2** - Stacking multiple bands or everyday wear
+### 2. Hero Section — Full Viewport Drama
+**Layout:** Asymmetric split (45% text / 55% image bleeding off edge)
 
-**Key visual characteristics to capture:**
-- Slim, delicate band profile
-- Row of uniform round brilliant-cut stones
-- Silver/white gold color appearance
-- Soft, diffused lighting
-- Neutral backgrounds
+**Content:**
+- Eyebrow: "THE ETERNAL BRILLIANCE" in gold, uppercase, tracked
+- Headline: Large serif (64-72px mobile-responsive)
+  - "Diamond Fire."
+  - *"Without the Diamond Price."* (italic second line)
+- Subheadline: Warm gray, 18px
+- CTA: Gold button with black text, inverts on hover
+- Trust strip: Simple text with em-dashes, no emojis
 
-### 3. Website Component Updates
+**Animation:**
+- Staggered fade-in on load
+- Subtle ring image float animation (6s cycle, 10px movement)
 
-**HeroSection.tsx:**
-- Update headline to emphasize "promise" and "everyday elegance"
-- Adjust subheadline copy for the delicate band style
+### 3. Trust Bar — Refined Dark Strip
+- Full-width charcoal background
+- Centered statement: "Trusted by women who chose brilliance over tradition"
+- Trust icons in muted gold, clean iconography (no emojis)
+- Subtle horizontal line separators
 
-**ProductShowcase.tsx:**
-- Update description text from solitaire to half-eternity band
-- Update feature bullets to emphasize stackability and delicate design
-- Size chart remains the same (5-10)
+### 4. "Why Moissanite" Section — Editorial Feature Cards
+**Three glass-morphism cards on dark background:**
+1. "More Fire" — 2.4x more brilliance than diamonds
+2. "Ethically Perfect" — 100% lab-created, zero mining
+3. "Diamond Test Certified" — Passes thermal testers
 
-**BrandStory.tsx:**
-- Update alt text references to new product style
+**Card styling:**
+- Semi-transparent white border
+- Subtle backdrop blur
+- Gold accent icon at top
+- Lift + gold glow on hover
 
-### 4. Updated Brand Messaging
+### 5. Product Showcase — Complete Overhaul
+**Layout:** Dark background with product card floating over lifestyle image
 
-**New Product Positioning:**
-- "Celestial Promise Band" - evokes stars, light, commitment
-- Emphasizes stackability and versatility
-- Perfect for: wedding bands, promise rings, anniversary gifts, everyday luxury
-- Maintains ethical sourcing and quality messaging
+**Left side:** Large lifestyle image with dark gradient overlay
+**Right side:** Floating product configuration panel
 
-**Key Selling Points:**
-- Delicate, low-profile design for everyday wear
-- Stackable with other bands or engagement rings
-- Same 925 Sterling Silver and AAA Cubic Zirconia quality
-- "A circle of stars for a lifetime of promises"
+**Product panel includes:**
+- Product name in serif
+- Price display (30% discount, compare-at ~1.4x)
+- Metal selection (visual buttons, not dropdown)
+- Carat selection (buttons with live price updates based on metal)
+- Size selector (styled dropdown with size guide link)
+- Add to Bag button (full-width gold)
+- Payment icons strip below button
 
-## Execution Order
+**Image gallery:**
+- Main image with dark velvet treatment
+- Thumbnail strip with gold border on active
 
-1. Generate 5 new AI images for the half-eternity band style
-2. Save images to `src/assets/` (replacing existing ring images)
-3. Delete the existing "Eternal Radiance Ring" from Shopify (ID: 14963418956146)
-4. Create new "Celestial Promise Band" product with all variants and upload images
-5. Update HeroSection.tsx with new copy
-6. Update ProductShowcase.tsx with new description and features
-7. Update BrandStory.tsx alt text
+### 6. Specifications — Clean Accordion
+- Dark background section
+- Expandable sections:
+  - "Stone Details" (Cut, Clarity, Color)
+  - "Metal & Setting" (925 Sterling, 4-prong cathedral)
+  - "What's Included" (Ring, velvet box, certificate, cloth)
+- Gold "+" icons that rotate to "×" on expand
+- Smooth height transitions
 
-## Technical Details
+### 7. Brand Story — Alternating Parallax Blocks
+**Block 1 (cream background):**
+- Large serif quote: "We believe brilliance shouldn't cost the earth — or your savings."
+- Artisan/crafting imagery
 
-### Image Assets to Replace
+**Block 2 (charcoal background):**
+- Story about direct-to-consumer model
+- Packaging/unboxing imagery
 
-| File | New Content |
-|------|-------------|
-| ring-hero.jpg | Hand shot with delicate half-eternity band |
-| ring-product-1.jpg | Studio product shot - angled view |
-| ring-product-2.jpg | Close-up macro of round CZ stones |
-| ring-lifestyle-1.jpg | Romantic/bridal lifestyle shot |
-| ring-bridal.jpg | Stacking or everyday context |
+**Effect:** Subtle parallax scroll (10-15% movement)
 
-### Size Chart (Unchanged)
+### 8. FAQ Section — Dark & Refined
+- Dark charcoal background
+- Clean accordion with gold accents
+- Questions remain product-focused
+- "Still have questions?" CTA with gold underline
 
-| Size | Inside Diameter |
-|------|-----------------|
-| 5 | 15.7mm |
-| 6 | 16.5mm |
-| 7 | 17.3mm (Most Popular) |
-| 8 | 18.1mm |
-| 9 | 18.9mm |
-| 10 | 19.8mm |
+### 9. Final CTA Section
+- Full-width lifestyle image background (ring on hands)
+- Dark overlay
+- Headline: "Ready for Your Forever Sparkle?"
+- Large gold CTA button
+- Guarantee badges row
 
+### 10. Footer — Premium Dark
+- Deep charcoal background
+- Logo + tagline: "Brilliance, redefined."
+- Newsletter signup with gold submit button
+- Social icons (Instagram, TikTok, Pinterest style)
+- Payment method icons
+
+---
+
+## Typography Scale
+
+| Element | Font | Size (Desktop) | Size (Mobile) |
+|---------|------|----------------|---------------|
+| Hero headline | Playfair Display | 72px | 40px |
+| Section headline | Playfair Display | 48px | 32px |
+| Subheadline | Inter | 18px | 16px |
+| Body text | Inter | 16px, 1.7 line-height | 16px |
+| Eyebrow text | Inter | 12px, tracked | 11px |
+| Button text | Inter | 16px | 14px |
+
+---
+
+## Animation Specifications
+
+| Element | Animation | Duration |
+|---------|-----------|----------|
+| Page load | Staggered fade-in | 0.3s delays |
+| Scroll reveal | Fade-in-up on viewport entry | 0.6s |
+| Button hover | Background invert | 0.2s |
+| Card hover | Lift + glow | 0.2s |
+| Product image | Slow zoom | 0.4s (1.0 → 1.05) |
+| Ring float | Vertical oscillation | 6s cycle |
+
+---
+
+## Technical Implementation
+
+### Files to Modify
+
+**Styling:**
+- `src/index.css` — New dark color scheme, updated typography scale
+- `tailwind.config.ts` — Additional animations, glass-morphism utilities
+
+**Components (complete rewrite):**
+- `src/components/Header.tsx` — Scroll-based transparency, gold border
+- `src/components/HeroSection.tsx` — Asymmetric layout, new headline structure
+- `src/components/TrustBar.tsx` — Dark styling, no emoji icons
+- `src/components/ProductShowcase.tsx` — Dark card overlay, updated image treatment
+- `src/components/BrandStory.tsx` — Alternating blocks with parallax
+- `src/components/FAQSection.tsx` — Dark theme, refined accordion
+- `src/components/Footer.tsx` — Newsletter signup, updated layout
+
+**New Components:**
+- `src/components/WhyMoissanite.tsx` — Feature cards section
+- `src/components/FinalCTA.tsx` — Conversion section before footer
+- `src/components/SpecsAccordion.tsx` — Product specifications
+
+**Page Update:**
+- `src/pages/Index.tsx` — Add new sections in order
+
+---
+
+## What We're NOT Including
+
+Per brand guidelines:
+- No emojis anywhere
+- No pulsing urgency indicators
+- No fake review content or counts
+- No "X people viewing" counters
+- No artificial scarcity messaging
+- No generic Shopify theme patterns
+
+---
+
+## Mobile Considerations
+
+- All sections stack vertically
+- Hero text scales down gracefully (40px headline)
+- Product configuration becomes full-width
+- Sticky add-to-cart bar remains at bottom
+- Touch-friendly button sizing (min 44px tap targets)
+- Parallax effects disabled on mobile for performance
