@@ -250,12 +250,6 @@ export function ProductShowcase() {
               </AnimatePresence>
             </Button>
 
-            {/* Urgency */}
-            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              <span>Low stock — Only 12 left</span>
-            </div>
-
             {/* Description */}
             <div className="prose prose-sm max-w-none text-muted-foreground pt-4">
               <p>
@@ -263,11 +257,23 @@ export function ProductShowcase() {
                 embodies modern elegance. Slim enough to stack, stunning enough to stand alone — perfect for 
                 promises, weddings, or everyday luxury.
               </p>
-              <ul className="space-y-2 mt-4">
-                <li>✨ Stackable design — Layer with other bands or wear solo</li>
-                <li>💎 AAA Cubic Zirconia — Brilliant round-cut stones</li>
-                <li>🪙 925 Sterling Silver — Hypoallergenic and tarnish-resistant</li>
-                <li>📦 Luxury packaging — Gift-ready presentation</li>
+              <ul className="space-y-2 mt-4 list-none pl-0">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary font-medium">—</span>
+                  Stackable design for layering with other bands
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary font-medium">—</span>
+                  AAA Cubic Zirconia with brilliant round-cut stones
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary font-medium">—</span>
+                  925 Sterling Silver, hypoallergenic finish
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary font-medium">—</span>
+                  Arrives in luxury gift-ready packaging
+                </li>
               </ul>
             </div>
           </div>
