@@ -56,7 +56,7 @@ export function CartDrawer() {
               <div className="text-center">
                 <ShoppingBag className="h-16 w-16 text-muted-foreground/30 mx-auto mb-4" />
                 <p className="text-muted-foreground font-light">Your bag is empty</p>
-                <p className="text-sm text-muted-foreground/70 mt-1">Add the Eternal Radiance Ring to begin</p>
+                <p className="text-sm text-muted-foreground/70 mt-1">Add the Celestial Promise Band to begin</p>
               </div>
             </div>
           ) : (

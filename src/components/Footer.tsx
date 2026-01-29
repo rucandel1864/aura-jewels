@@ -26,7 +26,7 @@ export function Footer() {
           <div>
             <h4 className="font-medium mb-4 text-sm tracking-wide">Shop</h4>
             <ul className="space-y-3 text-sm text-background/60">
-              <li><a href="#product" className="hover:text-background transition-colors">Eternal Radiance Ring</a></li>
+              <li><a href="#product" className="hover:text-background transition-colors">Celestial Promise Band</a></li>
               <li><a href="#story" className="hover:text-background transition-colors">Our Story</a></li>
               <li><a href="#faq" className="hover:text-background transition-colors">FAQ</a></li>
             </ul>
@@ -36,10 +36,10 @@ export function Footer() {
           <div>
             <h4 className="font-medium mb-4 text-sm tracking-wide">Policies</h4>
             <ul className="space-y-3 text-sm text-background/60">
-              <li><a href="#" className="hover:text-background transition-colors">Shipping Policy</a></li>
-              <li><a href="#" className="hover:text-background transition-colors">Return Policy</a></li>
-              <li><a href="#" className="hover:text-background transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-background transition-colors">Terms of Service</a></li>
+              <li><a href="/shipping" className="hover:text-background transition-colors">Shipping Policy</a></li>
+              <li><a href="/returns" className="hover:text-background transition-colors">Return Policy</a></li>
+              <li><a href="/privacy" className="hover:text-background transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms" className="hover:text-background transition-colors">Terms of Service</a></li>
             </ul>
           </div>
         </div>
