@@ -272,7 +272,7 @@ export function ProductShowcase() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-medium">—</span>
-                  Arrives in luxury gift-ready packaging
+                  Ethically sourced, conflict-free materials
                 </li>
               </ul>
             </div>
