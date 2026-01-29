@@ -45,8 +45,8 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg sm:text-xl text-muted-foreground font-light mb-8 max-w-lg"
           >
-            Delicate, stackable, and stunning. The Celestial Promise Band 
-            in sterling silver with brilliant round-cut cubic zirconia.
+            Stackable, stunning, and passes diamond tester. The Celestial Promise Band 
+            in sterling silver with brilliant 3mm moissanite stones.
           </motion.p>
 
           <motion.div
