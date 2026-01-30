@@ -3,6 +3,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { TrustBar } from "@/components/TrustBar";
 import { WhyMoissanite } from "@/components/WhyMoissanite";
 import { ProductShowcase } from "@/components/ProductShowcase";
+import { CaratComparison } from "@/components/CaratComparison";
 import { SpecsAccordion } from "@/components/SpecsAccordion";
 import { BrandStory } from "@/components/BrandStory";
 import { FAQSection } from "@/components/FAQSection";
@@ -22,6 +23,7 @@ const Index = () => {
         <TrustBar />
         <WhyMoissanite />
         <ProductShowcase />
+        <CaratComparison />
         <SpecsAccordion />
         <BrandStory />
         <FAQSection />
