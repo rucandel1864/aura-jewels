@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
-import heroImage from "@/assets/ring-hero.jpg";
+import heroImage from "@/assets/ring-lifestyle-2.jpg";
 
 export function HeroSection() {
   return (
