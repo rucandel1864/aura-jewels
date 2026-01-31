@@ -8,7 +8,7 @@ const faqs = [
   },
   {
     question: "What's the difference between carat sizes?",
-    answer: "Carat refers to the size of the center stone. Our 1CT is a delicate, everyday option. 2CT is our most popular, offering a perfect balance of presence and elegance. 5CT and 8CT are statement pieces for those who love maximum brilliance."
+    answer: "Carat refers to the size of the center stone. Our 1CT (6.5mm) is a delicate, everyday option. 2CT (8mm) offers a perfect balance of presence and elegance. 3CT (9mm) is our statement piece for those who love maximum brilliance."
   },
   {
     question: "How do I find my ring size?",

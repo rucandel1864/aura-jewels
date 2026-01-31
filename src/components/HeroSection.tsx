@@ -41,8 +41,8 @@ export function HeroSection() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-lg text-muted-foreground font-light mb-8 max-w-md"
               >
-                The oval-cut moissanite solitaire that passes every diamond test. 
-                Handcrafted in 925 sterling silver. From $49.
+                The round-cut moissanite halo ring that passes every diamond test. 
+                Handcrafted in 925 sterling silver with 18K white gold. From $100.
               </motion.p>
 
               <motion.div

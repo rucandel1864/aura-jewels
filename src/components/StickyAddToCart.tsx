@@ -38,8 +38,8 @@ export function StickyAddToCart() {
           <div className="header-glass border-t border-primary/20 px-4 py-4">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="font-serif text-sm text-foreground">Eternal Brilliance</p>
-                <p className="text-primary text-sm">From $49</p>
+              <p className="font-serif text-sm text-foreground">Brilliance Halo</p>
+              <p className="text-primary text-sm">From $100</p>
               </div>
               <Button 
                 onClick={scrollToProduct}

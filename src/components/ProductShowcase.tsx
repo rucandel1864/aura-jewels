@@ -10,19 +10,15 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import lifestyleImage from "@/assets/ring-lifestyle-1.jpg";
 
 const CARAT_PRICES: Record<string, number> = {
-  "1CT": 49,
-  "2CT": 69,
-  "5CT": 99,
-  "8CT": 129,
+  "1CT": 100,
+  "2CT": 150,
+  "3CT": 200,
 };
-
-const GOLD_PREMIUM = 10;
 
 export function ProductShowcase() {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedMetal, setSelectedMetal] = useState<string>("Gold");
-  const [selectedCarat, setSelectedCarat] = useState<string>("2CT");
+  const [selectedCarat, setSelectedCarat] = useState<string>("1CT");
   const [selectedSize, setSelectedSize] = useState<string>("7");
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [justAdded, setJustAdded] = useState(false);
@@ -44,13 +40,11 @@ export function ProductShowcase() {
   
   const selectedVariant = variants.find(v => {
     const opts = v.node.selectedOptions;
-    return opts.some(o => o.name === "Metal" && o.value === selectedMetal) &&
-           opts.some(o => o.name === "Carat" && o.value === selectedCarat) &&
+    return opts.some(o => o.name === "Carat" && o.value === selectedCarat) &&
            opts.some(o => o.name === "Size" && o.value === selectedSize);
   });
 
-  const basePrice = CARAT_PRICES[selectedCarat] || 49;
-  const displayPrice = selectedMetal === "Gold" ? basePrice + GOLD_PREMIUM : basePrice;
+  const displayPrice = CARAT_PRICES[selectedCarat] || 100;
 
   const handleAddToCart = async () => {
     if (!product || !selectedVariant) {
@@ -69,7 +63,7 @@ export function ProductShowcase() {
     
     setJustAdded(true);
     toast.success("Added to bag", {
-      description: `${product.node.title} — ${selectedMetal} ${selectedCarat} Size ${selectedSize}`,
+      description: `${product.node.title} — ${selectedCarat} Size ${selectedSize}`,
       position: "top-center",
     });
     setTimeout(() => setJustAdded(false), 2000);
@@ -95,7 +89,6 @@ export function ProductShowcase() {
     );
   }
 
-  const metalOption = product.node.options.find(o => o.name === "Metal");
   const caratOption = product.node.options.find(o => o.name === "Carat");
   const sizeOption = product.node.options.find(o => o.name === "Size");
 
@@ -179,39 +172,13 @@ export function ProductShowcase() {
             {/* Divider */}
             <div className="section-divider" />
 
-            {/* Metal Selection */}
-            {metalOption && (
-              <div className="space-y-3">
-                <label className="text-sm font-medium text-foreground">Metal</label>
-                <div className="flex gap-3">
-                  {metalOption.values.map((metal) => (
-                    <button
-                      key={metal}
-                      onClick={() => setSelectedMetal(metal)}
-                      className={`flex-1 px-6 py-4 rounded-none border transition-all ${
-                        selectedMetal === metal 
-                          ? 'border-primary bg-primary/10 text-foreground' 
-                          : 'border-border bg-transparent text-muted-foreground hover:border-primary/50'
-                      }`}
-                    >
-                      <span className="font-medium">{metal}</span>
-                      {metal === "Gold" && (
-                        <span className="block text-xs text-muted-foreground mt-1">+$10</span>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
             {/* Carat Selection */}
             {caratOption && (
               <div className="space-y-3">
                 <label className="text-sm font-medium text-foreground">Carat Size</label>
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   {caratOption.values.map((carat) => {
-                    const baseCaratPrice = CARAT_PRICES[carat] || 49;
-                    const displayCaratPrice = selectedMetal === "Gold" ? baseCaratPrice + GOLD_PREMIUM : baseCaratPrice;
+                    const caratPrice = CARAT_PRICES[carat] || 100;
                     return (
                       <button
                         key={carat}
@@ -223,7 +190,7 @@ export function ProductShowcase() {
                         }`}
                       >
                         <span className="font-medium block">{carat}</span>
-                        <span className="text-xs text-muted-foreground">${displayCaratPrice}</span>
+                        <span className="text-xs text-muted-foreground">${caratPrice}</span>
                       </button>
                     );
                   })}
@@ -274,7 +241,6 @@ export function ProductShowcase() {
                           <div>Size 7 = 17.3mm</div>
                           <div>Size 8 = 18.1mm</div>
                           <div>Size 9 = 18.9mm</div>
-                          <div>Size 10 = 19.8mm</div>
                         </div>
                       </div>
                       <p className="text-xs text-muted-foreground flex items-start gap-2">
@@ -354,22 +320,22 @@ export function ProductShowcase() {
           className="mt-16 max-w-2xl"
         >
           <p className="text-muted-foreground leading-relaxed">
-            A stunning oval-cut moissanite center stone in a classic 4-prong setting, the Eternal Brilliance 
-            Solitaire embodies timeless elegance. Passes diamond tester with exceptional fire and brilliance — 
+            A stunning round-cut moissanite center stone surrounded by a sparkling 5A zircon halo, the Brilliance 
+            Halo Ring embodies timeless elegance. Passes diamond tester with exceptional fire and brilliance — 
             perfect for engagements, promises, or everyday luxury.
           </p>
           <ul className="space-y-3 mt-6">
             <li className="flex items-start gap-3 text-muted-foreground">
               <span className="text-primary">—</span>
-              Available in 1CT, 2CT, 5CT, and 8CT sizes
+              Available in 1CT, 2CT, and 3CT sizes
             </li>
             <li className="flex items-start gap-3 text-muted-foreground">
               <span className="text-primary">—</span>
-              925 Sterling Silver with optional gold plating
+              925 Sterling Silver with 18K white gold plating
             </li>
             <li className="flex items-start gap-3 text-muted-foreground">
               <span className="text-primary">—</span>
-              Classic 4-prong cathedral setting for maximum brilliance
+              Halo setting with 5A zircon side stones
             </li>
             <li className="flex items-start gap-3 text-muted-foreground">
               <span className="text-primary">—</span>
