@@ -6,9 +6,10 @@ const specs = [
     title: "Stone Details",
     content: [
       { label: "Stone Type", value: "Moissanite" },
-      { label: "Cut", value: "Oval Brilliant" },
+      { label: "Cut", value: "Round Brilliant" },
       { label: "Clarity", value: "VVS1" },
       { label: "Color", value: "D-E-F (Colorless)" },
+      { label: "Side Stones", value: "5A Zircon 1.5mm" },
       { label: "Brilliance", value: "2.4x more fire than diamond" },
     ]
   },
@@ -16,9 +17,9 @@ const specs = [
     title: "Metal & Setting",
     content: [
       { label: "Metal", value: "925 Sterling Silver" },
-      { label: "Plating Options", value: "Rhodium (Silver) or 18K Gold" },
-      { label: "Setting Style", value: "4-Prong Cathedral" },
-      { label: "Band Width", value: "2mm" },
+      { label: "Plating", value: "18K White Gold" },
+      { label: "Setting Style", value: "Halo with Prong Setting" },
+      { label: "Protective Film", value: "AF coating included" },
     ]
   },
 ];

@@ -44,13 +44,12 @@ export function CaratComparison() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="grid grid-cols-4 gap-4 max-w-lg mx-auto mt-8"
+          className="grid grid-cols-3 gap-4 max-w-md mx-auto mt-8"
         >
           {[
-            { size: "1CT", diameter: "6×8mm", price: "$49" },
-            { size: "2CT", diameter: "7×9mm", price: "$69" },
-            { size: "5CT", diameter: "10×12mm", price: "$99" },
-            { size: "8CT", diameter: "11×14mm", price: "$129" },
+            { size: "1CT", diameter: "6.5mm", price: "$100" },
+            { size: "2CT", diameter: "8mm", price: "$150" },
+            { size: "3CT", diameter: "9mm", price: "$200" },
           ].map((item) => (
             <div key={item.size} className="text-center">
               <p className="font-serif text-lg text-foreground">{item.size}</p>

@@ -37,7 +37,7 @@ export function FinalCTA() {
               className="btn-gold h-14 px-12 text-base rounded-none"
               onClick={() => document.getElementById('product')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Shop Now — From $49
+              Shop Now — From $100
             </Button>
 
             <div className="flex flex-wrap gap-x-8 gap-y-4 mt-10 pt-8 border-t border-border">
