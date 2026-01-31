@@ -1,214 +1,135 @@
 
-# Lumière Premium Redesign — Bold Dark-Mode Editorial Luxury
+
+# Product Swap: Oval Solitaire to Round Halo Moissanite Ring
 
 ## Overview
-Transform the current light, minimal design into a bold, dark-mode editorial experience inspired by high-end jewelry brands. The redesign focuses on dramatic visual contrast, refined typography, and an immersive product-first experience — without artificial urgency tactics or "AI slop."
+
+We're replacing the current oval-cut solitaire ring with a new round-cut halo design from AliExpress. This is a complete product overhaul affecting the Shopify product, pricing, variants, specifications, and UI copy throughout the site.
 
 ---
 
-## Design Philosophy
+## New Product Details
 
-**What we're keeping:**
-- Existing Shopify integration and cart functionality
-- Core component structure (Header, Hero, Product, Story, FAQ, Footer)
-- Framer Motion animations
-- Product selection logic (Metal, Carat, Size)
+**Design:** Round-cut moissanite center stone with 5A zircon halo (side stones)
 
-**What's changing:**
-- Color scheme: Light backgrounds → Deep charcoal/black with cream text
-- Typography: Larger, more dramatic serif headlines (up to 72px)
-- Layout: More asymmetric, editorial compositions
-- Contrast: Jewelry on dark backgrounds for visual "pop"
-- Text visibility: Higher contrast ratios throughout
+**Specifications (from listing):**
+- Material: 925 Sterling Silver with 18K white gold plating + AF protective film
+- Main Stone: D Color VVS1 Moissanite, Round cut
+- Main Stone Sizes: 6.5mm (1CT), plus 2CT and 3CT equivalents
+- Side Stones: 5A Zircon, 1.5mm
+- Diamond Tester: Passes
 
----
+**Variants:**
+| Carat | Price |
+|-------|-------|
+| 1CT   | $100  |
+| 2CT   | $150  |
+| 3CT   | $200  |
 
-## Color Palette Update
+**Ring Sizes:** 5, 6, 7, 8, 9 (no half sizes)
 
-| Element | Current | New |
-|---------|---------|-----|
-| Background | Off-white #FEFEFE | Deep black #0D0D0D |
-| Foreground | Charcoal #1A1A1A | Cream #F5F0E8 |
-| Muted text | Gray 40% | Warm gray #9A9A9A |
-| Primary accent | Gold #C9A77D | Refined gold #C9A962 |
-| Cards | Light gray | Glass-morphism on dark |
+**Metal:** Single option - 18K White Gold plated Sterling Silver (no gold/silver toggle needed)
 
 ---
 
-## Section-by-Section Changes
+## Changes Required
 
-### 1. Header — Transparent to Solid Transition
-- Transparent on page load, transitions to solid black on scroll
-- Logo in refined serif with increased letter-spacing
-- Navigation links: "The Ring" | "Our Story" | "FAQ"
-- Subtle 1px gold bottom border that fades in on scroll
-- Cart icon with gold dot indicator (replacing current badge)
+### 1. Shopify Product Updates
 
-### 2. Hero Section — Full Viewport Drama
-**Layout:** Asymmetric split (45% text / 55% image bleeding off edge)
+**Delete existing product variants** (all 35 current variants for the old product)
 
-**Content:**
-- Eyebrow: "THE ETERNAL BRILLIANCE" in gold, uppercase, tracked
-- Headline: Large serif (64-72px mobile-responsive)
-  - "Diamond Fire."
-  - *"Without the Diamond Price."* (italic second line)
-- Subheadline: Warm gray, 18px
-- CTA: Gold button with black text, inverts on hover
-- Trust strip: Simple text with em-dashes, no emojis
+**Update product details:**
+- Title: "Brilliance Halo Ring" (or similar - emphasizes the halo design)
+- Description: Updated to reflect round-cut with halo setting
+- Options: 
+  - Remove "Metal" option (only 18K white gold available)
+  - Change "Carat" values from [1CT, 2CT, 5CT, 8CT] to [1CT, 2CT, 3CT]
+  - Change "Size" values from [5-11] to [5, 6, 7, 8, 9]
+- Tags: Update to reflect new style (halo, round cut, etc.)
 
-**Animation:**
-- Staggered fade-in on load
-- Subtle ring image float animation (6s cycle, 10px movement)
+**Create new variants** (15 total):
+- 1CT: Sizes 5, 6, 7, 8, 9 at $100 each
+- 2CT: Sizes 5, 6, 7, 8, 9 at $150 each  
+- 3CT: Sizes 5, 6, 7, 8, 9 at $200 each
 
-### 3. Trust Bar — Refined Dark Strip
-- Full-width charcoal background
-- Centered statement: "Trusted by women who chose brilliance over tradition"
-- Trust icons in muted gold, clean iconography (no emojis)
-- Subtle horizontal line separators
-
-### 4. "Why Moissanite" Section — Editorial Feature Cards
-**Three glass-morphism cards on dark background:**
-1. "More Fire" — 2.4x more brilliance than diamonds
-2. "Ethically Perfect" — 100% lab-created, zero mining
-3. "Diamond Test Certified" — Passes thermal testers
-
-**Card styling:**
-- Semi-transparent white border
-- Subtle backdrop blur
-- Gold accent icon at top
-- Lift + gold glow on hover
-
-### 5. Product Showcase — Complete Overhaul
-**Layout:** Dark background with product card floating over lifestyle image
-
-**Left side:** Large lifestyle image with dark gradient overlay
-**Right side:** Floating product configuration panel
-
-**Product panel includes:**
-- Product name in serif
-- Price display (30% discount, compare-at ~1.4x)
-- Metal selection (visual buttons, not dropdown)
-- Carat selection (buttons with live price updates based on metal)
-- Size selector (styled dropdown with size guide link)
-- Add to Bag button (full-width gold)
-- Payment icons strip below button
-
-**Image gallery:**
-- Main image with dark velvet treatment
-- Thumbnail strip with gold border on active
-
-### 6. Specifications — Clean Accordion
-- Dark background section
-- Expandable sections:
-  - "Stone Details" (Cut, Clarity, Color)
-  - "Metal & Setting" (925 Sterling, 4-prong cathedral)
-  - "What's Included" (Ring, velvet box, certificate, cloth)
-- Gold "+" icons that rotate to "×" on expand
-- Smooth height transitions
-
-### 7. Brand Story — Alternating Parallax Blocks
-**Block 1 (cream background):**
-- Large serif quote: "We believe brilliance shouldn't cost the earth — or your savings."
-- Artisan/crafting imagery
-
-**Block 2 (charcoal background):**
-- Story about direct-to-consumer model
-- Packaging/unboxing imagery
-
-**Effect:** Subtle parallax scroll (10-15% movement)
-
-### 8. FAQ Section — Dark & Refined
-- Dark charcoal background
-- Clean accordion with gold accents
-- Questions remain product-focused
-- "Still have questions?" CTA with gold underline
-
-### 9. Final CTA Section
-- Full-width lifestyle image background (ring on hands)
-- Dark overlay
-- Headline: "Ready for Your Forever Sparkle?"
-- Large gold CTA button
-- Guarantee badges row
-
-### 10. Footer — Premium Dark
-- Deep charcoal background
-- Logo + tagline: "Brilliance, redefined."
-- Newsletter signup with gold submit button
-- Social icons (Instagram, TikTok, Pinterest style)
-- Payment method icons
+**Upload product images** from AliExpress listing
 
 ---
 
-## Typography Scale
+### 2. Frontend Code Updates
 
-| Element | Font | Size (Desktop) | Size (Mobile) |
-|---------|------|----------------|---------------|
-| Hero headline | Playfair Display | 72px | 40px |
-| Section headline | Playfair Display | 48px | 32px |
-| Subheadline | Inter | 18px | 16px |
-| Body text | Inter | 16px, 1.7 line-height | 16px |
-| Eyebrow text | Inter | 12px, tracked | 11px |
-| Button text | Inter | 16px | 14px |
+**ProductShowcase.tsx:**
+- Remove metal selection UI (no longer needed)
+- Update `CARAT_PRICES` constant: `{ "1CT": 100, "2CT": 150, "3CT": 200 }`
+- Remove `GOLD_PREMIUM` constant
+- Update variant matching logic (remove metal check)
+- Update product description text
+- Update default selections (remove metal, default carat to 1CT)
 
----
+**HeroSection.tsx:**
+- Change "oval-cut" to "round-cut" in copy
+- Update starting price from "$49" to "$100"
+- Adjust tagline if needed (e.g., mention halo design)
 
-## Animation Specifications
+**CaratComparison.tsx:**
+- Update from 4 sizes to 3 sizes
+- Change data: 
+  - 1CT: 6.5mm, $100
+  - 2CT: ~8mm, $150
+  - 3CT: ~9mm, $200
+- May need to remove/replace the comparison image or adjust grid to 3 columns
 
-| Element | Animation | Duration |
-|---------|-----------|----------|
-| Page load | Staggered fade-in | 0.3s delays |
-| Scroll reveal | Fade-in-up on viewport entry | 0.6s |
-| Button hover | Background invert | 0.2s |
-| Card hover | Lift + glow | 0.2s |
-| Product image | Slow zoom | 0.4s (1.0 → 1.05) |
-| Ring float | Vertical oscillation | 6s cycle |
+**SpecsAccordion.tsx:**
+- Stone Details:
+  - Cut: "Round Brilliant" (was "Oval Brilliant")
+  - Add: "Side Stones: 5A Zircon 1.5mm"
+- Metal & Setting:
+  - Metal: "925 Sterling Silver with 18K White Gold Plating"
+  - Setting Style: "Halo with Prong Setting"
+  - Add: "Protective Film: AF coating"
 
----
+**FAQSection.tsx:**
+- Update carat size FAQ to reference 1CT, 2CT, 3CT
+- Keep other FAQs mostly the same
 
-## Technical Implementation
+**FinalCTA.tsx:**
+- Update "From $49" to "From $100"
 
-### Files to Modify
+**StickyAddToCart.tsx:**
+- Verify pricing display updates correctly
 
-**Styling:**
-- `src/index.css` — New dark color scheme, updated typography scale
-- `tailwind.config.ts` — Additional animations, glass-morphism utilities
-
-**Components (complete rewrite):**
-- `src/components/Header.tsx` — Scroll-based transparency, gold border
-- `src/components/HeroSection.tsx` — Asymmetric layout, new headline structure
-- `src/components/TrustBar.tsx` — Dark styling, no emoji icons
-- `src/components/ProductShowcase.tsx` — Dark card overlay, updated image treatment
-- `src/components/BrandStory.tsx` — Alternating blocks with parallax
-- `src/components/FAQSection.tsx` — Dark theme, refined accordion
-- `src/components/Footer.tsx` — Newsletter signup, updated layout
-
-**New Components:**
-- `src/components/WhyMoissanite.tsx` — Feature cards section
-- `src/components/FinalCTA.tsx` — Conversion section before footer
-- `src/components/SpecsAccordion.tsx` — Product specifications
-
-**Page Update:**
-- `src/pages/Index.tsx` — Add new sections in order
+**Size Guide Dialog (in ProductShowcase):**
+- Update to only show sizes 5-9 in the chart
 
 ---
 
-## What We're NOT Including
+### 3. Image Assets
 
-Per brand guidelines:
-- No emojis anywhere
-- No pulsing urgency indicators
-- No fake review content or counts
-- No "X people viewing" counters
-- No artificial scarcity messaging
-- No generic Shopify theme patterns
+The AliExpress listing contains product images that need to be saved and uploaded:
+- Will need to download images from the AliExpress listing
+- Upload to Shopify product
+- Update any local asset references if used
 
 ---
 
-## Mobile Considerations
+## Technical Considerations
 
-- All sections stack vertically
-- Hero text scales down gracefully (40px headline)
-- Product configuration becomes full-width
-- Sticky add-to-cart bar remains at bottom
-- Touch-friendly button sizing (min 44px tap targets)
-- Parallax effects disabled on mobile for performance
+1. **Shopify variant limit:** Shopify allows 100 variants per product. With 3 carats x 5 sizes = 15 variants, we're well under the limit.
+
+2. **Cart compatibility:** Existing carts with old variant IDs will fail. Users with items in cart from the old product will see errors (acceptable for product swap).
+
+3. **No compare-at price change needed:** Following the 1.4x rule, compare-at prices will be ~$140, ~$210, ~$280.
+
+---
+
+## Implementation Order
+
+1. Update Shopify product (delete old variants, update product info, create new variants, upload images)
+2. Update ProductShowcase.tsx (main product UI)
+3. Update HeroSection.tsx (hero copy and pricing)
+4. Update CaratComparison.tsx (size grid)
+5. Update SpecsAccordion.tsx (specifications)
+6. Update FinalCTA.tsx (CTA pricing)
+7. Update FAQSection.tsx (carat size FAQ)
+8. Test the full purchase flow
+
