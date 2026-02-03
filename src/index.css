@@ -1,62 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@200;300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Lumière Fine Jewelry — Van Cleef & Arpels Inspired Design System */
+/* Lumière Fine Jewelry — Haute Joaillerie Design System
+   Van Cleef & Arpels Inspired Premium Elevation
+   Colors in HSL for proper Tailwind integration
+*/
 
 @layer base {
   :root {
-    /* Soft, warm dark palette */
-    --background: 30 5% 6%;              /* Warm black */
-    --foreground: 40 20% 92%;            /* Warm cream */
+    /* Dark editorial palette */
+    --background: 0 0% 5%;              /* Deep black #0D0D0D */
+    --foreground: 38 24% 94%;           /* Cream #F5F0E8 */
 
-    --card: 30 5% 9%;
-    --card-foreground: 40 20% 92%;
+    --card: 0 0% 8%;                    /* Slightly lighter charcoal */
+    --card-foreground: 38 24% 94%;
 
-    --popover: 30 5% 9%;
-    --popover-foreground: 40 20% 92%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 38 24% 94%;
 
-    /* Muted gold accent */
-    --primary: 42 40% 55%;
-    --primary-foreground: 30 5% 6%;
+    /* Gold accent - refined #C9A962 */
+    --primary: 43 53% 59%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 30 5% 12%;
-    --secondary-foreground: 40 20% 92%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 38 24% 94%;
 
-    --muted: 30 5% 15%;
-    --muted-foreground: 30 10% 50%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;       /* Softer gray */
 
-    --accent: 42 40% 55%;
-    --accent-foreground: 30 5% 6%;
+    --accent: 43 53% 59%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 5% 20%;
-    --input: 30 5% 20%;
-    --ring: 42 40% 55%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 43 53% 59%;
 
-    --radius: 0;
+    --radius: 0.25rem;
 
-    /* Luxury tokens */
-    --gold: 42 40% 55%;
-    --gold-light: 42 50% 70%;
-    --gold-dark: 38 35% 40%;
-    --cream: 40 20% 92%;
-    --charcoal: 30 5% 12%;
-    --charcoal-light: 30 10% 45%;
-    --deep-black: 30 5% 6%;
+    /* Luxury additions */
+    --gold: 43 53% 59%;
+    --gold-light: 43 60% 75%;
+    --gold-dark: 40 45% 40%;
+    --cream: 38 24% 94%;
+    --charcoal: 0 0% 10%;
+    --charcoal-light: 0 0% 40%;
+    --deep-black: 0 0% 5%;
 
-    --sidebar-background: 30 5% 6%;
-    --sidebar-foreground: 40 20% 92%;
-    --sidebar-primary: 42 40% 55%;
-    --sidebar-primary-foreground: 30 5% 6%;
-    --sidebar-accent: 30 5% 15%;
-    --sidebar-accent-foreground: 40 20% 92%;
-    --sidebar-border: 30 5% 20%;
-    --sidebar-ring: 42 40% 55%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 38 24% 94%;
+    --sidebar-primary: 43 53% 59%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 38 24% 94%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 43 53% 59%;
   }
 }
 
@@ -73,91 +76,133 @@
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
     font-weight: 300;
-    line-height: 2;
-    letter-spacing: 0.01em;
+    line-height: 1.9;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cormorant Garamond', serif;
-    @apply font-light tracking-normal;
+    font-family: 'Playfair Display', serif;
+    @apply font-normal tracking-tight;
   }
 }
 
 @layer components {
-  /* Header - ultra minimal */
+  /* Editorial container - more intimate width */
+  .editorial-container {
+    @apply max-w-5xl mx-auto;
+  }
+
+  /* Premium glass morphism - very subtle */
+  .glass-card {
+    background: hsla(0, 0%, 100%, 0.02);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsla(0, 0%, 100%, 0.05);
+  }
+
+  .glass-card:hover {
+    background: hsla(0, 0%, 100%, 0.03);
+    border-color: hsla(43, 53%, 59%, 0.15);
+  }
+
+  /* Gold gradient text */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, hsl(var(--gold-dark)) 0%, hsl(var(--gold)) 50%, hsl(var(--gold-light)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Header glass effect for dark mode */
   .header-glass {
     backdrop-filter: blur(20px);
-    background: hsla(30, 5%, 6%, 0.95);
+    background: hsla(0, 0%, 5%, 0.9);
   }
 
-  /* Van Cleef style text link - underline that's always visible */
-  .text-link {
-    @apply relative inline-block text-foreground;
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    transition: opacity 0.5s ease;
+  /* Button gold style - refined */
+  .btn-gold {
+    @apply bg-primary text-primary-foreground font-normal tracking-wide;
+    transition: all 0.4s ease;
   }
 
-  .text-link::after {
-    content: '';
-    @apply absolute left-0 -bottom-1 w-full bg-primary;
-    height: 1px;
+  .btn-gold:hover {
+    @apply bg-primary/85;
+    box-shadow: 0 8px 32px hsla(43, 53%, 59%, 0.25);
   }
 
-  .text-link:hover {
-    @apply opacity-60;
+  /* Outlined gold button - premium style */
+  .btn-gold-outline {
+    @apply border border-primary text-primary bg-transparent font-normal tracking-wide;
+    transition: all 0.4s ease;
   }
 
-  /* Eyebrow - Van Cleef uses very subtle, small eyebrows */
-  .eyebrow {
-    font-family: 'Inter', sans-serif;
-    @apply text-[11px] tracking-[0.3em] uppercase text-muted-foreground font-light;
+  .btn-gold-outline:hover {
+    @apply bg-primary/10;
   }
 
   /* Section divider */
   .section-divider {
     height: 1px;
-    background: hsl(var(--border));
+    background: linear-gradient(90deg, transparent, hsl(var(--border)), transparent);
   }
 
-  /* Button styles - Van Cleef uses minimal outlined buttons */
-  .btn-gold {
-    @apply bg-transparent border border-foreground/30 text-foreground font-light tracking-[0.2em] uppercase text-xs;
-    transition: all 0.5s ease;
+  /* Premium text link with animated underline */
+  .text-link {
+    @apply relative inline-block text-primary;
+    transition: opacity 0.4s ease;
   }
 
-  .btn-gold:hover {
-    @apply bg-foreground/5 border-foreground/50;
+  .text-link::after {
+    content: '';
+    @apply absolute left-0 -bottom-0.5 w-full h-px bg-primary;
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.4s ease;
   }
 
-  .btn-gold-outline {
-    @apply border border-foreground/20 text-foreground bg-transparent font-light tracking-[0.2em] uppercase text-xs;
-    transition: all 0.5s ease;
+  .text-link:hover {
+    @apply opacity-80;
   }
 
-  .btn-gold-outline:hover {
-    @apply border-foreground/40 bg-foreground/5;
+  .text-link:hover::after {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+
+  /* Eyebrow text styling */
+  .eyebrow {
+    @apply text-xs tracking-[0.25em] uppercase text-primary font-normal;
   }
 }
 
 @layer utilities {
   .font-serif {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
   }
 
   .font-sans {
     font-family: 'Inter', sans-serif;
   }
 
+  /* Font weights */
   .font-thin {
-    font-weight: 300;
+    font-weight: 200;
   }
 
   .font-light {
     font-weight: 300;
   }
 
+  /* Tracking for eyebrow text */
   .tracking-eyebrow {
-    letter-spacing: 0.3em;
+    letter-spacing: 0.25em;
+  }
+
+  /* Noise texture overlay - even more subtle */
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.02;
+    pointer-events: none;
   }
 }

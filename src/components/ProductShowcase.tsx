@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Loader2, Check } from "lucide-react";
+import { Loader2, Check, Ruler, Info } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { toast } from "sonner";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const CARAT_PRICES: Record<string, number> = {
   "1CT": 100,
@@ -69,9 +70,9 @@ export function ProductShowcase() {
 
   if (loading) {
     return (
-      <section id="product" className="py-40 bg-background">
-        <div className="flex justify-center">
-          <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" strokeWidth={1} />
+      <section id="product" className="py-36 sm:py-48 bg-background">
+        <div className="container mx-auto px-6 sm:px-8 flex justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" strokeWidth={1.5} />
         </div>
       </section>
     );
@@ -79,9 +80,9 @@ export function ProductShowcase() {
 
   if (!product) {
     return (
-      <section id="product" className="py-40 bg-background">
-        <div className="text-center">
-          <p className="text-muted-foreground text-sm">No products found</p>
+      <section id="product" className="py-36 sm:py-48 bg-background">
+        <div className="container mx-auto px-6 sm:px-8 text-center">
+          <p className="text-muted-foreground">No products found</p>
         </div>
       </section>
     );
@@ -91,26 +92,26 @@ export function ProductShowcase() {
   const sizeOption = product.node.options.find(o => o.name === "Size");
 
   return (
-    <section id="product" className="py-32 sm:py-40 bg-background">
-      <div className="px-10 sm:px-16 lg:px-24">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start max-w-6xl mx-auto">
+    <section id="product" className="py-36 sm:py-48 bg-background relative overflow-hidden">
+      <div className="container mx-auto px-6 sm:px-8 relative">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Image Gallery */}
           <div className="space-y-6">
             <motion.div
               key={selectedImageIndex}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              className="aspect-square bg-foreground/5"
+              transition={{ duration: 0.5 }}
+              className="aspect-square bg-card overflow-hidden"
             >
               {images[selectedImageIndex] ? (
                 <img
                   src={images[selectedImageIndex].node.url}
                   alt={images[selectedImageIndex].node.altText || product.node.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
+                <div className="w-full h-full flex items-center justify-center text-muted-foreground">
                   No image available
                 </div>
               )}
@@ -122,10 +123,10 @@ export function ProductShowcase() {
                   <button
                     key={index}
                     onClick={() => setSelectedImageIndex(index)}
-                    className={`aspect-square overflow-hidden transition-opacity duration-500 ${
+                    className={`aspect-square overflow-hidden transition-all duration-400 ${
                       selectedImageIndex === index 
-                        ? 'opacity-100' 
-                        : 'opacity-40 hover:opacity-70'
+                        ? 'ring-1 ring-primary' 
+                        : 'opacity-60 hover:opacity-100'
                     }`}
                   >
                     <img
@@ -139,60 +140,112 @@ export function ProductShowcase() {
             )}
           </div>
 
-          {/* Product Info */}
-          <div className="lg:sticky lg:top-32 space-y-8">
+          {/* Product Configuration Panel */}
+          <div className="lg:sticky lg:top-32 space-y-10">
             <div>
-              <h2 className="font-serif text-2xl sm:text-3xl text-foreground mb-4">
+              <p className="eyebrow mb-4">
+                Lumière Collection
+              </p>
+              <h2 className="font-serif text-3xl sm:text-4xl mb-6 text-foreground">
                 {product.node.title}
               </h2>
-              <p className="text-sm text-muted-foreground mb-2">
-                Moissanite, Sterling Silver
-              </p>
-              <p className="text-sm text-muted-foreground">
-                AU$ {displayPrice}
+              <p className="text-2xl font-serif text-foreground">
+                ${displayPrice}
               </p>
             </div>
 
+            {/* Divider */}
             <div className="section-divider" />
 
             {/* Carat Selection */}
             {caratOption && (
               <div className="space-y-4">
-                <label className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground">
-                  Carat Size
-                </label>
+                <label className="text-xs tracking-[0.15em] uppercase text-muted-foreground">Carat Size</label>
                 <div className="grid grid-cols-3 gap-3">
-                  {caratOption.values.map((carat) => (
-                    <button
-                      key={carat}
-                      onClick={() => setSelectedCarat(carat)}
-                      className={`py-4 border transition-all duration-500 text-center ${
-                        selectedCarat === carat 
-                          ? 'border-foreground text-foreground' 
-                          : 'border-border text-muted-foreground hover:border-foreground/30'
-                      }`}
-                    >
-                      <span className="text-xs">{carat}</span>
-                    </button>
-                  ))}
+                  {caratOption.values.map((carat) => {
+                    const caratPrice = CARAT_PRICES[carat] || 100;
+                    return (
+                      <button
+                        key={carat}
+                        onClick={() => setSelectedCarat(carat)}
+                        className={`py-5 border transition-all duration-400 text-center ${
+                          selectedCarat === carat 
+                            ? 'border-primary text-foreground' 
+                            : 'border-border text-muted-foreground hover:border-muted-foreground'
+                        }`}
+                      >
+                        <span className="block text-sm">{carat}</span>
+                        <span className="text-xs text-muted-foreground mt-1 block">${caratPrice}</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}
 
             {/* Size Selection */}
             <div className="space-y-4">
-              <label className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground">
-                Ring Size
-              </label>
+              <div className="flex items-center justify-between">
+                <label className="text-xs tracking-[0.15em] uppercase text-muted-foreground">Ring Size</label>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="text-xs text-primary hover:opacity-70 transition-opacity flex items-center gap-1.5">
+                      <Ruler className="h-3 w-3" strokeWidth={1.5} />
+                      Size Guide
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-md bg-card border-border">
+                    <DialogHeader>
+                      <DialogTitle className="font-serif text-xl text-foreground">Ring Size Guide</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-6 pt-4">
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Not sure of your ring size? Here are some easy ways to find out:
+                      </p>
+                      <div className="space-y-4">
+                        <div className="flex gap-4">
+                          <div className="w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center text-sm text-foreground">1</div>
+                          <div>
+                            <p className="text-sm text-foreground">Use an existing ring</p>
+                            <p className="text-xs text-muted-foreground mt-1">Measure the inside diameter in mm</p>
+                          </div>
+                        </div>
+                        <div className="flex gap-4">
+                          <div className="w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center text-sm text-foreground">2</div>
+                          <div>
+                            <p className="text-sm text-foreground">Wrap string around finger</p>
+                            <p className="text-xs text-muted-foreground mt-1">Measure the length in mm, divide by 3.14</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bg-muted/50 p-5 mt-6">
+                        <p className="text-xs tracking-[0.1em] uppercase mb-3 text-foreground">Size Chart (US)</p>
+                        <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground">
+                          <div>Size 5 = 15.7mm</div>
+                          <div>Size 6 = 16.5mm</div>
+                          <div>Size 7 = 17.3mm</div>
+                          <div>Size 8 = 18.1mm</div>
+                          <div>Size 9 = 18.9mm</div>
+                        </div>
+                      </div>
+                      <p className="text-xs text-muted-foreground flex items-start gap-2">
+                        <Info className="h-3 w-3 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                        Size 7 is most popular. When in doubt, size up.
+                      </p>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+              
               {sizeOption && (
                 <Select value={selectedSize} onValueChange={setSelectedSize}>
-                  <SelectTrigger className="w-full h-12 border-border bg-transparent text-foreground text-sm">
+                  <SelectTrigger className="w-full h-14 border-border bg-transparent text-foreground">
                     <SelectValue placeholder="Select size" />
                   </SelectTrigger>
                   <SelectContent className="bg-card border-border">
                     {sizeOption.values.map((size) => (
-                      <SelectItem key={size} value={size} className="text-foreground text-sm">
-                        Size {size}
+                      <SelectItem key={size} value={size} className="text-foreground">
+                        Size {size} {size === "7" && "(Most Popular)"}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -203,23 +256,30 @@ export function ProductShowcase() {
             {/* Add to Cart */}
             <Button
               size="lg"
-              className="w-full h-14 btn-gold-outline"
+              className="w-full h-14 text-sm tracking-[0.15em] uppercase btn-gold-outline"
               onClick={handleAddToCart}
               disabled={cartLoading || !selectedVariant}
             >
               <AnimatePresence mode="wait">
                 {cartLoading ? (
-                  <Loader2 className="h-4 w-4 animate-spin" strokeWidth={1} />
-                ) : justAdded ? (
                   <motion.div
-                    key="added"
+                    key="loading"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
+                  >
+                    <Loader2 className="h-5 w-5 animate-spin" strokeWidth={1.5} />
+                  </motion.div>
+                ) : justAdded ? (
+                  <motion.div
+                    key="added"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
                     className="flex items-center gap-2"
                   >
-                    <Check className="h-4 w-4" strokeWidth={1} />
-                    Added
+                    <Check className="h-4 w-4" strokeWidth={1.5} />
+                    Added to Bag
                   </motion.div>
                 ) : (
                   <motion.span
@@ -228,20 +288,46 @@ export function ProductShowcase() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    Add to Bag
+                    {selectedVariant ? "Add to Bag" : "Select options"}
                   </motion.span>
                 )}
               </AnimatePresence>
             </Button>
 
-            {/* Product details */}
-            <div className="pt-8 space-y-4 text-sm text-muted-foreground">
-              <p>Free express shipping worldwide</p>
-              <p>60-day returns</p>
-              <p>Complimentary gift packaging</p>
-            </div>
           </div>
         </div>
+
+        {/* Product Description */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="mt-24 max-w-xl"
+        >
+          <p className="text-muted-foreground leading-relaxed mb-8">
+            A stunning round-cut moissanite center stone surrounded by a sparkling 5A zircon halo, 
+            embodying timeless elegance. Passes diamond tester with exceptional fire and brilliance.
+          </p>
+          <ul className="space-y-4 text-sm">
+            <li className="flex items-start gap-4 text-muted-foreground">
+              <span className="text-primary">—</span>
+              Available in 1CT, 2CT, and 3CT sizes
+            </li>
+            <li className="flex items-start gap-4 text-muted-foreground">
+              <span className="text-primary">—</span>
+              925 Sterling Silver with 18K white gold plating
+            </li>
+            <li className="flex items-start gap-4 text-muted-foreground">
+              <span className="text-primary">—</span>
+              Halo setting with 5A zircon side stones
+            </li>
+            <li className="flex items-start gap-4 text-muted-foreground">
+              <span className="text-primary">—</span>
+              100% passes diamond tester
+            </li>
+          </ul>
+        </motion.div>
       </div>
     </section>
   );

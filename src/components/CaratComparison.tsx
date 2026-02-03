@@ -5,94 +5,115 @@ import carat2ctImage from "@/assets/ring-carat-2ct.jpg";
 import carat3ctImage from "@/assets/ring-carat-3ct.jpg";
 
 const CARAT_OPTIONS = [
-  { size: "1CT", diameter: "6.5mm", price: "AU$ 100", image: carat1ctImage },
-  { size: "2CT", diameter: "8.0mm", price: "AU$ 150", image: carat2ctImage },
-  { size: "3CT", diameter: "9.0mm", price: "AU$ 200", image: carat3ctImage },
+  { size: "1CT", diameter: "6.5mm", price: "$100", image: carat1ctImage },
+  { size: "2CT", diameter: "8.0mm", price: "$150", image: carat2ctImage },
+  { size: "3CT", diameter: "9.0mm", price: "$200", image: carat3ctImage },
 ];
 
 export function CaratComparison() {
-  const [selectedCarat, setSelectedCarat] = useState(1);
+  const [selectedCarat, setSelectedCarat] = useState(1); // Default to 2CT
 
   return (
-    <section className="min-h-screen grid lg:grid-cols-2">
-      {/* Left - Product display like Van Cleef */}
-      <div className="bg-foreground/5 flex flex-col items-center justify-center py-20 px-10">
+    <section className="py-32 sm:py-40 bg-card/30">
+      <div className="container mx-auto px-6 sm:px-8">
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="w-full max-w-sm"
+          className="text-center mb-16"
         >
-          <div className="aspect-square relative mb-10">
+          <p className="eyebrow mb-6">
+            Size Guide
+          </p>
+          <h2 className="font-serif text-display-mobile md:text-display mb-6">
+            Carat Comparison
+          </h2>
+          <p className="text-muted-foreground max-w-md mx-auto">
+            See the actual size difference. Choose the presence that suits your style.
+          </p>
+        </motion.div>
+
+        {/* Main Image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="max-w-lg mx-auto mb-12"
+        >
+          <div className="aspect-square relative overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.img
                 key={selectedCarat}
                 src={CARAT_OPTIONS[selectedCarat].image}
                 alt={`${CARAT_OPTIONS[selectedCarat].size} moissanite ring`}
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.5 }}
               />
             </AnimatePresence>
           </div>
-
-          {/* Product info */}
-          <div className="text-center">
-            <h3 className="font-serif text-lg text-foreground mb-2">
-              Eternal Brilliance Ring
-            </h3>
-            <p className="text-xs text-muted-foreground mb-1">
-              {CARAT_OPTIONS[selectedCarat].size}, {CARAT_OPTIONS[selectedCarat].diameter}
-            </p>
-            <p className="text-xs text-muted-foreground">
-              {CARAT_OPTIONS[selectedCarat].price}
-            </p>
-          </div>
-
-          {/* Dot navigation */}
-          <div className="flex justify-center gap-3 mt-10">
-            {CARAT_OPTIONS.map((item, index) => (
-              <button
-                key={item.size}
-                onClick={() => setSelectedCarat(index)}
-                className="p-2"
-                aria-label={`View ${item.size}`}
-              >
-                <div className={`w-1.5 h-1.5 rounded-full transition-all duration-500 ${
-                  selectedCarat === index
-                    ? 'bg-foreground'
-                    : 'bg-foreground/20'
-                }`} />
-              </button>
-            ))}
-          </div>
-
-          {/* CTA Link */}
-          <div className="text-center mt-10">
-            <a 
-              href="#product"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('product')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="text-link text-[11px] tracking-[0.3em] uppercase"
-            >
-              More Creations
-            </a>
-          </div>
         </motion.div>
-      </div>
 
-      {/* Right - Lifestyle image */}
-      <div className="relative min-h-[500px] lg:min-h-0">
-        <img
-          src={carat2ctImage}
-          alt="Ring on hand"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        {/* Size and price display */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-center mb-10"
+        >
+          <p className="font-serif text-2xl text-foreground mb-1">
+            {CARAT_OPTIONS[selectedCarat].size}
+          </p>
+          <p className="text-sm text-muted-foreground">
+            {CARAT_OPTIONS[selectedCarat].diameter} · {CARAT_OPTIONS[selectedCarat].price}
+          </p>
+        </motion.div>
+
+        {/* Dot navigation */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="flex justify-center gap-4"
+        >
+          {CARAT_OPTIONS.map((item, index) => (
+            <button
+              key={item.size}
+              onClick={() => setSelectedCarat(index)}
+              className="group p-2"
+              aria-label={`View ${item.size} carat`}
+            >
+              <div className={`w-2 h-2 rounded-full transition-all duration-400 ${
+                selectedCarat === index
+                  ? 'bg-primary scale-125'
+                  : 'bg-muted-foreground/30 group-hover:bg-muted-foreground/60'
+              }`} />
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Size labels */}
+        <div className="flex justify-center gap-12 mt-6">
+          {CARAT_OPTIONS.map((item, index) => (
+            <button
+              key={item.size}
+              onClick={() => setSelectedCarat(index)}
+              className={`text-xs tracking-[0.2em] uppercase transition-all duration-400 ${
+                selectedCarat === index
+                  ? 'text-primary'
+                  : 'text-muted-foreground/50 hover:text-muted-foreground'
+              }`}
+            >
+              {item.size}
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );
