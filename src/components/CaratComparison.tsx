@@ -11,76 +11,109 @@ const CARAT_OPTIONS = [
 ];
 
 export function CaratComparison() {
-  const [selectedCarat, setSelectedCarat] = useState(0);
+  const [selectedCarat, setSelectedCarat] = useState(1); // Default to 2CT
 
   return (
-    <section className="py-16 bg-card/50">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section className="py-32 sm:py-40 bg-card/30">
+      <div className="container mx-auto px-6 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          transition={{ duration: 1 }}
+          className="text-center mb-16"
         >
-          <p className="text-sm tracking-eyebrow uppercase text-primary mb-4">
+          <p className="eyebrow mb-6">
             Size Guide
           </p>
-          <h2 className="font-serif text-display-mobile md:text-display">
-            Carat Size Comparison
+          <h2 className="font-serif text-display-mobile md:text-display mb-6">
+            Carat Comparison
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
-            See the actual size difference on a finger. Choose the presence that suits your style.
+          <p className="text-muted-foreground max-w-md mx-auto">
+            See the actual size difference. Choose the presence that suits your style.
           </p>
         </motion.div>
 
         {/* Main Image */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="max-w-md mx-auto mb-6"
+          transition={{ duration: 1 }}
+          className="max-w-lg mx-auto mb-12"
         >
-          <div className="rounded-lg overflow-hidden border border-border/50 aspect-square relative">
+          <div className="aspect-square relative overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.img
                 key={selectedCarat}
                 src={CARAT_OPTIONS[selectedCarat].image}
-                alt={`${CARAT_OPTIONS[selectedCarat].size} moissanite ring - ${CARAT_OPTIONS[selectedCarat].diameter}`}
+                alt={`${CARAT_OPTIONS[selectedCarat].size} moissanite ring`}
                 className="w-full h-full object-cover"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.5 }}
               />
             </AnimatePresence>
           </div>
         </motion.div>
 
-        {/* Carat Selector Tabs */}
+        {/* Size and price display */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-center mb-10"
+        >
+          <p className="font-serif text-2xl text-foreground mb-1">
+            {CARAT_OPTIONS[selectedCarat].size}
+          </p>
+          <p className="text-sm text-muted-foreground">
+            {CARAT_OPTIONS[selectedCarat].diameter} · {CARAT_OPTIONS[selectedCarat].price}
+          </p>
+        </motion.div>
+
+        {/* Dot navigation */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="grid grid-cols-3 gap-3 max-w-md mx-auto"
+          transition={{ delay: 0.3 }}
+          className="flex justify-center gap-4"
         >
           {CARAT_OPTIONS.map((item, index) => (
             <button
               key={item.size}
               onClick={() => setSelectedCarat(index)}
-              className={`py-4 px-2 rounded-md border transition-all text-center ${
-                selectedCarat === index
-                  ? 'border-primary bg-primary/10 text-foreground'
-                  : 'border-border bg-transparent text-muted-foreground hover:border-primary/50'
-              }`}
+              className="group p-2"
+              aria-label={`View ${item.size} carat`}
             >
-              <p className="font-serif text-lg">{item.size}</p>
-              <p className="text-xs text-muted-foreground">{item.diameter}</p>
-              <p className="text-xs text-primary mt-1">{item.price}</p>
+              <div className={`w-2 h-2 rounded-full transition-all duration-400 ${
+                selectedCarat === index
+                  ? 'bg-primary scale-125'
+                  : 'bg-muted-foreground/30 group-hover:bg-muted-foreground/60'
+              }`} />
             </button>
           ))}
         </motion.div>
+
+        {/* Size labels */}
+        <div className="flex justify-center gap-12 mt-6">
+          {CARAT_OPTIONS.map((item, index) => (
+            <button
+              key={item.size}
+              onClick={() => setSelectedCarat(index)}
+              className={`text-xs tracking-[0.2em] uppercase transition-all duration-400 ${
+                selectedCarat === index
+                  ? 'text-primary'
+                  : 'text-muted-foreground/50 hover:text-muted-foreground'
+              }`}
+            >
+              {item.size}
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );

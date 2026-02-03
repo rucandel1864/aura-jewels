@@ -1,32 +1,34 @@
 import { motion } from "framer-motion";
-import { Truck, RefreshCw, Shield, Gem } from "lucide-react";
 
 const trustItems = [
-  { icon: Truck, label: "Free Express Shipping" },
-  { icon: RefreshCw, label: "60-Day Returns" },
-  { icon: Shield, label: "SSL Secure Checkout" },
-  { icon: Gem, label: "Ethically Sourced" },
+  "Free Express Shipping",
+  "60-Day Returns",
+  "Passes Diamond Tester",
+  "Ethically Sourced",
 ];
 
 export function TrustBar() {
   return (
-    <section className="py-6 border-y border-border/50 bg-card/50">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex flex-wrap justify-center gap-x-12 gap-y-4">
+    <section className="py-12 sm:py-16">
+      <div className="container mx-auto px-6 sm:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="flex flex-wrap justify-center items-center gap-x-4 gap-y-3"
+        >
           {trustItems.map((item, index) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="flex items-center gap-3"
-            >
-              <item.icon className="h-4 w-4 text-primary" />
-              <span className="text-sm text-muted-foreground">{item.label}</span>
-            </motion.div>
+            <div key={item} className="flex items-center">
+              <span className="text-xs tracking-[0.2em] uppercase text-muted-foreground">
+                {item}
+              </span>
+              {index < trustItems.length - 1 && (
+                <span className="ml-4 text-primary/40">·</span>
+              )}
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -21,18 +21,16 @@ const features = [
 
 export function WhyMoissanite() {
   return (
-    <section className="py-24 sm:py-32 bg-background relative overflow-hidden">
-      {/* Subtle background accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 blur-[120px] rounded-full" />
-      
-      <div className="container mx-auto px-4 sm:px-6 relative">
+    <section className="py-36 sm:py-48 bg-background relative overflow-hidden">
+      <div className="container mx-auto px-6 sm:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          transition={{ duration: 1 }}
+          className="text-center mb-20 sm:mb-28"
         >
-          <p className="text-sm tracking-eyebrow uppercase text-primary mb-4">
+          <p className="eyebrow mb-6">
             The Lumière Difference
           </p>
           <h2 className="font-serif text-display-mobile md:text-display">
@@ -40,23 +38,21 @@ export function WhyMoissanite() {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-16 md:gap-12 max-w-4xl mx-auto">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="glass-card rounded-lg p-8 transition-all duration-300 group"
+              transition={{ duration: 1, delay: index * 0.2 }}
+              className="text-center"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                <feature.icon className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="font-serif text-xl mb-3 text-foreground">
+              <feature.icon className="h-6 w-6 text-primary mx-auto mb-8" strokeWidth={1.5} />
+              <h3 className="font-serif text-xl mb-4 text-foreground">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">
                 {feature.description}
               </p>
             </motion.div>
