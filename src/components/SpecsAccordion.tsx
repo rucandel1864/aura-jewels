@@ -9,8 +9,6 @@ const specs = [
       { label: "Cut", value: "Round Brilliant" },
       { label: "Clarity", value: "VVS1" },
       { label: "Color", value: "D-E-F (Colorless)" },
-      { label: "Side Stones", value: "5A Zircon 1.5mm" },
-      { label: "Brilliance", value: "2.4x more fire than diamond" },
     ]
   },
   {
@@ -19,7 +17,6 @@ const specs = [
       { label: "Metal", value: "925 Sterling Silver" },
       { label: "Plating", value: "18K White Gold" },
       { label: "Setting Style", value: "Halo with Prong Setting" },
-      { label: "Protective Film", value: "AF coating included" },
     ]
   },
 ];
@@ -27,36 +24,33 @@ const specs = [
 export function SpecsAccordion() {
   return (
     <section className="py-32 sm:py-40 bg-background">
-      <div className="container mx-auto px-6 sm:px-8 max-w-2xl">
+      <div className="px-10 sm:px-16 lg:px-24 max-w-2xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
           className="text-center mb-16"
         >
-          <p className="eyebrow mb-6">
-            Details
-          </p>
-          <h2 className="font-serif text-display-mobile md:text-display">
+          <h2 className="font-serif text-display-mobile md:text-display text-foreground">
             Specifications
           </h2>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 1 }}
         >
-          <Accordion type="single" collapsible className="space-y-0">
+          <Accordion type="single" collapsible>
             {specs.map((spec, index) => (
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`} 
-                className="border-b border-border/50 py-2"
+                className="border-b border-border"
               >
-                <AccordionTrigger className="text-left hover:no-underline py-6 text-base font-normal text-foreground [&[data-state=open]>svg]:text-primary">
+                <AccordionTrigger className="text-left hover:no-underline py-6 text-sm font-light text-foreground">
                   {spec.title}
                 </AccordionTrigger>
                 <AccordionContent className="pb-8">

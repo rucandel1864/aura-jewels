@@ -3,13 +3,13 @@ import heroImage from "@/assets/ring-lifestyle-2.jpg";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative h-screen flex items-center overflow-hidden">
       {/* Full-bleed background image */}
       <div className="absolute inset-0">
         <motion.div
-          initial={{ scale: 1.1 }}
+          initial={{ scale: 1.05 }}
           animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          transition={{ duration: 2, ease: "easeOut" }}
           className="w-full h-full"
         >
           <img 
@@ -18,48 +18,40 @@ export function HeroSection() {
             className="w-full h-full object-cover"
           />
         </motion.div>
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-background/30" />
+        {/* Soft gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
       </div>
       
-      {/* Content */}
+      {/* Content - positioned left like Van Cleef */}
       <div className="relative w-full">
-        <div className="container mx-auto px-6 sm:px-8 pt-32 pb-24">
-          <div className="max-w-xl">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="eyebrow mb-8"
-            >
-              The Eternal Brilliance
-            </motion.p>
-            
+        <div className="px-10 sm:px-16 lg:px-24">
+          <div className="max-w-lg">
             <motion.h1 
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="font-serif text-hero-mobile md:text-hero leading-none mb-8"
+              transition={{ duration: 1.2, delay: 0.3 }}
+              className="font-serif text-hero-mobile md:text-hero text-foreground leading-tight"
             >
-              Diamond Fire.
-              <span className="block italic text-primary/90 mt-2">Without the Diamond Price.</span>
+              <span className="italic">A sparkling setting</span>
+              <br />
+              to celebrate
+              <br />
+              <span className="italic">your moment</span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.7 }}
-              className="text-lg text-muted-foreground font-light leading-relaxed mb-12 max-w-md"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="text-sm text-foreground/70 mt-8 mb-10 max-w-sm leading-relaxed"
             >
-              The round-cut moissanite halo ring that passes every diamond test. 
-              Handcrafted in 925 sterling silver with 18K white gold.
+              Lumière accompanies you during these precious moments
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.9 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1 }}
             >
               <a 
                 href="#product"
@@ -67,7 +59,7 @@ export function HeroSection() {
                   e.preventDefault();
                   document.getElementById('product')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="text-link text-sm tracking-[0.2em] uppercase"
+                className="text-link text-[11px] tracking-[0.3em] uppercase"
               >
                 Discover the Collection
               </a>
