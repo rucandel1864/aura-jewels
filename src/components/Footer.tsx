@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Instagram, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -19,66 +18,58 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-card border-t border-border py-16 sm:py-20">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid md:grid-cols-12 gap-12 mb-16">
+    <footer className="bg-background border-t border-border/50 py-20 sm:py-28">
+      <div className="container mx-auto px-6 sm:px-8">
+        <div className="grid md:grid-cols-12 gap-16 mb-20">
           {/* Brand */}
           <div className="md:col-span-5">
-            <h3 className="font-serif text-2xl mb-2 text-foreground">Lumière</h3>
-            <p className="text-sm text-muted-foreground mb-6">
+            <h3 className="font-serif text-xl mb-2 text-foreground tracking-wide">Lumière</h3>
+            <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-8">
               Brilliance, redefined.
             </p>
-            <p className="text-muted-foreground text-sm max-w-sm mb-6 leading-relaxed">
+            <p className="text-muted-foreground text-sm max-w-xs leading-relaxed">
               Ethical luxury jewelry crafted for the modern woman 
               who values elegance without compromise.
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="mailto:hello@lumiere.com" className="text-muted-foreground hover:text-primary transition-colors">
-                <Mail className="h-5 w-5" />
-              </a>
-            </div>
           </div>
 
           {/* Links */}
           <div className="md:col-span-2">
-            <h4 className="font-medium mb-4 text-sm tracking-wide text-foreground">Shop</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              <li><a href="#product" className="hover:text-primary transition-colors">The Ring</a></li>
-              <li><a href="#story" className="hover:text-primary transition-colors">Our Story</a></li>
-              <li><a href="#faq" className="hover:text-primary transition-colors">FAQ</a></li>
+            <h4 className="text-xs tracking-[0.2em] uppercase mb-6 text-foreground">Shop</h4>
+            <ul className="space-y-4 text-sm text-muted-foreground">
+              <li><a href="#product" className="hover:text-foreground transition-colors duration-400">The Ring</a></li>
+              <li><a href="#story" className="hover:text-foreground transition-colors duration-400">Our Story</a></li>
+              <li><a href="#faq" className="hover:text-foreground transition-colors duration-400">FAQ</a></li>
             </ul>
           </div>
 
           <div className="md:col-span-2">
-            <h4 className="font-medium mb-4 text-sm tracking-wide text-foreground">Policies</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              <li><a href="/shipping" className="hover:text-primary transition-colors">Shipping</a></li>
-              <li><a href="/returns" className="hover:text-primary transition-colors">Returns</a></li>
-              <li><a href="/privacy" className="hover:text-primary transition-colors">Privacy</a></li>
-              <li><a href="/terms" className="hover:text-primary transition-colors">Terms</a></li>
+            <h4 className="text-xs tracking-[0.2em] uppercase mb-6 text-foreground">Policies</h4>
+            <ul className="space-y-4 text-sm text-muted-foreground">
+              <li><a href="/shipping" className="hover:text-foreground transition-colors duration-400">Shipping</a></li>
+              <li><a href="/returns" className="hover:text-foreground transition-colors duration-400">Returns</a></li>
+              <li><a href="/privacy" className="hover:text-foreground transition-colors duration-400">Privacy</a></li>
+              <li><a href="/terms" className="hover:text-foreground transition-colors duration-400">Terms</a></li>
             </ul>
           </div>
 
           {/* Newsletter */}
           <div className="md:col-span-3">
-            <h4 className="font-medium mb-4 text-sm tracking-wide text-foreground">Get 10% Off</h4>
-            <p className="text-sm text-muted-foreground mb-4">
-              Subscribe for exclusive offers and updates.
+            <h4 className="text-xs tracking-[0.2em] uppercase mb-6 text-foreground">Get 10% Off</h4>
+            <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+              Subscribe for exclusive offers.
             </p>
-            <form onSubmit={handleSubmit} className="flex gap-2">
+            <form onSubmit={handleSubmit} className="flex gap-3">
               <Input
                 type="email"
-                placeholder="Email address"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-10 rounded-none border-border bg-transparent text-foreground placeholder:text-muted-foreground"
+                className="h-12 border-border bg-transparent text-foreground placeholder:text-muted-foreground text-sm"
               />
               <Button 
                 type="submit" 
-                className="btn-gold h-10 px-4 rounded-none"
+                className="btn-gold-outline h-12 px-6 text-xs tracking-wider"
               >
                 Join
               </Button>
@@ -86,18 +77,18 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="section-divider mb-8" />
+        <div className="section-divider mb-10" />
 
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-muted-foreground">
-            © 2026 Lumière Fine Jewelry. All rights reserved.
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
+          <p className="text-xs text-muted-foreground tracking-wide">
+            © 2026 Lumière Fine Jewelry
           </p>
-          <div className="flex items-center gap-3 opacity-50">
-            <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/visa.Q3c3f1hqE-HN.svg" alt="Visa" className="h-6" />
-            <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/mastercard.1c4_lyMT83Xb.svg" alt="Mastercard" className="h-6" />
-            <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/amex.Csr7hRoy5Kpn.svg" alt="Amex" className="h-6" />
-            <img src="https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/apple-pay.QWxEQ40_dFhY.svg" alt="Apple Pay" className="h-6" />
-          </div>
+          <a 
+            href="mailto:hello@lumiere.com" 
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors tracking-wide"
+          >
+            hello@lumiere.com
+          </a>
         </div>
       </div>
     </footer>

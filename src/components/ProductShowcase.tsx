@@ -7,7 +7,6 @@ import { useCartStore } from "@/stores/cartStore";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import lifestyleImage from "@/assets/ring-lifestyle-1.jpg";
 
 const CARAT_PRICES: Record<string, number> = {
   "1CT": 100,
@@ -71,9 +70,9 @@ export function ProductShowcase() {
 
   if (loading) {
     return (
-      <section id="product" className="py-24 sm:py-32 bg-card">
-        <div className="container mx-auto px-4 sm:px-6 flex justify-center">
-          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+      <section id="product" className="py-36 sm:py-48 bg-background">
+        <div className="container mx-auto px-6 sm:px-8 flex justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" strokeWidth={1.5} />
         </div>
       </section>
     );
@@ -81,8 +80,8 @@ export function ProductShowcase() {
 
   if (!product) {
     return (
-      <section id="product" className="py-24 sm:py-32 bg-card">
-        <div className="container mx-auto px-4 sm:px-6 text-center">
+      <section id="product" className="py-36 sm:py-48 bg-background">
+        <div className="container mx-auto px-6 sm:px-8 text-center">
           <p className="text-muted-foreground">No products found</p>
         </div>
       </section>
@@ -93,32 +92,23 @@ export function ProductShowcase() {
   const sizeOption = product.node.options.find(o => o.name === "Size");
 
   return (
-    <section id="product" className="py-24 sm:py-32 bg-card relative overflow-hidden">
-      {/* Background lifestyle image with overlay */}
-      <div className="absolute inset-0 opacity-20">
-        <img 
-          src={lifestyleImage} 
-          alt="" 
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-card via-card/95 to-card/80" />
-      </div>
-
-      <div className="container mx-auto px-4 sm:px-6 relative">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+    <section id="product" className="py-36 sm:py-48 bg-background relative overflow-hidden">
+      <div className="container mx-auto px-6 sm:px-8 relative">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Image Gallery */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <motion.div
               key={selectedImageIndex}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="aspect-square bg-background rounded-lg overflow-hidden border border-border/50"
+              transition={{ duration: 0.5 }}
+              className="aspect-square bg-card overflow-hidden"
             >
               {images[selectedImageIndex] ? (
                 <img
                   src={images[selectedImageIndex].node.url}
                   alt={images[selectedImageIndex].node.altText || product.node.title}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-muted-foreground">
@@ -128,15 +118,15 @@ export function ProductShowcase() {
             </motion.div>
             
             {images.length > 1 && (
-              <div className="grid grid-cols-4 gap-3">
+              <div className="grid grid-cols-4 gap-4">
                 {images.map((img, index) => (
                   <button
                     key={index}
                     onClick={() => setSelectedImageIndex(index)}
-                    className={`aspect-square rounded-md overflow-hidden border-2 transition-all ${
+                    className={`aspect-square overflow-hidden transition-all duration-400 ${
                       selectedImageIndex === index 
-                        ? 'border-primary' 
-                        : 'border-border/50 hover:border-primary/50'
+                        ? 'ring-1 ring-primary' 
+                        : 'opacity-60 hover:opacity-100'
                     }`}
                   >
                     <img
@@ -151,22 +141,17 @@ export function ProductShowcase() {
           </div>
 
           {/* Product Configuration Panel */}
-          <div className="glass-card rounded-lg p-8 lg:p-10 space-y-8">
+          <div className="lg:sticky lg:top-32 space-y-10">
             <div>
-              <p className="text-sm tracking-eyebrow uppercase text-primary mb-3">
+              <p className="eyebrow mb-4">
                 Lumière Collection
               </p>
-              <h2 className="font-serif text-3xl sm:text-4xl mb-4 text-foreground">
+              <h2 className="font-serif text-3xl sm:text-4xl mb-6 text-foreground">
                 {product.node.title}
               </h2>
-              <div className="flex items-baseline gap-4">
-                <span className="text-3xl font-serif text-primary">
-                  ${displayPrice}
-                </span>
-                <span className="text-base text-muted-foreground line-through">
-                  ${Math.round(displayPrice * 1.4)}
-                </span>
-              </div>
+              <p className="text-2xl font-serif text-foreground">
+                ${displayPrice}
+              </p>
             </div>
 
             {/* Divider */}
@@ -174,23 +159,23 @@ export function ProductShowcase() {
 
             {/* Carat Selection */}
             {caratOption && (
-              <div className="space-y-3">
-                <label className="text-sm font-medium text-foreground">Carat Size</label>
-                <div className="grid grid-cols-3 gap-2">
+              <div className="space-y-4">
+                <label className="text-xs tracking-[0.15em] uppercase text-muted-foreground">Carat Size</label>
+                <div className="grid grid-cols-3 gap-3">
                   {caratOption.values.map((carat) => {
                     const caratPrice = CARAT_PRICES[carat] || 100;
                     return (
                       <button
                         key={carat}
                         onClick={() => setSelectedCarat(carat)}
-                        className={`py-4 rounded-none border transition-all text-center ${
+                        className={`py-5 border transition-all duration-400 text-center ${
                           selectedCarat === carat 
-                            ? 'border-primary bg-primary/10 text-foreground' 
-                            : 'border-border bg-transparent text-muted-foreground hover:border-primary/50'
+                            ? 'border-primary text-foreground' 
+                            : 'border-border text-muted-foreground hover:border-muted-foreground'
                         }`}
                       >
-                        <span className="font-medium block">{carat}</span>
-                        <span className="text-xs text-muted-foreground">${caratPrice}</span>
+                        <span className="block text-sm">{carat}</span>
+                        <span className="text-xs text-muted-foreground mt-1 block">${caratPrice}</span>
                       </button>
                     );
                   })}
@@ -199,13 +184,13 @@ export function ProductShowcase() {
             )}
 
             {/* Size Selection */}
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <label className="text-sm font-medium text-foreground">Ring Size</label>
+                <label className="text-xs tracking-[0.15em] uppercase text-muted-foreground">Ring Size</label>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="text-xs text-primary hover:underline flex items-center gap-1">
-                      <Ruler className="h-3 w-3" />
+                    <button className="text-xs text-primary hover:opacity-70 transition-opacity flex items-center gap-1.5">
+                      <Ruler className="h-3 w-3" strokeWidth={1.5} />
                       Size Guide
                     </button>
                   </DialogTrigger>
@@ -213,29 +198,29 @@ export function ProductShowcase() {
                     <DialogHeader>
                       <DialogTitle className="font-serif text-xl text-foreground">Ring Size Guide</DialogTitle>
                     </DialogHeader>
-                    <div className="space-y-4 pt-4">
-                      <p className="text-sm text-muted-foreground">
+                    <div className="space-y-6 pt-4">
+                      <p className="text-sm text-muted-foreground leading-relaxed">
                         Not sure of your ring size? Here are some easy ways to find out:
                       </p>
-                      <div className="space-y-3">
-                        <div className="flex gap-3">
-                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-medium text-foreground">1</div>
+                      <div className="space-y-4">
+                        <div className="flex gap-4">
+                          <div className="w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center text-sm text-foreground">1</div>
                           <div>
-                            <p className="font-medium text-sm text-foreground">Use an existing ring</p>
-                            <p className="text-xs text-muted-foreground">Measure the inside diameter in mm</p>
+                            <p className="text-sm text-foreground">Use an existing ring</p>
+                            <p className="text-xs text-muted-foreground mt-1">Measure the inside diameter in mm</p>
                           </div>
                         </div>
-                        <div className="flex gap-3">
-                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-medium text-foreground">2</div>
+                        <div className="flex gap-4">
+                          <div className="w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center text-sm text-foreground">2</div>
                           <div>
-                            <p className="font-medium text-sm text-foreground">Wrap string around finger</p>
-                            <p className="text-xs text-muted-foreground">Measure the length in mm, then divide by 3.14</p>
+                            <p className="text-sm text-foreground">Wrap string around finger</p>
+                            <p className="text-xs text-muted-foreground mt-1">Measure the length in mm, divide by 3.14</p>
                           </div>
                         </div>
                       </div>
-                      <div className="bg-muted rounded-lg p-4 mt-4">
-                        <p className="text-xs font-medium mb-2 text-foreground">Size Chart (US)</p>
-                        <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
+                      <div className="bg-muted/50 p-5 mt-6">
+                        <p className="text-xs tracking-[0.1em] uppercase mb-3 text-foreground">Size Chart (US)</p>
+                        <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground">
                           <div>Size 5 = 15.7mm</div>
                           <div>Size 6 = 16.5mm</div>
                           <div>Size 7 = 17.3mm</div>
@@ -244,8 +229,8 @@ export function ProductShowcase() {
                         </div>
                       </div>
                       <p className="text-xs text-muted-foreground flex items-start gap-2">
-                        <Info className="h-3 w-3 mt-0.5 flex-shrink-0" />
-                        Most popular size is 7. When in doubt, size up for a comfortable fit.
+                        <Info className="h-3 w-3 mt-0.5 flex-shrink-0" strokeWidth={1.5} />
+                        Size 7 is most popular. When in doubt, size up.
                       </p>
                     </div>
                   </DialogContent>
@@ -254,7 +239,7 @@ export function ProductShowcase() {
               
               {sizeOption && (
                 <Select value={selectedSize} onValueChange={setSelectedSize}>
-                  <SelectTrigger className="w-full h-14 rounded-none border-border bg-transparent text-foreground">
+                  <SelectTrigger className="w-full h-14 border-border bg-transparent text-foreground">
                     <SelectValue placeholder="Select size" />
                   </SelectTrigger>
                   <SelectContent className="bg-card border-border">
@@ -271,7 +256,7 @@ export function ProductShowcase() {
             {/* Add to Cart */}
             <Button
               size="lg"
-              className="w-full h-14 text-base btn-gold rounded-none"
+              className="w-full h-14 text-sm tracking-[0.15em] uppercase btn-gold-outline"
               onClick={handleAddToCart}
               disabled={cartLoading || !selectedVariant}
             >
@@ -283,7 +268,7 @@ export function ProductShowcase() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    <Loader2 className="h-5 w-5 animate-spin" />
+                    <Loader2 className="h-5 w-5 animate-spin" strokeWidth={1.5} />
                   </motion.div>
                 ) : justAdded ? (
                   <motion.div
@@ -293,7 +278,7 @@ export function ProductShowcase() {
                     exit={{ opacity: 0 }}
                     className="flex items-center gap-2"
                   >
-                    <Check className="h-5 w-5" />
+                    <Check className="h-4 w-4" strokeWidth={1.5} />
                     Added to Bag
                   </motion.div>
                 ) : (
@@ -303,7 +288,7 @@ export function ProductShowcase() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    {selectedVariant ? `Add to Bag — $${displayPrice}` : "Select options"}
+                    {selectedVariant ? "Add to Bag" : "Select options"}
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -317,27 +302,27 @@ export function ProductShowcase() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 max-w-2xl"
+          transition={{ duration: 1 }}
+          className="mt-24 max-w-xl"
         >
-          <p className="text-muted-foreground leading-relaxed">
-            A stunning round-cut moissanite center stone surrounded by a sparkling 5A zircon halo, the Brilliance 
-            Halo Ring embodies timeless elegance. Passes diamond tester with exceptional fire and brilliance — 
-            perfect for engagements, promises, or everyday luxury.
+          <p className="text-muted-foreground leading-relaxed mb-8">
+            A stunning round-cut moissanite center stone surrounded by a sparkling 5A zircon halo, 
+            embodying timeless elegance. Passes diamond tester with exceptional fire and brilliance.
           </p>
-          <ul className="space-y-3 mt-6">
-            <li className="flex items-start gap-3 text-muted-foreground">
+          <ul className="space-y-4 text-sm">
+            <li className="flex items-start gap-4 text-muted-foreground">
               <span className="text-primary">—</span>
               Available in 1CT, 2CT, and 3CT sizes
             </li>
-            <li className="flex items-start gap-3 text-muted-foreground">
+            <li className="flex items-start gap-4 text-muted-foreground">
               <span className="text-primary">—</span>
               925 Sterling Silver with 18K white gold plating
             </li>
-            <li className="flex items-start gap-3 text-muted-foreground">
+            <li className="flex items-start gap-4 text-muted-foreground">
               <span className="text-primary">—</span>
               Halo setting with 5A zircon side stones
             </li>
-            <li className="flex items-start gap-3 text-muted-foreground">
+            <li className="flex items-start gap-4 text-muted-foreground">
               <span className="text-primary">—</span>
               100% passes diamond tester
             </li>

@@ -34,15 +34,16 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section id="faq" className="py-24 sm:py-32 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
+    <section id="faq" className="py-32 sm:py-40 bg-card/30">
+      <div className="container mx-auto px-6 sm:px-8 max-w-2xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          transition={{ duration: 1 }}
+          className="text-center mb-16"
         >
-          <p className="text-sm tracking-eyebrow uppercase text-primary mb-4">
+          <p className="eyebrow mb-6">
             Questions
           </p>
           <h2 className="font-serif text-display-mobile md:text-display">
@@ -54,19 +55,19 @@ export function FAQSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.2, duration: 1 }}
         >
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-0">
             {faqs.map((faq, index) => (
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`} 
-                className="glass-card rounded-lg px-6 border-none data-[state=open]:bg-card/50"
+                className="border-b border-border/50 py-2"
               >
-                <AccordionTrigger className="text-left hover:no-underline py-5 text-base font-medium text-foreground [&[data-state=open]>svg]:text-primary">
+                <AccordionTrigger className="text-left hover:no-underline py-6 text-base font-normal text-foreground [&[data-state=open]>svg]:text-primary">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-5 leading-relaxed">
+                <AccordionContent className="text-muted-foreground pb-8 leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -78,12 +79,12 @@ export function FAQSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="text-center mt-12"
+          transition={{ delay: 0.3, duration: 1 }}
+          className="text-center mt-16"
         >
           <p className="text-muted-foreground text-sm">
             Still have questions?{" "}
-            <a href="mailto:hello@lumiere.com" className="text-primary hover:underline">
+            <a href="mailto:hello@lumiere.com" className="text-link">
               Get in touch
             </a>
           </p>
