@@ -1,44 +1,37 @@
 import { motion } from "framer-motion";
-import { Sparkles, Leaf, Award } from "lucide-react";
 
 const features = [
   {
-    icon: Sparkles,
     title: "More Fire",
-    description: "2.4x more brilliance than diamonds. The sparkle that turns heads in any light."
+    description: "2.4× more brilliance than diamonds"
   },
   {
-    icon: Leaf,
     title: "Ethically Perfect",
-    description: "100% lab-created. Zero mining, zero guilt. Beauty without compromise."
+    description: "100% lab-created, zero mining"
   },
   {
-    icon: Award,
-    title: "Diamond Test Certified",
-    description: "Passes thermal diamond testers. The secret is yours to keep."
+    title: "Diamond Certified",
+    description: "Passes thermal diamond testers"
   }
 ];
 
 export function WhyMoissanite() {
   return (
-    <section className="py-36 sm:py-48 bg-background relative overflow-hidden">
-      <div className="container mx-auto px-6 sm:px-8 relative">
+    <section className="py-40 sm:py-56 bg-background">
+      <div className="px-10 sm:px-16 lg:px-24">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="text-center mb-20 sm:mb-28"
+          transition={{ duration: 1.2 }}
+          className="text-center mb-24"
         >
-          <p className="eyebrow mb-6">
-            The Lumière Difference
-          </p>
-          <h2 className="font-serif text-display-mobile md:text-display">
-            Why Women Are Choosing Moissanite
+          <h2 className="font-serif text-display-mobile md:text-display text-foreground">
+            Why Moissanite
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-16 md:gap-12 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-20 max-w-5xl mx-auto">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -48,11 +41,10 @@ export function WhyMoissanite() {
               transition={{ duration: 1, delay: index * 0.2 }}
               className="text-center"
             >
-              <feature.icon className="h-6 w-6 text-primary mx-auto mb-8" strokeWidth={1.5} />
-              <h3 className="font-serif text-xl mb-4 text-foreground">
+              <h3 className="font-serif text-xl mb-4 text-foreground italic">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {feature.description}
               </p>
             </motion.div>
