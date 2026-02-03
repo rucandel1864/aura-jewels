@@ -1,135 +1,185 @@
 
 
-# Product Swap: Oval Solitaire to Round Halo Moissanite Ring
+# Premium Website Elevation — Van Cleef & Arpels Inspired
 
 ## Overview
 
-We're replacing the current oval-cut solitaire ring with a new round-cut halo design from AliExpress. This is a complete product overhaul affecting the Shopify product, pricing, variants, specifications, and UI copy throughout the site.
+Transform Lumière from "editorial luxury" to "haute joaillerie" level premium by adopting the refined, understated elegance of Van Cleef & Arpels. The changes focus on creating more breathing room, refining typography hierarchy, softening interactions, and implementing a more cinematic visual approach.
 
 ---
 
-## New Product Details
+## Key Design Principles from Van Cleef & Arpels
 
-**Design:** Round-cut moissanite center stone with 5A zircon halo (side stones)
-
-**Specifications (from listing):**
-- Material: 925 Sterling Silver with 18K white gold plating + AF protective film
-- Main Stone: D Color VVS1 Moissanite, Round cut
-- Main Stone Sizes: 6.5mm (1CT), plus 2CT and 3CT equivalents
-- Side Stones: 5A Zircon, 1.5mm
-- Diamond Tester: Passes
-
-**Variants:**
-| Carat | Price |
-|-------|-------|
-| 1CT   | $100  |
-| 2CT   | $150  |
-| 3CT   | $200  |
-
-**Ring Sizes:** 5, 6, 7, 8, 9 (no half sizes)
-
-**Metal:** Single option - 18K White Gold plated Sterling Silver (no gold/silver toggle needed)
+| Principle | Van Cleef Approach | Lumière Implementation |
+|-----------|-------------------|------------------------|
+| **Whitespace** | Extreme generosity — 40-60% empty space | Double vertical padding, wider margins |
+| **Typography** | Ultra-refined serifs, subtle sizing | Lighter font weights, increased letter-spacing |
+| **CTAs** | Text links with underlines, not bold buttons | Replace "Shop Now" buttons with elegant underlined links |
+| **Animation** | Slow, graceful reveals (800-1200ms) | Slower, more cinematic motion transitions |
+| **Layout** | Asymmetric splits, editorial grids | More dramatic asymmetry, magazine-style blocks |
+| **Header** | Minimal, centered logo, transparent feel | Refined header with elegant spacing |
 
 ---
 
-## Changes Required
+## Implementation Plan
 
-### 1. Shopify Product Updates
+### Phase 1: Global Refinements
 
-**Delete existing product variants** (all 35 current variants for the old product)
+**1.1 CSS Design System Updates (`src/index.css`)**
+- Add ultra-light font weight (200) for body text
+- Create new "text-link" underline animation (gold line that animates in)
+- Increase base line-height to 1.9 for body copy
+- Add subtle fade-in-up keyframes with 1s duration
+- Create "editorial-container" class with max-width 1200px
 
-**Update product details:**
-- Title: "Brilliance Halo Ring" (or similar - emphasizes the halo design)
-- Description: Updated to reflect round-cut with halo setting
-- Options: 
-  - Remove "Metal" option (only 18K white gold available)
-  - Change "Carat" values from [1CT, 2CT, 5CT, 8CT] to [1CT, 2CT, 3CT]
-  - Change "Size" values from [5-11] to [5, 6, 7, 8, 9]
-- Tags: Update to reflect new style (halo, round cut, etc.)
-
-**Create new variants** (15 total):
-- 1CT: Sizes 5, 6, 7, 8, 9 at $100 each
-- 2CT: Sizes 5, 6, 7, 8, 9 at $150 each  
-- 3CT: Sizes 5, 6, 7, 8, 9 at $200 each
-
-**Upload product images** from AliExpress listing
+**1.2 Tailwind Config Updates (`tailwind.config.ts`)**
+- Add "light" and "thin" font weights
+- Create larger spacing scale (py-40, py-48 for sections)
+- Add slower animation durations (animation-slow: 1s)
+- New "display-lg" font size for hero headlines
 
 ---
 
-### 2. Frontend Code Updates
+### Phase 2: Header Refinement
 
-**ProductShowcase.tsx:**
-- Remove metal selection UI (no longer needed)
-- Update `CARAT_PRICES` constant: `{ "1CT": 100, "2CT": 150, "3CT": 200 }`
-- Remove `GOLD_PREMIUM` constant
-- Update variant matching logic (remove metal check)
-- Update product description text
-- Update default selections (remove metal, default carat to 1CT)
-
-**HeroSection.tsx:**
-- Change "oval-cut" to "round-cut" in copy
-- Update starting price from "$49" to "$100"
-- Adjust tagline if needed (e.g., mention halo design)
-
-**CaratComparison.tsx:**
-- Update from 4 sizes to 3 sizes
-- Change data: 
-  - 1CT: 6.5mm, $100
-  - 2CT: ~8mm, $150
-  - 3CT: ~9mm, $200
-- May need to remove/replace the comparison image or adjust grid to 3 columns
-
-**SpecsAccordion.tsx:**
-- Stone Details:
-  - Cut: "Round Brilliant" (was "Oval Brilliant")
-  - Add: "Side Stones: 5A Zircon 1.5mm"
-- Metal & Setting:
-  - Metal: "925 Sterling Silver with 18K White Gold Plating"
-  - Setting Style: "Halo with Prong Setting"
-  - Add: "Protective Film: AF coating"
-
-**FAQSection.tsx:**
-- Update carat size FAQ to reference 1CT, 2CT, 3CT
-- Keep other FAQs mostly the same
-
-**FinalCTA.tsx:**
-- Update "From $49" to "From $100"
-
-**StickyAddToCart.tsx:**
-- Verify pricing display updates correctly
-
-**Size Guide Dialog (in ProductShowcase):**
-- Update to only show sizes 5-9 in the chart
+**2.1 Header Component (`src/components/Header.tsx`)**
+- Increase header height to 24 (96px)
+- Move logo to absolute center (not just centered in its grid cell)
+- Make navigation links smaller (text-xs), wider letter-spacing
+- Remove hover underline animation — replace with opacity fade
+- Add thin gold line below on scroll (1px, subtle)
+- Cart icon: thinner stroke weight
 
 ---
 
-### 3. Image Assets
+### Phase 3: Hero Section Transformation
 
-The AliExpress listing contains product images that need to be saved and uploaded:
-- Will need to download images from the AliExpress listing
-- Upload to Shopify product
-- Update any local asset references if used
-
----
-
-## Technical Considerations
-
-1. **Shopify variant limit:** Shopify allows 100 variants per product. With 3 carats x 5 sizes = 15 variants, we're well under the limit.
-
-2. **Cart compatibility:** Existing carts with old variant IDs will fail. Users with items in cart from the old product will see errors (acceptable for product swap).
-
-3. **No compare-at price change needed:** Following the 1.4x rule, compare-at prices will be ~$140, ~$210, ~$280.
+**3.1 Hero Component (`src/components/HeroSection.tsx`)**
+- Full-screen image bleed with text overlay (Van Cleef style)
+- Replace the split layout with layered approach:
+  - Background: Full-bleed lifestyle image with subtle dark gradient overlay
+  - Foreground: Text positioned left with generous padding
+- Headline: Lighter weight serif, larger size, more line-height
+- Replace "Shop the Collection" button with elegant text link + underline
+- Remove trust bar text from hero — cleaner approach
+- Slower floating animation (10s instead of 6s)
+- Remove the "Scroll" indicator — too obvious for luxury
 
 ---
 
-## Implementation Order
+### Phase 4: Section Refinements
 
-1. Update Shopify product (delete old variants, update product info, create new variants, upload images)
-2. Update ProductShowcase.tsx (main product UI)
-3. Update HeroSection.tsx (hero copy and pricing)
-4. Update CaratComparison.tsx (size grid)
-5. Update SpecsAccordion.tsx (specifications)
-6. Update FinalCTA.tsx (CTA pricing)
-7. Update FAQSection.tsx (carat size FAQ)
-8. Test the full purchase flow
+**4.1 Trust Bar (`src/components/TrustBar.tsx`)**
+- Increase vertical padding substantially
+- Remove icons — just elegant text
+- Add thin gold separators between items
+- More letter-spacing on text
+
+**4.2 Why Moissanite (`src/components/WhyMoissanite.tsx`)**
+- Remove glass-morphism cards — too techy
+- Switch to simple text blocks with generous spacing
+- Remove circular icon backgrounds — just gold icons floating
+- Staggered fade-in with longer delays (0.3s between each)
+- More whitespace between title and cards
+
+**4.3 Carat Comparison (`src/components/CaratComparison.tsx`)**
+- Larger image display (max-w-lg instead of max-w-md)
+- Replace button selector with elegant dot indicators
+- Remove price from selector tabs — show only on hover
+- More refined tab styling (no borders, just text)
+
+**4.4 Product Showcase (`src/components/ProductShowcase.tsx`)**
+- Remove glass-card from configuration panel
+- Clean white/cream background for selectors instead
+- Larger product images
+- Replace "Add to Bag" button with outlined gold style
+- Remove struck-through prices (feels discount-y)
+- More editorial product description typography
+
+**4.5 Brand Story (`src/components/BrandStory.tsx`)**
+- Increase image sizes (full-bleed on one side)
+- Lighter parallax effect (less movement)
+- Pull quotes with elegant quotation styling
+- More generous padding between blocks
+
+**4.6 Specs Accordion (`src/components/SpecsAccordion.tsx`)**
+- Remove glass-morphism styling
+- Simple border-bottom separators instead
+- More refined accordion triggers
+- Increase padding
+
+**4.7 FAQ Section (`src/components/FAQSection.tsx`)**
+- Same refinements as Specs Accordion
+- Remove background color variations
+
+**4.8 Final CTA (`src/components/FinalCTA.tsx`)**
+- Full-screen lifestyle image approach
+- Centered text with overlay
+- Replace button with elegant text link
+- Remove trust badges from CTA — cleaner
+
+---
+
+### Phase 5: Footer Refinement
+
+**5.1 Footer (`src/components/Footer.tsx`)**
+- More generous vertical padding
+- Refined link styling (smaller, wider spacing)
+- Single gold line separator at top
+- Simplified layout
+
+---
+
+## Technical Details
+
+### Typography Scale Changes
+```text
+Current → New
+hero: 4.5rem → 5rem with font-weight 400
+display: 3rem → 3.5rem with font-weight 400
+body: 1rem/1.7 → 1rem/1.9 with font-weight 300
+```
+
+### Animation Timing
+```text
+Current → New
+fade-in: 0.6s → 1s
+delay-between: 0.1-0.15s → 0.2-0.3s
+float: 6s → 10s
+```
+
+### Spacing Scale
+```text
+Section padding: py-24/32 → py-32/40
+Container max-width: 1400px → 1200px for more intimacy
+```
+
+### Color Refinements
+- Keep existing palette but reduce gold usage slightly
+- More emphasis on cream/foreground text
+- Gold only for accents, not backgrounds
+
+---
+
+## Files to Modify
+
+1. `src/index.css` — Global styles, new utility classes
+2. `tailwind.config.ts` — Typography, spacing, animations
+3. `src/components/Header.tsx` — Centered logo, refined nav
+4. `src/components/HeroSection.tsx` — Full-bleed cinematic hero
+5. `src/components/TrustBar.tsx` — Minimal text-only approach
+6. `src/components/WhyMoissanite.tsx` — Remove glass-morphism
+7. `src/components/CaratComparison.tsx` — Elegant dot navigation
+8. `src/components/ProductShowcase.tsx` — Cleaner configuration
+9. `src/components/BrandStory.tsx` — More generous spacing
+10. `src/components/SpecsAccordion.tsx` — Minimal accordion style
+11. `src/components/FAQSection.tsx` — Refined accordion
+12. `src/components/FinalCTA.tsx` — Cinematic full-bleed CTA
+13. `src/components/Footer.tsx` — Refined footer
+
+---
+
+## Expected Outcome
+
+A website that feels like stepping into a high-end maison boutique — unhurried, confident, and quietly luxurious. Every element has room to breathe, and the product photography takes center stage with minimal UI distraction.
 
