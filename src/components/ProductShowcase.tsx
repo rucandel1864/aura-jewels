@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Loader2, Check, Ruler, Info } from "lucide-react";
+import { Loader2, Check, Ruler, Info, Play } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { toast } from "sonner";
+import ringVideo from "/ring-video.mp4";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const CARAT_PRICES: Record<string, number> = {
@@ -104,10 +105,19 @@ export function ProductShowcase() {
               transition={{ duration: 0.5 }}
               className="aspect-square bg-card overflow-hidden"
             >
-              {images[selectedImageIndex] ? (
+              {selectedImageIndex === 0 ? (
+                <video
+                  src={ringVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              ) : images[selectedImageIndex - 1] ? (
                 <img
-                  src={images[selectedImageIndex].node.url}
-                  alt={images[selectedImageIndex].node.altText || product.node.title}
+                  src={images[selectedImageIndex - 1].node.url}
+                  alt={images[selectedImageIndex - 1].node.altText || product.node.title}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
                 />
               ) : (
@@ -117,27 +127,46 @@ export function ProductShowcase() {
               )}
             </motion.div>
             
-            {images.length > 1 && (
-              <div className="grid grid-cols-4 gap-4">
-                {images.map((img, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedImageIndex(index)}
-                    className={`aspect-square overflow-hidden transition-all duration-400 ${
-                      selectedImageIndex === index 
-                        ? 'ring-1 ring-primary' 
-                        : 'opacity-60 hover:opacity-100'
-                    }`}
-                  >
-                    <img
-                      src={img.node.url}
-                      alt={img.node.altText || `View ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
+            {/* Thumbnails: video first, then images */}
+            <div className="grid grid-cols-5 gap-3">
+              {/* Video thumbnail */}
+              <button
+                onClick={() => setSelectedImageIndex(0)}
+                className={`aspect-square overflow-hidden transition-all duration-400 relative ${
+                  selectedImageIndex === 0 
+                    ? 'ring-1 ring-primary' 
+                    : 'opacity-60 hover:opacity-100'
+                }`}
+              >
+                <video
+                  src={ringVideo}
+                  muted
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-background/20">
+                  <Play className="w-4 h-4 text-foreground fill-foreground" />
+                </div>
+              </button>
+              
+              {/* Image thumbnails */}
+              {images.slice(0, 4).map((img, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedImageIndex(index + 1)}
+                  className={`aspect-square overflow-hidden transition-all duration-400 ${
+                    selectedImageIndex === index + 1 
+                      ? 'ring-1 ring-primary' 
+                      : 'opacity-60 hover:opacity-100'
+                  }`}
+                >
+                  <img
+                    src={img.node.url}
+                    alt={img.node.altText || `View ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Product Configuration Panel */}
