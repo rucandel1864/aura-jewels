@@ -74,7 +74,7 @@ export default function Privacy() {
               <h2 className="font-serif text-xl text-foreground mb-3">Contact Us</h2>
               <p>
                 For privacy-related questions, please contact us at{" "}
-                <a href="mailto:hello@lumiere.com" className="text-primary hover:underline">hello@lumiere.com</a>.
+                <a href="mailto:hello@lumis.com" className="text-primary hover:underline">hello@lumis.com</a>.
               </p>
             </section>
           </div>

@@ -144,7 +144,7 @@ export function ProductShowcase() {
           <div className="lg:sticky lg:top-32 space-y-10">
             <div>
               <p className="eyebrow mb-4">
-                Lumière Collection
+                Lumis Collection
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl mb-6 text-foreground">
                 {product.node.title}

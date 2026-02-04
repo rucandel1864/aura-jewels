@@ -31,7 +31,7 @@ export function WhyMoissanite() {
           className="text-center mb-20 sm:mb-28"
         >
           <p className="eyebrow mb-6">
-            The Lumière Difference
+            The Lumis Difference
           </p>
           <h2 className="font-serif text-display-mobile md:text-display">
             Why Women Are Choosing Moissanite
