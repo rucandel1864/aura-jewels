@@ -160,10 +160,10 @@ export function Header() {
                 className="mt-12 pt-8 border-t border-border/30 text-center"
               >
                 <a 
-                  href="mailto:hello@lumiere.com" 
+                  href="mailto:hello@lumis.com" 
                   className="text-xs tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors"
                 >
-                  hello@lumiere.com
+                  hello@lumis.com
                 </a>
               </motion.div>
             </motion.nav>
