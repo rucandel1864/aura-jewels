@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ShoppingBag } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { CartDrawer } from "./CartDrawer";
 import { Button } from "./ui/button";
+import lumisLogo from "@/assets/lumis-logo.svg";
 
 const navLinks = [
   { href: "#product", label: "The Ring" },
@@ -92,9 +93,9 @@ export function Header() {
             {/* Centered logo */}
             <a 
               href="/" 
-              className="absolute left-1/2 -translate-x-1/2 font-serif text-xl sm:text-2xl tracking-[0.15em] text-foreground hover:text-primary transition-colors duration-400"
+              className="absolute left-1/2 -translate-x-1/2 hover:opacity-80 transition-opacity duration-400"
             >
-              Lumis
+              <img src={lumisLogo} alt="Lumis" className="h-8 sm:h-10 w-auto" />
             </a>
 
             <div className="flex items-center">
