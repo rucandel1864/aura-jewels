@@ -58,7 +58,7 @@ export default function Shipping() {
               <h2 className="font-serif text-xl text-foreground mb-3">Lost or Delayed Packages</h2>
               <p>
                 If your package has not arrived within the estimated delivery window, please contact us 
-                at <a href="mailto:hello@lumiere.com" className="text-primary hover:underline">hello@lumiere.com</a> and 
+                at <a href="mailto:hello@lumis.com" className="text-primary hover:underline">hello@lumis.com</a> and 
                 we will work with the carrier to locate your order.
               </p>
             </section>

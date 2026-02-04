@@ -20,7 +20,7 @@ export default function Returns() {
             <section>
               <h2 className="font-serif text-xl text-foreground mb-3">60-Day Return Guarantee</h2>
               <p>
-                We want you to love your Lumière piece. If you're not completely satisfied, you may 
+                We want you to love your Lumis piece. If you're not completely satisfied, you may
                 return your purchase within 60 days of delivery for a full refund or exchange.
               </p>
             </section>
@@ -39,7 +39,7 @@ export default function Returns() {
               <h2 className="font-serif text-xl text-foreground mb-3">How to Initiate a Return</h2>
               <p>
                 To start a return, please email us at{" "}
-                <a href="mailto:hello@lumiere.com" className="text-primary hover:underline">hello@lumiere.com</a>{" "}
+                <a href="mailto:hello@lumis.com" className="text-primary hover:underline">hello@lumis.com</a>{" "}
                 with your order number and reason for return. We will provide you with return instructions 
                 and a shipping address.
               </p>

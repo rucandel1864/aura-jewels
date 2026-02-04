@@ -33,7 +33,7 @@ export function BrandStory() {
                 <span className="block not-italic mt-1">— or your savings."</span>
               </h2>
               <p className="text-charcoal-light leading-relaxed text-base">
-                At Lumière, we've reimagined what luxury means. By partnering directly with 
+                At Lumis, we've reimagined what luxury means. By partnering directly with 
                 skilled artisans and eliminating traditional retail markup, we deliver 
                 exceptional pieces at accessible prices. Our moissanite stones offer 
                 superior fire and brilliance compared to mined diamonds.
@@ -79,7 +79,7 @@ export function BrandStory() {
               >
                 <img
                   src={ringProduct2}
-                  alt="Lumière ring packaging"
+                  alt="Lumis ring packaging"
                   className="w-full h-full object-cover"
                 />
               </motion.div>

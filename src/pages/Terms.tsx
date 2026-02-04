@@ -48,7 +48,7 @@ export default function Terms() {
               <h2 className="font-serif text-xl text-foreground mb-3">Intellectual Property</h2>
               <p>
                 All content on this website, including text, images, logos, and designs, is the property 
-                of Lumière Fine Jewelry and is protected by copyright laws. You may not reproduce, 
+                of Lumis Fine Jewelry and is protected by copyright laws. You may not reproduce, 
                 distribute, or use our content without permission.
               </p>
             </section>
@@ -56,7 +56,7 @@ export default function Terms() {
             <section>
               <h2 className="font-serif text-xl text-foreground mb-3">Limitation of Liability</h2>
               <p>
-                Lumière Fine Jewelry shall not be liable for any indirect, incidental, or consequential 
+                Lumis Fine Jewelry shall not be liable for any indirect, incidental, or consequential 
                 damages arising from your use of our products or services. Our liability is limited to 
                 the purchase price of the product.
               </p>

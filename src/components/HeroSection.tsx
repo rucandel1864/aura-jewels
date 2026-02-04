@@ -14,7 +14,7 @@ export function HeroSection() {
         >
           <img 
             src={heroImage} 
-            alt="Lumière moissanite ring" 
+            alt="Lumis moissanite ring" 
             className="w-full h-full object-cover"
           />
         </motion.div>

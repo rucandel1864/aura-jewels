@@ -9,7 +9,7 @@ export function Footer() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      toast.success("Welcome to Lumière", {
+      toast.success("Welcome to Lumis", {
         description: "Check your email for your 10% off code.",
         position: "top-center",
       });
@@ -23,7 +23,7 @@ export function Footer() {
         <div className="grid md:grid-cols-12 gap-16 mb-20">
           {/* Brand */}
           <div className="md:col-span-5">
-            <h3 className="font-serif text-xl mb-2 text-foreground tracking-wide">Lumière</h3>
+            <h3 className="font-serif text-xl mb-2 text-foreground tracking-wide">Lumis</h3>
             <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-8">
               Brilliance, redefined.
             </p>
@@ -81,13 +81,13 @@ export function Footer() {
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
           <p className="text-xs text-muted-foreground tracking-wide">
-            © 2026 Lumière Fine Jewelry
+            © 2026 Lumis Fine Jewelry
           </p>
           <a 
-            href="mailto:hello@lumiere.com" 
+            href="mailto:hello@lumis.com" 
             className="text-xs text-muted-foreground hover:text-foreground transition-colors tracking-wide"
           >
-            hello@lumiere.com
+            hello@lumis.com
           </a>
         </div>
       </div>

@@ -240,7 +240,7 @@ const LumiereTheme = () => {
           transition: 'opacity 0.8s ease, visibility 0.8s ease',
         }}
       >
-        <h1 style={{ fontSize: '32px', fontWeight: 400, letterSpacing: '8px', color: '#1a1a1a', animation: 'logoReveal 1.5s ease forwards' }}>Lumière</h1>
+        <h1 style={{ fontSize: '32px', fontWeight: 400, letterSpacing: '8px', color: '#1a1a1a', animation: 'logoReveal 1.5s ease forwards' }}>Lumis</h1>
         <div style={{ width: '40px', height: '1px', background: '#b79962', marginTop: '24px', opacity: 0, animation: 'fadeIn 0.5s ease forwards 1s' }} />
       </div>
 
@@ -287,7 +287,7 @@ const LumiereTheme = () => {
             ))}
           </nav>
           <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', textDecoration: 'none', background: 'none', border: 'none', cursor: 'pointer' }}>
-            <h1 style={{ fontSize: '24px', fontWeight: 400, letterSpacing: '6px', color: '#1a1a1a' }}>Lumière</h1>
+            <h1 style={{ fontSize: '24px', fontWeight: 400, letterSpacing: '6px', color: '#1a1a1a' }}>Lumis</h1>
           </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
             <CartDrawer />
@@ -355,7 +355,7 @@ const LumiereTheme = () => {
         <div className="intro-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', minHeight: '70vh' }}>
           <div style={{ background: `url(${assets.cadImage}) center/cover`, minHeight: '500px' }} />
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '100px 80px', background: '#fff' }}>
-            <p style={{ fontFamily: 'Karla, sans-serif', fontSize: '12px', fontWeight: 400, letterSpacing: '3px', textTransform: 'uppercase', color: '#b79962', marginBottom: '28px' }}>The Lumière Difference</p>
+            <p style={{ fontFamily: 'Karla, sans-serif', fontSize: '12px', fontWeight: 400, letterSpacing: '3px', textTransform: 'uppercase', color: '#b79962', marginBottom: '28px' }}>The Lumis Difference</p>
             <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 52px)', fontWeight: 300, lineHeight: 1.25, color: '#1a1a1a', marginBottom: '50px' }}>
               A stone born from the stars, <span style={{ fontStyle: 'italic' }}>crafted for the extraordinary.</span>
             </h2>
@@ -380,7 +380,7 @@ const LumiereTheme = () => {
           {/* Product Images */}
           <div>
             <div style={{ aspectRatio: '1', background: '#fff', marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-              <img src={assets.gallery[activeImage]} alt="Lumière ring" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src={assets.gallery[activeImage]} alt="Lumis ring" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
               {assets.gallery.map((img, i) => (
@@ -513,7 +513,7 @@ const LumiereTheme = () => {
           onSubmit={(e) => {
             e.preventDefault();
             if (email) {
-              toast.success('Welcome to Lumière!');
+              toast.success('Welcome to Lumis!');
               setEmail('');
             }
           }}
@@ -530,7 +530,7 @@ const LumiereTheme = () => {
       <footer style={{ padding: '80px 5% 40px', background: '#fff', borderTop: '1px solid #e8e4dc' }}>
         <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '60px', maxWidth: '1400px', margin: '0 auto 60px' }}>
           <div>
-            <h3 style={{ fontSize: '22px', fontWeight: 400, letterSpacing: '4px', color: '#1a1a1a', marginBottom: '20px' }}>Lumière</h3>
+            <h3 style={{ fontSize: '22px', fontWeight: 400, letterSpacing: '4px', color: '#1a1a1a', marginBottom: '20px' }}>Lumis</h3>
             <p style={{ fontFamily: 'Karla, sans-serif', fontSize: '13px', fontWeight: 300, lineHeight: 1.8, color: '#888', maxWidth: '280px' }}>The eternal brilliance of moissanite, crafted for those who appreciate true beauty and value.</p>
           </div>
           <div>
@@ -553,7 +553,7 @@ const LumiereTheme = () => {
           </div>
           <div>
             <h4 style={{ fontFamily: 'Karla, sans-serif', fontSize: '11px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: '#666', marginBottom: '24px' }}>Contact</h4>
-            <a href="mailto:hello@lumiere.com" className="footer-link">
+            <a href="mailto:hello@lumis.com" className="footer-link">
               Email Us
             </a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer-link">
@@ -562,7 +562,7 @@ const LumiereTheme = () => {
           </div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '32px', borderTop: '1px solid #e8e4dc', maxWidth: '1400px', margin: '0 auto', flexWrap: 'wrap', gap: '16px' }}>
-          <p style={{ fontFamily: 'Karla, sans-serif', fontSize: '11px', color: '#999' }}>© {new Date().getFullYear()} Lumière. All rights reserved.</p>
+          <p style={{ fontFamily: 'Karla, sans-serif', fontSize: '11px', color: '#999' }}>© {new Date().getFullYear()} Lumis. All rights reserved.</p>
           <div style={{ display: 'flex', gap: '24px' }}>
             <Link to="/privacy" style={{ fontFamily: 'Karla, sans-serif', fontSize: '11px', color: '#999', textDecoration: 'none' }}>
               Privacy

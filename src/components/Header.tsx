@@ -94,7 +94,7 @@ export function Header() {
               href="/" 
               className="absolute left-1/2 -translate-x-1/2 font-serif text-xl sm:text-2xl tracking-[0.15em] text-foreground hover:text-primary transition-colors duration-400"
             >
-              Lumière
+              Lumis
             </a>
 
             <div className="flex items-center">
