@@ -6,7 +6,7 @@ import { Loader2, Check, Ruler, Info, Play } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { toast } from "sonner";
-import ringVideo from "/ring-video.mp4";
+const ringVideo = "/ring-video.mp4";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const CARAT_PRICES: Record<string, number> = {
