@@ -11,9 +11,9 @@ import mainImage3 from '@/assets/main-image-3.jpeg';
 import mainImage4 from '@/assets/main-image-4.jpeg';
 import mainImage5 from '@/assets/main-image-5.jpeg';
 import mainImage6 from '@/assets/main-image-6.jpeg';
-import variant1ct from '@/assets/variant-1ct.jpg';
-import variant2ct from '@/assets/variant-2ct.jpg';
-import variant3ct from '@/assets/variant-3ct.jpg';
+import carat1ct from '@/assets/carat-1ct.jpeg';
+import carat2ct from '@/assets/carat-2ct.jpeg';
+import carat3ct from '@/assets/carat-3ct.jpeg';
 
 const LumiereTheme = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -50,9 +50,9 @@ const LumiereTheme = () => {
     cadImage: cadImage,
     gallery: [mainImage3, mainImage4, mainImage5, mainImage6],
     variants: {
-      '1CT': variant1ct,
-      '2CT': variant2ct,
-      '3CT': variant3ct,
+      '1CT': carat1ct,
+      '2CT': carat2ct,
+      '3CT': carat3ct,
     } as Record<string, string>,
   };
 
