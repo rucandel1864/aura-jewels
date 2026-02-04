@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 55" width="200" height="55">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400');
+      .wordmark { 
+        font-family: 'Cormorant Garamond', 'Times New Roman', serif; 
+        font-size: 30px; 
+        font-weight: 400; 
+        letter-spacing: 8px;
+        fill: #1a1a1a;
+      }
+    </style>
+  </defs>
+  <text x="100" y="32" text-anchor="middle" class="wordmark">LUMIS</text>
+  <rect x="80" y="44" width="40" height="1" fill="#b79962"/>
+</svg>
