@@ -40,7 +40,8 @@ export default function Shipping() {
             <section>
               <h2 className="font-serif text-xl text-foreground mb-3">International Shipping</h2>
               <p>
-                We ship worldwide. International customers are responsible for any customs duties, 
+                Lumis is based in the United States. We ship worldwide, and international shipping 
+                applies to all countries outside the U.S. International customers are responsible for any customs duties, 
                 taxes, or fees imposed by their country. These charges are not included in the product 
                 price or shipping cost.
               </p>
