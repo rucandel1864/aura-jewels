@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Loader2, Check, Ruler, Info, Play } from "lucide-react";
+import { Loader2, Check, Ruler, Info, Play, Shield, Award } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
 import { toast } from "sonner";
@@ -10,9 +10,15 @@ const ringVideo = "/ring-video.mp4";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const CARAT_PRICES: Record<string, number> = {
-  "1CT": 79.99,
-  "2CT": 129.99,
-  "3CT": 149.99,
+  "1CT": 69.99,
+  "2CT": 99.99,
+  "3CT": 129.99,
+};
+
+const CARAT_COMPARE_PRICES: Record<string, number> = {
+  "1CT": 129.99,
+  "2CT": 179.99,
+  "3CT": 249.99,
 };
 
 export function ProductShowcase() {
@@ -175,12 +181,33 @@ export function ProductShowcase() {
               <p className="eyebrow mb-4">
                 Lumis Collection
               </p>
-              <h2 className="font-serif text-3xl sm:text-4xl mb-6 text-foreground">
+              <h2 className="font-serif text-3xl sm:text-4xl mb-4 text-foreground">
                 {product.node.title}
               </h2>
-              <p className="text-2xl font-serif text-foreground">
-                ${displayPrice}
-              </p>
+              
+              {/* Certification Badges */}
+              <div className="flex flex-wrap gap-3 mb-6">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-primary/30 text-xs tracking-[0.1em] uppercase text-primary">
+                  <Shield className="h-3.5 w-3.5" strokeWidth={1.5} />
+                  Certified Moissanite
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-primary/30 text-xs tracking-[0.1em] uppercase text-primary">
+                  <Award className="h-3.5 w-3.5" strokeWidth={1.5} />
+                  925 Sterling Silver
+                </span>
+              </div>
+
+              <div className="flex items-baseline gap-3">
+                <p className="text-2xl font-serif text-foreground">
+                  ${displayPrice}
+                </p>
+                <p className="text-base font-serif text-muted-foreground line-through">
+                  ${CARAT_COMPARE_PRICES[selectedCarat]}
+                </p>
+                <span className="text-xs tracking-[0.1em] uppercase text-primary font-medium">
+                  Valentine's Sale
+                </span>
+              </div>
             </div>
 
             {/* Divider */}
@@ -204,7 +231,8 @@ export function ProductShowcase() {
                         }`}
                       >
                         <span className="block text-sm">{carat}</span>
-                        <span className="text-xs text-muted-foreground mt-1 block">${caratPrice}</span>
+                        <span className="text-xs text-muted-foreground/50 line-through mt-1 block">${CARAT_COMPARE_PRICES[carat]}</span>
+                        <span className="text-xs text-foreground block">${caratPrice}</span>
                       </button>
                     );
                   })}
@@ -341,19 +369,19 @@ export function ProductShowcase() {
           <ul className="space-y-4 text-sm">
             <li className="flex items-start gap-4 text-muted-foreground">
               <span className="text-primary">—</span>
-              Available in 1CT, 2CT, and 3CT sizes
+              Certified moissanite — verified authentic with documentation
             </li>
             <li className="flex items-start gap-4 text-muted-foreground">
               <span className="text-primary">—</span>
-              925 Sterling Silver with 18K white gold plating
+              925 Sterling Silver (stamped) with 18K white gold plating
             </li>
             <li className="flex items-start gap-4 text-muted-foreground">
               <span className="text-primary">—</span>
-              Halo setting with 5A zircon side stones
+              100% passes thermal diamond tester
             </li>
             <li className="flex items-start gap-4 text-muted-foreground">
               <span className="text-primary">—</span>
-              100% passes diamond tester
+              Available in 1CT, 2CT, and 3CT with halo setting
             </li>
           </ul>
         </motion.div>

@@ -22,6 +22,15 @@ const specs = [
       { label: "Protective Film", value: "AF coating included" },
     ]
   },
+  {
+    title: "Certification",
+    content: [
+      { label: "Moissanite Certification", value: "Verified Authentic" },
+      { label: "Metal Purity", value: "925 Sterling Silver (Stamped)" },
+      { label: "Diamond Test", value: "Passes Thermal Diamond Tester" },
+      { label: "Origin", value: "Lab-Created, Ethically Sourced" },
+    ]
+  },
 ];
 
 export function SpecsAccordion() {
