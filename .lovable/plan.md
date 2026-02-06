@@ -1,149 +1,59 @@
 
-
-# Lumière Theme Replacement - Implementation Plan
+# Valentine's Sale Update
 
 ## Overview
+Update all pricing across the site to Valentine's sale prices with crossed-out "Was" prices, and add prominent "Certified Moissanite" and "925 Sterling Silver" badges to the product page.
 
-Replacing the current multi-component architecture with the uploaded single-file React theme, integrating all uploaded assets (including the video), and connecting it to the existing Shopify cart functionality.
+## Price Changes (everywhere)
 
----
+| Size | Sale Price | Was Price |
+|------|-----------|-----------|
+| 1CT  | $69.99    | $129.99   |
+| 2CT  | $99.99    | $179.99   |
+| 3CT  | $129.99   | $249.99   |
 
-## Assets to Copy
+## Files to Update
 
-| Uploaded File | Destination | Purpose |
-|---------------|-------------|---------|
-| `cad.jpg` | `src/assets/cad.jpg` | CAD/design image for intro section |
-| `main-image-3-2.jpeg` | `src/assets/main-image-3.jpeg` | Gallery image 1 |
-| `main-image-4-2.jpeg` | `src/assets/main-image-4.jpeg` | Gallery image 2 |
-| `main-image-5-2.jpeg` | `src/assets/main-image-5.jpeg` | Gallery image 3 |
-| `main-image-6-2.jpeg` | `src/assets/main-image-6.jpeg` | Gallery image 4 |
-| `ring-carat-1ct.jpg` | `src/assets/variant-1ct.jpg` | 1CT carat comparison |
-| `ring-carat-2ct.jpg` | `src/assets/variant-2ct.jpg` | 2CT carat comparison |
-| `ring-carat-3ct.jpg` | `src/assets/variant-3ct.jpg` | 3CT carat comparison |
-| `ffuxnpjphare5u3okdfc.mp4` | `public/ring-video.mp4` | Hero video (in public for direct video src) |
+### 1. ProductShowcase.tsx (main product page)
+- Update `CARAT_PRICES` to new sale prices and add `CARAT_COMPARE_PRICES` for "Was" prices
+- Show strikethrough "Was" price next to sale price in the header area (e.g., ~~$129.99~~ **$69.99**)
+- Show strikethrough prices in the carat selector buttons
+- Add a "Valentine's Sale" badge or label near the price
+- Add two prominent badges below the title: **"Certified Moissanite"** and **"925 Sterling Silver"** -- styled as elegant pill/tag elements with the gold accent color
+- Update the product description bullets to lead with certification language
 
----
+### 2. CaratComparison.tsx
+- Update prices to $69.99 / $99.99 / $129.99
+- Add compare-at prices with strikethrough display
 
-## Implementation Steps
+### 3. StickyAddToCart.tsx
+- Change "From $79.99" to "From $69.99" with a strikethrough on "~~$129.99~~"
 
-### Step 1: Copy All Assets
+### 4. FinalCTA.tsx
+- Change "From $79.99" to "From $69.99"
 
-Copy the 9 uploaded files to the project:
-- Images go to `src/assets/` for ES6 imports
-- Video goes to `public/` for direct video src reference
+### 5. LumiereTheme.tsx
+- Update `caratOptions` prices to 69.99 / 99.99 / 129.99
+- Add compare-at prices with strikethrough in product section and carat comparison section
+- Update the "Starting from" bar under the hero video
 
-### Step 2: Create `src/components/LumiereTheme.tsx`
+### 6. HeroSection.tsx
+- No price references here, no changes needed
 
-Convert the uploaded JSX to TypeScript with these integrations:
+### 7. SpecsAccordion.tsx
+- Add a "Certification" accordion section with entries like "Moissanite Certification: Verified Authentic" and "Metal Purity: 925 Sterling Silver (Stamped)"
 
-- **Import all assets** from `src/assets/` using ES6 imports
-- **Add Shopify cart integration**:
-  - Import `useCartStore` and `fetchProducts` from existing modules
-  - Import `CartDrawer` component for the header cart icon
-  - Replace static "Add to Bag" with real `addItem` function
-  - Find matching variant by carat + size selection
-- **Import `useCartSync`** hook for cart synchronization
-- **Use video from public folder**: `/ring-video.mp4`
-- **Add responsive adjustments** for mobile with media query considerations
+## Certification Badges (ProductShowcase.tsx)
+Below the product title, add two inline badges styled with a subtle border and gold accent:
+- A shield/gem icon + "Certified Moissanite"
+- A stamp icon + "925 Sterling Silver"
 
-### Step 3: Update `src/pages/Index.tsx`
+These will use small pill-shaped elements with `border-primary/30` styling to feel premium and trustworthy.
 
-Replace the multi-component structure with single `LumiereTheme` import:
-- Remove all old component imports (HeroSection, TrustBar, etc.)
-- Keep `useCartSync` hook call
-- Render just `<LumiereTheme />`
+## Technical Details
 
----
-
-## Key Shopify Integration Code
-
-```typescript
-// Inside LumiereTheme.tsx
-import { useCartStore } from "@/stores/cartStore";
-import { fetchProducts, ShopifyProduct } from "@/lib/shopify";
-import { CartDrawer } from "@/components/CartDrawer";
-import { useCartSync } from "@/hooks/useCartSync";
-
-// State for product data
-const [product, setProduct] = useState<ShopifyProduct | null>(null);
-
-// Fetch product on mount
-useEffect(() => {
-  fetchProducts(1).then(products => {
-    if (products[0]) setProduct(products[0]);
-  });
-}, []);
-
-// Add to cart handler
-const handleAddToCart = async () => {
-  if (!product) return;
-  
-  // Find variant matching selected carat + size
-  const variant = product.node.variants.edges.find(v => {
-    const opts = v.node.selectedOptions;
-    const caratMatch = opts.some(o => o.value === selectedCarat);
-    const sizeMatch = opts.some(o => o.value === selectedSize);
-    return caratMatch && sizeMatch;
-  });
-  
-  if (variant) {
-    await addItem({
-      product,
-      variantId: variant.node.id,
-      variantTitle: variant.node.title,
-      price: variant.node.price,
-      quantity: 1,
-      selectedOptions: variant.node.selectedOptions,
-    });
-  }
-};
-```
-
----
-
-## Files to Create/Modify
-
-| File | Action | Purpose |
-|------|--------|---------|
-| `src/assets/cad.jpg` | Copy | CAD image |
-| `src/assets/main-image-3.jpeg` | Copy | Gallery |
-| `src/assets/main-image-4.jpeg` | Copy | Gallery |
-| `src/assets/main-image-5.jpeg` | Copy | Gallery |
-| `src/assets/main-image-6.jpeg` | Copy | Gallery |
-| `src/assets/variant-1ct.jpg` | Copy | Carat comparison |
-| `src/assets/variant-2ct.jpg` | Copy | Carat comparison |
-| `src/assets/variant-3ct.jpg` | Copy | Carat comparison |
-| `public/ring-video.mp4` | Copy | Hero video |
-| `src/components/LumiereTheme.tsx` | Create | Main theme component |
-| `src/pages/Index.tsx` | Modify | Use new theme |
-
----
-
-## What Gets Preserved
-
-- Full Shopify cart functionality (add, update, remove items)
-- Cart drawer with checkout redirect
-- Cart sync on page visibility
-- All policy pages (Shipping, Returns, Privacy, Terms)
-- Existing router configuration
-
-## What Gets Replaced
-
-- All section components (HeroSection, TrustBar, etc.)
-- Current dark/cream color scheme (becomes white + gold)
-- Multi-component architecture (becomes single file)
-
----
-
-## Design Features from Theme
-
-- Animated 2-second loading screen with logo reveal
-- Split-layout hero with video on right
-- Scroll-responsive header (transparent to white)
-- Product gallery with thumbnail selection
-- Carat selection with live price update
-- Size selector dropdown
-- Testimonials section
-- Newsletter signup
-- Refined footer
-
+- Sale prices stored as constants alongside compare-at prices in each file
+- Strikethrough prices use `line-through` CSS with `text-muted-foreground` coloring
+- Sale price displayed in the primary/foreground color for emphasis
+- Badge elements use flexbox with Lucide icons (Shield, Award, or similar)
+- All changes are purely frontend display -- Shopify variant prices should also be updated in Shopify Admin to match
