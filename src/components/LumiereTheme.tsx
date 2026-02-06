@@ -57,9 +57,9 @@ const LumiereTheme = () => {
   };
 
   const caratOptions = [
-    { size: '1CT', price: 99.99, mm: '6.5mm' },
-    { size: '2CT', price: 149.99, mm: '8.0mm' },
-    { size: '3CT', price: 199.99, mm: '9.0mm' },
+    { size: '1CT', price: 79.99, mm: '6.5mm' },
+    { size: '2CT', price: 129.99, mm: '8.0mm' },
+    { size: '3CT', price: 149.99, mm: '9.0mm' },
   ];
 
   const productHighlights = [

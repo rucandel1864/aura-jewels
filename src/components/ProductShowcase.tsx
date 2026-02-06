@@ -10,9 +10,9 @@ const ringVideo = "/ring-video.mp4";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const CARAT_PRICES: Record<string, number> = {
-  "1CT": 100,
-  "2CT": 150,
-  "3CT": 200,
+  "1CT": 79.99,
+  "2CT": 129.99,
+  "3CT": 149.99,
 };
 
 export function ProductShowcase() {

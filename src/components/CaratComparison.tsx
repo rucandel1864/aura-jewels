@@ -5,9 +5,9 @@ import carat2ctImage from "@/assets/ring-carat-2ct.jpg";
 import carat3ctImage from "@/assets/ring-carat-3ct.jpg";
 
 const CARAT_OPTIONS = [
-  { size: "1CT", diameter: "6.5mm", price: "$100", image: carat1ctImage },
-  { size: "2CT", diameter: "8.0mm", price: "$150", image: carat2ctImage },
-  { size: "3CT", diameter: "9.0mm", price: "$200", image: carat3ctImage },
+  { size: "1CT", diameter: "6.5mm", price: "$79.99", image: carat1ctImage },
+  { size: "2CT", diameter: "8.0mm", price: "$129.99", image: carat2ctImage },
+  { size: "3CT", diameter: "9.0mm", price: "$149.99", image: carat3ctImage },
 ];
 
 export function CaratComparison() {
