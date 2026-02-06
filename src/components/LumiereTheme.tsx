@@ -57,9 +57,9 @@ const LumiereTheme = () => {
   };
 
   const caratOptions = [
-    { size: '1CT', price: 79.99, mm: '6.5mm' },
-    { size: '2CT', price: 129.99, mm: '8.0mm' },
-    { size: '3CT', price: 149.99, mm: '9.0mm' },
+    { size: '1CT', price: 69.99, wasPrice: 129.99, mm: '6.5mm' },
+    { size: '2CT', price: 99.99, wasPrice: 179.99, mm: '8.0mm' },
+    { size: '3CT', price: 129.99, wasPrice: 249.99, mm: '9.0mm' },
   ];
 
   const productHighlights = [
@@ -327,8 +327,11 @@ const LumiereTheme = () => {
             {/* CTA Bar Below Video */}
             <button className="cta-bar" onClick={scrollToProduct} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', marginTop: '20px', background: '#1a1a1a', padding: '20px 28px', border: 'none', cursor: 'pointer' }}>
               <div style={{ textAlign: 'left' }}>
-                <p style={{ fontFamily: 'Karla, sans-serif', fontSize: '11px', letterSpacing: '2px', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase' }}>Starting from</p>
-                <p style={{ fontFamily: 'Karla, sans-serif', fontSize: '28px', fontWeight: 500, color: '#fff', marginTop: '4px' }}>${caratOptions[0].price}</p>
+                <p style={{ fontFamily: 'Karla, sans-serif', fontSize: '11px', letterSpacing: '2px', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase' }}>Valentine's Sale — Starting from</p>
+                <p style={{ fontFamily: 'Karla, sans-serif', marginTop: '4px', display: 'flex', alignItems: 'baseline', gap: '10px' }}>
+                  <span style={{ fontSize: '16px', fontWeight: 300, color: 'rgba(255,255,255,0.5)', textDecoration: 'line-through' }}>${caratOptions[0].wasPrice}</span>
+                  <span style={{ fontSize: '28px', fontWeight: 500, color: '#fff' }}>${caratOptions[0].price}</span>
+                </p>
               </div>
               <span style={{ fontFamily: 'Karla, sans-serif', fontSize: '13px', fontWeight: 500, letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 Shop Now <span style={{ fontSize: '18px' }}>→</span>
@@ -396,7 +399,11 @@ const LumiereTheme = () => {
             <p style={{ fontFamily: 'Karla, sans-serif', fontSize: '11px', fontWeight: 400, letterSpacing: '2px', textTransform: 'uppercase', color: '#b79962', marginBottom: '12px' }}>The Collection</p>
             <h2 style={{ fontSize: '36px', fontWeight: 300, color: '#1a1a1a', marginBottom: '8px' }}>Brilliance Halo Ring</h2>
             <p style={{ fontFamily: 'Karla, sans-serif', fontSize: '13px', color: '#999', marginBottom: '24px' }}>Round-cut moissanite · Sterling silver · 18K white gold</p>
-            <p style={{ fontSize: '32px', fontWeight: 300, color: '#1a1a1a', marginBottom: '24px' }}>${currentPrice.toFixed(2)}</p>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', marginBottom: '8px' }}>
+              <p style={{ fontSize: '32px', fontWeight: 300, color: '#1a1a1a' }}>${currentPrice.toFixed(2)}</p>
+              <p style={{ fontSize: '18px', fontWeight: 300, color: '#999', textDecoration: 'line-through' }}>${(caratOptions.find(c => c.size === selectedCarat)?.wasPrice || 129.99).toFixed(2)}</p>
+            </div>
+            <p style={{ fontFamily: 'Karla, sans-serif', fontSize: '12px', fontWeight: 500, letterSpacing: '1.5px', textTransform: 'uppercase', color: '#b79962', marginBottom: '24px' }}>Valentine's Sale</p>
 
             <ul style={{ listStyle: 'none', marginBottom: '32px' }}>
               {productHighlights.map((h, i) => (
@@ -415,7 +422,8 @@ const LumiereTheme = () => {
                   <button key={opt.size} className="carat-btn" onClick={() => setSelectedCarat(opt.size)} style={{ flex: 1, padding: '20px', background: selectedCarat === opt.size ? 'rgba(183, 153, 98, 0.08)' : '#fff', border: selectedCarat === opt.size ? '2px solid #b79962' : '1px solid #e8e4dc', cursor: 'pointer', textAlign: 'center' }}>
                     <span style={{ fontFamily: 'Karla, sans-serif', fontSize: '14px', fontWeight: 500, color: '#1a1a1a', display: 'block' }}>{opt.size}</span>
                     <span style={{ fontFamily: 'Karla, sans-serif', fontSize: '11px', color: '#999', display: 'block', marginTop: '4px' }}>{opt.mm}</span>
-                    <span style={{ fontFamily: 'Karla, sans-serif', fontSize: '12px', color: selectedCarat === opt.size ? '#b79962' : '#888', display: 'block', marginTop: '4px' }}>${opt.price}</span>
+                    <span style={{ fontFamily: 'Karla, sans-serif', fontSize: '11px', color: '#bbb', display: 'block', marginTop: '4px', textDecoration: 'line-through' }}>${opt.wasPrice}</span>
+                    <span style={{ fontFamily: 'Karla, sans-serif', fontSize: '12px', color: selectedCarat === opt.size ? '#b79962' : '#888', display: 'block', marginTop: '2px' }}>${opt.price}</span>
                   </button>
                 ))}
               </div>
@@ -480,7 +488,8 @@ const LumiereTheme = () => {
               <button key={opt.size} className="carat-btn" onClick={() => setSelectedCarat(opt.size)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '24px 32px', background: selectedCarat === opt.size ? 'rgba(183, 153, 98, 0.08)' : '#fff', border: selectedCarat === opt.size ? '2px solid #b79962' : '1px solid #e8e4dc', cursor: 'pointer', minWidth: '120px' }}>
                 <span style={{ fontFamily: 'Karla, sans-serif', fontSize: '16px', fontWeight: 500, color: '#1a1a1a' }}>{opt.size}</span>
                 <span style={{ fontFamily: 'Karla, sans-serif', fontSize: '12px', color: '#999', marginTop: '4px' }}>{opt.mm}</span>
-                <span style={{ fontFamily: 'Karla, sans-serif', fontSize: '13px', color: selectedCarat === opt.size ? '#b79962' : '#888', marginTop: '8px', fontWeight: 500 }}>${opt.price}</span>
+                <span style={{ fontFamily: 'Karla, sans-serif', fontSize: '12px', color: '#bbb', marginTop: '6px', textDecoration: 'line-through' }}>${opt.wasPrice}</span>
+                <span style={{ fontFamily: 'Karla, sans-serif', fontSize: '13px', color: selectedCarat === opt.size ? '#b79962' : '#888', marginTop: '4px', fontWeight: 500 }}>${opt.price}</span>
               </button>
             ))}
           </div>

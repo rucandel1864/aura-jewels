@@ -39,7 +39,7 @@ export function FinalCTA() {
               }}
               className="text-link text-sm tracking-[0.2em] uppercase"
             >
-              Shop Now — From $79.99
+              Shop Now — From $69.99
             </a>
           </motion.div>
         </div>

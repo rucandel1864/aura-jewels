@@ -39,7 +39,7 @@ export function StickyAddToCart() {
             <div className="flex items-center justify-between gap-4">
               <div>
               <p className="font-serif text-sm text-foreground">Brilliance Halo</p>
-              <p className="text-primary text-sm">From $79.99</p>
+              <p className="text-sm"><span className="text-muted-foreground line-through text-xs">$129.99</span> <span className="text-primary">From $69.99</span></p>
               </div>
               <Button 
                 onClick={scrollToProduct}

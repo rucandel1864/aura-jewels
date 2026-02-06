@@ -5,9 +5,9 @@ import carat2ctImage from "@/assets/ring-carat-2ct.jpg";
 import carat3ctImage from "@/assets/ring-carat-3ct.jpg";
 
 const CARAT_OPTIONS = [
-  { size: "1CT", diameter: "6.5mm", price: "$79.99", image: carat1ctImage },
-  { size: "2CT", diameter: "8.0mm", price: "$129.99", image: carat2ctImage },
-  { size: "3CT", diameter: "9.0mm", price: "$149.99", image: carat3ctImage },
+  { size: "1CT", diameter: "6.5mm", price: "$69.99", wasPrice: "$129.99", image: carat1ctImage },
+  { size: "2CT", diameter: "8.0mm", price: "$99.99", wasPrice: "$179.99", image: carat2ctImage },
+  { size: "3CT", diameter: "9.0mm", price: "$129.99", wasPrice: "$249.99", image: carat3ctImage },
 ];
 
 export function CaratComparison() {
@@ -70,7 +70,7 @@ export function CaratComparison() {
             {CARAT_OPTIONS[selectedCarat].size}
           </p>
           <p className="text-sm text-muted-foreground">
-            {CARAT_OPTIONS[selectedCarat].diameter} · {CARAT_OPTIONS[selectedCarat].price}
+            {CARAT_OPTIONS[selectedCarat].diameter} · <span className="line-through opacity-50">{CARAT_OPTIONS[selectedCarat].wasPrice}</span> <span className="text-primary">{CARAT_OPTIONS[selectedCarat].price}</span>
           </p>
         </motion.div>
 
